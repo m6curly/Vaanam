@@ -45,6 +45,15 @@ document
 };
 
 // =====================================
+// WAYBACK LAYERS
+// =====================================
+
+let tsLayer1 = null;
+let tsLayer2 = null;
+let tsLayer3 = null;
+let tsLayer4 = null;
+
+// =====================================
 // TIME SERIES MAPS
 // =====================================
 
@@ -436,3 +445,165 @@ document
     "tsDate4"
 )
 .value="2023";
+
+// =====================================
+// DEFAULT LOAD
+// =====================================
+
+tsLayer1 =
+loadWayback(
+    tsMap1,
+    null,
+    "2020"
+);
+
+tsLayer2 =
+loadWayback(
+    tsMap2,
+    null,
+    "2021"
+);
+
+tsLayer3 =
+loadWayback(
+    tsMap3,
+    null,
+    "2022"
+);
+
+tsLayer4 =
+loadWayback(
+    tsMap4,
+    null,
+    "2023"
+);
+
+// =====================================
+// DROPDOWN EVENTS
+// =====================================
+
+document
+.getElementById(
+    "tsDate1"
+)
+.onchange=function(){
+
+    tsLayer1=
+    loadWayback(
+        tsMap1,
+        tsLayer1,
+        this.value
+    );
+
+};
+
+
+document
+.getElementById(
+    "tsDate2"
+)
+.onchange=function(){
+
+    tsLayer2=
+    loadWayback(
+        tsMap2,
+        tsLayer2,
+        this.value
+    );
+
+};
+
+
+document
+.getElementById(
+    "tsDate3"
+)
+.onchange=function(){
+
+    tsLayer3=
+    loadWayback(
+        tsMap3,
+        tsLayer3,
+        this.value
+    );
+
+};
+
+
+document
+.getElementById(
+    "tsDate4"
+)
+.onchange=function(){
+
+    tsLayer4=
+    loadWayback(
+        tsMap4,
+        tsLayer4,
+        this.value
+    );
+
+};
+
+// =====================================
+// WAYBACK FUNCTION
+// =====================================
+
+function loadWayback(map, oldLayer, year){
+
+    if(oldLayer){
+        map.removeLayer(oldLayer);
+    }
+
+    const url = wayback[year];
+
+    const layer = new ol.layer.Tile({
+
+        source: new ol.source.XYZ({
+            url: url,
+            crossOrigin: "anonymous"
+        })
+
+    });
+
+    map.addLayer(layer);
+
+    return layer;
+}
+
+// =====================================
+// LOAD WAYBACK
+// =====================================
+
+function loadWayback(map, oldLayer, year){
+
+    if(oldLayer){
+
+        map.removeLayer(
+            oldLayer
+        );
+
+    }
+
+    const layer =
+
+    new ol.layer.Tile({
+
+        source:
+
+        new ol.source.XYZ({
+
+            url:
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+
+        })
+
+    });
+
+   map.addLayer(
+    layer
+);
+
+    return layer;
+
+}
