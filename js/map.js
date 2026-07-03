@@ -395,6 +395,327 @@ function loadBaseLayer(
 
         });
 
+// =====================================
+// PLACES STYLE
+// =====================================
+
+if(name==="Places"){
+
+    layer.setStyle(
+
+        function(feature){
+
+            return new ol.style.Style({
+
+                image:
+
+                new ol.style.Circle({
+
+                    radius:4,
+
+                    fill:
+                    new ol.style.Fill({
+
+                        color:"#FFFF00"
+
+                    }),
+
+                    stroke:
+                    new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:1.5
+
+                    })
+
+                }),
+
+                text:
+
+                new ol.style.Text({
+
+                    text:
+                    feature.get("name"),
+
+                    font:
+                    "bold 10px Arial",
+
+                    offsetX:10,
+                    offsetY:-2,
+
+                    textAlign:"left",
+
+                    fill:
+                    new ol.style.Fill({
+
+                        color:"#FFFFFF"
+
+                    }),
+
+                    stroke:
+                    new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:4
+
+                    })
+
+                })
+
+            });
+
+        }
+
+    );
+
+}
+
+// =====================================
+// AIRPORT STYLE
+// =====================================
+
+if(name==="Airport"){
+
+    layer.setStyle(
+
+        function(feature){
+
+            return new ol.style.Style({
+
+                image:
+
+                new ol.style.Icon({
+
+                    src:
+                    "assets/symbols/airport.svg",
+
+                    scale:0.03,
+
+                    anchor:[0.5,1]
+
+                }),
+
+                text:
+
+                new ol.style.Text({
+
+                    text:
+                    feature.get("name"),
+
+                    font:
+                    "bold 11px Arial",
+
+                    offsetX:12,
+                    offsetY:-2,
+
+                    textAlign:"left",
+
+                    fill:
+                    new ol.style.Fill({
+
+                        color:"#FFFFFF"
+
+                    }),
+
+                    stroke:
+                    new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:4
+
+                    })
+
+                })
+
+            });
+
+        }
+
+    );
+
+}
+
+
+// =====================================
+// PORT STYLE
+// =====================================
+
+if(name==="Port"){
+
+    layer.setStyle(
+
+        function(feature){
+
+            return new ol.style.Style({
+
+                image:
+
+                new ol.style.Icon({
+
+                    src:
+                    "assets/symbols/port.svg",
+
+                    scale:0.02,
+
+                    anchor:[0.5,1]
+
+                }),
+
+                text:
+
+                new ol.style.Text({
+
+                    text:
+                    feature.get("name"),
+
+                    font:
+                    "bold 11px Arial",
+
+                    offsetX:12,
+                    offsetY:-2,
+
+                    textAlign:"left",
+
+                    fill:
+                    new ol.style.Fill({
+
+                        color:"#FFFFFF"
+
+                    }),
+
+                    stroke:
+                    new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:4
+
+                    })
+
+                })
+
+            });
+
+        }
+
+    );
+
+}
+
+// =====================================
+// ROAD STYLE
+// =====================================
+
+if(name==="Road"){
+
+    layer.setStyle(
+
+        new ol.style.Style({
+
+            stroke:
+
+            new ol.style.Stroke({
+
+                color:"#FFD700",
+
+                width:2
+
+            })
+
+        })
+
+    );
+
+}
+
+// =====================================
+// RIVER STYLE
+// =====================================
+
+if(name==="River"){
+
+    layer.setStyle(
+
+        function(feature){
+
+            return new ol.style.Style({
+
+                stroke:
+
+                new ol.style.Stroke({
+
+                    color:"#00BFFF",
+
+                    width:1.8
+
+                }),
+
+                text:
+
+                new ol.style.Text({
+
+                    text:
+                    feature.get("name"),
+
+                    font:
+                    "bold 10px Arial",
+
+                    fill:
+                    new ol.style.Fill({
+
+                        color:"#00FFFF"
+
+                    }),
+
+                    stroke:
+                    new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:4
+
+                    })
+
+                })
+
+            });
+
+        }
+
+    );
+
+}
+
+// =====================================
+// BOUNDARY STYLE
+// =====================================
+
+if(name==="Boundary"){
+
+    layer.setStyle(
+
+        new ol.style.Style({
+
+            stroke:
+
+            new ol.style.Stroke({
+
+                color:"#FFFFFF",
+
+                width:2,
+
+                lineDash:[8,4]
+
+            })
+
+        })
+
+    );
+
+}
 
         map.addLayer(
             layer
