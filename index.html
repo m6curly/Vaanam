@@ -334,7 +334,99 @@
 
                 <div id="layerPanel">
 
-                    <div id="layerList"> </div>
+                    <!-- BASE LAYERS -->
+
+                    <div class="layerGroup">
+
+                        <div class="layerGroupTitle">
+
+                            Base Layers
+
+                        </div>
+
+                        <div id="baseLayerList">
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="placeCheck"
+                                    unchecked>
+                                <label>
+                                    Places
+                                </label>
+                            </div>
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="airportCheck"
+                                    unchecked>
+                                <label>
+                                    Airport
+                                </label>
+                            </div>
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="portCheck"
+                                    unchecked>
+                                <label>
+                                    Port
+                                </label>
+                            </div>
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="roadCheck"
+                                    unchecked>
+                                <label>
+                                    Road
+                                </label>
+                            </div>
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="riverCheck"
+                                    unchecked>
+                                <label>
+                                    River
+                                </label>
+                            </div>
+
+                            <div class="layerItem">
+                                <input
+                                    type="checkbox"
+                                    id="boundaryCheck"
+                                    unchecked>
+                                <label>
+                                    Boundary
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- USER LAYERS -->
+
+                    <div class="layerGroup">
+
+                        <div class="layerGroupTitle">
+
+                            User Layers
+
+                        </div>
+
+                        <div id="userLayerList">
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -735,6 +827,8 @@
             <!-- JAVA SCRIPT -->
             <!-- ================================= -->
 
+            <script src="js/baselayer.js"></script>
+            <script src="js/userlayer.js"></script>
             <script src="js/map.js"></script>
             <script src="js/search.js"></script>
             <script src="js/downloads.js"></script>
@@ -744,7 +838,6 @@
             <script src="js/basemap.js"></script>
             <script src="js/draw.js"></script>
             <script src="js/measure.js"></script>
-            <script src="js/layer.js"></script>
             <script src="js/add.js"></script>
             <script src="js/popup.js"></script>
             <script src="js/footer.js"></script>
