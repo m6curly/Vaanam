@@ -345,7 +345,118 @@ new ol.layer.Vector({
 
 });
 
-map.addLayer(
-    searchLayer
+// =====================================
+// LOAD BASE LAYER
+// =====================================
+
+function loadBaseLayer(
+
+    name,
+    url
+
+){
+
+    fetch(url)
+
+    .then(r=>r.json())
+
+    .then(data=>{
+
+        const source =
+        new ol.source.Vector({
+
+            features:
+
+            new ol.format.GeoJSON()
+
+            .readFeatures(
+
+                data,
+
+                {
+
+                    featureProjection:
+                    "EPSG:3857"
+
+                }
+
+            )
+
+        });
+
+
+        const layer =
+
+        new ol.layer.Vector({
+
+            source:source,
+
+            visible:false
+
+        });
+
+
+        map.addLayer(
+            layer
+        );
+
+
+        // =====================
+        // STORE GLOBALLY
+        // =====================
+
+        if(name==="Places")
+            window.placeLayer=layer;
+
+        if(name==="Airport")
+            window.airportLayer=layer;
+
+        if(name==="Port")
+            window.portLayer=layer;
+
+        if(name==="Road")
+            window.roadLayer=layer;
+
+        if(name==="River")
+            window.riverLayer=layer;
+
+        if(name==="Boundary")
+            window.boundaryLayer=layer;
+
+    });
+
+}
+
+// =====================================
+// LOAD ALL BASE DATA
+// =====================================
+
+loadBaseLayer(
+    "Boundary",
+    "data/Boundary.geojson"
 );
 
+loadBaseLayer(
+    "River",
+    "data/River.geojson"
+);
+
+loadBaseLayer(
+    "Road",
+    "data/Road.geojson"
+);
+
+loadBaseLayer(
+    "Port",
+    "data/Port.geojson"
+);
+
+loadBaseLayer(
+    "Airport",
+    "data/Airport.geojson"
+);
+
+loadBaseLayer(
+    "Places",
+    "data/Places.geojson"
+);

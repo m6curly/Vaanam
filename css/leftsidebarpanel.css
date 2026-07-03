@@ -122,7 +122,7 @@
 
     width:320px;
 
-    bottom:40px;
+    bottom:45px;
 
     z-index:99998;
 }
@@ -197,6 +197,47 @@
     cursor:pointer;
 }
 
+/* =================================
+   LAYER GROUP
+================================= */
+
+.layerGroup{
+
+    margin-bottom:20px;
+
+}
+
+.layerGroupTitle{
+
+    padding:8px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#1d4f82;
+
+    background:#dbeaf7;
+
+    border:1px solid #bfd7ec;
+
+    border-radius:5px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =================================
+   BASE + USER LIST
+================================= */
+
+#baseLayerList,
+#userLayerList{
+
+    padding:5px;
+
+}
 
 /* =================================
    STYLE PANEL

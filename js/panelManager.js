@@ -10,7 +10,6 @@ const PANELS = [
     "loginPanel",
 
     "drawPanel",
-    "layerPanel",
     "stylePanel",
     "basemapPanel",
 

@@ -164,13 +164,10 @@ function loadGeoJSON(file) {
 
         // Layer Manager
 
-        addLayerToManager(
-
-            layerName,
-
-            layer
-
-        );
+        addUserLayer(
+    layerName,
+    layer
+);
 
         // Zoom
 
@@ -245,12 +242,9 @@ function loadGeoTIFF(file) {
 
     file.name.split(".")[0];
 
-    addLayerToManager(
-
-        layerName,
-
-        layer
-
-    );
+    addUserLayer(
+    layerName,
+    layer
+);
 
 }
