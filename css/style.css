@@ -1,0 +1,111 @@
+/* =====================================
+   GLOBAL
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#040d18;
+    --panel:#081423;
+    --panel2:#0c1d32;
+    --border:#0f5ea8;
+    --glow:#00bfff;
+    --text:#d7e9ff;
+    --text2:#8fb5d9;
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    overflow:hidden;
+
+    background:
+    var(--bg);
+
+    color:
+    var(--text);
+}
+
+
+/* =====================================
+   MAIN CONTAINER
+===================================== */
+
+#container{
+
+    display:flex;
+
+    height:
+    calc(100vh - 110px);
+
+    background:
+    #030b15;
+}
+
+
+/* =====================================
+   MAP
+===================================== */
+
+#map{
+
+    flex:1;
+
+    position:relative;
+
+    border:
+    1px solid
+    #0f5ea8;
+
+    box-shadow:
+    inset 0 0 30px
+    rgba(0,191,255,.15);
+
+    background:
+    #050d16;
+}
+
+
+/* =====================================
+   LOADING
+===================================== */
+
+#loading{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    #020812;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:
+    #00bfff;
+
+    z-index:999999;
+
+    text-shadow:
+    0 0 20px
+    #00bfff;
+}

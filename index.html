@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+    <html>
+
+        <!-- ==================================== -->
+        <!-- HEAD -->
+        <!-- ==================================== -->
+
+        <head>
+
+            <title>VAANAM</title>
+
+            <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="css/header.css">
+            <link rel="stylesheet" href="css/headerpanel.css">
+            <link rel="stylesheet" href="css/leftsidebarpanel.css">
+            <link rel="stylesheet" href="css/rightsidebarpanel.css">
+            <link rel="stylesheet" href="css/sidebar.css">
+            <link rel="stylesheet" href="css/footer.css">
+            <link rel="stylesheet" href="css/popup.css">
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.6.1/ol.css">
+
+        </head>
+
+
+        <!-- ==================================== -->
+        <!-- BODY -->
+        <!-- ==================================== -->
+
+        <body>
+
+            <!-- ==================================== -->
+            <!-- HEADER -->
+            <!-- ==================================== -->
+
+            <header id="header">
+
+                <div class="header-left">
+
+                    <img src="images/logo.png" id="websiteLogo">
+
+                    <div id="logoHome">
+                        VAANAM
+                    </div>
+
+                    <input type="text" id="searchBox" placeholder="Search">
+
+                </div>
+
+                <div class="header-right">
+
+                    <a href="#" id="downloadsBtn">
+                        Downloads
+                    </a>
+
+                    <a href="#" id="feedbackBtn">
+                        Feedback
+                    </a>
+
+                    <a href="#" id="aboutBtn">
+                        About
+                    </a>
+
+                    <a href="#" id="loginBtn">
+                        Login
+                    </a>
+
+                </div>
+
+            </header>
+
+            <!-- ==================================== -->
+            <!-- MAIN CONTAINER -->
+            <!-- ==================================== -->
+            
+             <div id="container">
+
+                <!-- ==================================== -->
+                <!-- LEFT SIDEBAR -->
+                <!-- ==================================== -->
+
+                <div id="leftSidebar">
+
+                    <button id="addBtn" type="button">
+                        ➕ <span>Add</span>
+                    </button>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".geojson,.json,.tif,.tiff"
+                        multiple
+                        hidden>
+
+                    <button id="drawBtn" type="button">
+                        ✏️ <span>Draw</span>
+                    </button>
+
+                    <button id="layerBtn" type="button">
+                        📚 <span>Layer</span>
+                    </button>
+
+                    <button id="basemapBtn" type="button">
+                        🛰 <span>Basemap</span>
+                    </button>
+
+                    <button id="exportBtn" type="button">
+                        📤 <span>Export</span>
+                    </button>
+
+                </div>
+
+                <!-- ==================================== -->
+                <!-- MAP -->
+                <!-- ==================================== -->
+
+                <div id="map"></div>
+
+                <!-- ==================================== -->
+                <!-- RIGHT SIDEBAR -->
+                <!-- ==================================== -->
+
+                <div id="rightSidebar">
+
+                    <button id="toolsBtn">
+                        🛠  <span>Tools</span>
+                    </button>
+
+                    <button id="measureBtn">
+                        📏  <span>Measure</span>
+                    </button>
+
+                    <button id="settingsBtn">
+                        ⚙  <span>Settings</span>
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- ==================================== -->
+            <!-- PANELS -->
+            <!-- ==================================== -->
+
+                <!-- ================================= -->
+                <!-- DOWNLOAD PANEL -->
+                <!-- ================================= -->
+
+                <div id="downloadsPanel">
+
+                    <div class="downloadHeader">
+                        GIS Data Sources
+                    </div>
+
+                    <div
+                        class="downloadItem"
+                        id="osmLink">
+                        🌍 OSM Data
+                    </div>
+
+                    <div
+                        class="downloadItem"
+                        id="naturalEarthLink">
+                        🗺 Natural Earth
+                    </div>
+
+                    <div
+                        class="downloadItem"
+                        id="divaLink">
+                        📁 Diva Shapefiles
+                    </div>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- FEEDBACK PANEL -->
+                <!-- ================================= -->
+
+                <div id="feedbackPanel">
+
+                    <h3>
+                        Feedback
+                    </h3>
+
+                    <form
+                        action="https://formsubmit.co/m6curly@gmail.com"
+                        method="POST">
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
+                            required>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                            required>
+
+                        <textarea 
+                            name="message" placeholder=
+                            "Your Feedback" required>
+                        </textarea>
+
+                        <button type="submit">
+                            Submit Feedback
+                        </button>
+
+                        <button
+                            type="button"
+                            id="closeFeedback">
+                            Close
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- ABOUT PANEL -->
+                <!-- ================================= -->
+
+                <div id="aboutPanel">
+
+                    <h2>
+                        VAANAM
+                    </h2>
+
+                    <p>
+                        Version : 1.0
+                    </p>
+
+                    <p>
+                        VAANAM is a Web GIS platform
+                        developed for visualization,
+                        analysis and management of
+                        geospatial data.
+                    </p>
+
+                    <p>
+                        Features:
+                    </p>
+
+                    <ul>
+
+                        <li>Interactive Maps</li>
+
+                        <li>Basemap Selection</li>
+
+                        <li>Layer Management</li>
+
+                        <li>Drawing Tools</li>
+
+                        <li>Measurement Tools</li>
+
+                        <li>Data Download Sources</li>
+
+                    </ul>
+
+                    <p>
+                        Developed by:
+                    </p>
+
+                    <b id="developerName">
+                        M Manikandan
+                    </b>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- LOGIN PANEL -->
+                <!-- ================================= -->
+
+                <div id="loginPanel">
+
+                    <h3>
+                        VAANAM Login
+                    </h3>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Username">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password">
+
+                    <button id="loginSubmit">
+                        Login
+                    </button>
+
+                    <button id="loginClose">
+                        Close
+                    </button>
+
+                    <div id="loginMessage"> </div>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- DRAW PANEL -->
+                <!-- ================================= -->
+
+                <div id="drawPanel">
+
+                    <button id="drawPoint">
+                        Point
+                    </button>
+
+                    <button id="drawLine">
+                        Line
+                    </button>
+
+                    <button id="drawPolygon">
+                        Polygon
+                    </button>
+
+                    <button id="drawRectangle">
+                        Rectangle
+                    </button>
+
+                    <button id="drawCircle">
+                        Circle
+                    </button>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- LAYER PANEL -->
+                <!-- ================================= -->
+
+                <div id="layerPanel">
+
+                    <div id="layerList"> </div>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- LAYER STYLE PANEL -->
+                <!-- ================================= -->
+
+                <div id="stylePanel">
+
+                    <h3>
+                        Layer Style
+                    </h3>
+
+                    <h4>
+                        Labels
+                    </h4>
+
+                    <label>
+                        Show Labels
+                    </label>
+
+                    <input type="checkbox" id="labelEnable">
+
+                    <br><br>
+
+                    <label>
+                        Label Field
+                    </label>
+
+                    <select id="labelField">
+
+                        <option value="name">
+                        Name
+                        </option>
+
+                    </select>
+
+                    <br><br>
+
+                    <label>
+                        Font Size
+                    </label>
+
+                    <input type="number" id="labelSize" value="12" min="6" max="40">
+
+                    <br><br>
+
+                    <label>
+                        Text Color
+                    </label>
+
+                    <input type="color" id="labelColor" value="#000000">
+
+                    <hr>
+
+                    <h4>
+                        Symbology
+                    </h4>
+
+                    <div class="styleRow">
+
+                        <label>
+                            Fill Color
+                        </label>
+
+                        <input type="color" id="fillColor" value="#ff0000">
+
+                    </div>
+
+                    <div class="styleRow">
+
+                        <label>
+                            Border Color
+                        </label>
+
+                        <input type="color" id="strokeColor" value="#000000">
+
+                    </div>
+
+                    <div class="styleRow">
+
+                        <label>
+                            Border Width
+                        </label>
+
+                        <input type="number" id="strokeWidth" min="1" max="20" value="2">
+
+                    </div>
+
+                    <div class="styleRow">
+
+                        <label>
+                                Size
+                        </label>
+
+                        <input type="number" id="symbolSize" min="1" max="100" value="8">
+
+                    </div>
+
+                    <button
+                        id="applyStyle">
+                        Apply
+                    </button>
+
+                    <button id="okStyle">
+                        OK
+                    </button>
+
+                    <button id="cancelStyle">
+                        Cancel
+                    </button>
+
+                    <hr>
+                </div>
+
+                <!-- ================================= -->
+                <!-- BASEMAP PANEL -->
+                <!-- ================================= -->
+
+                <div id="basemapPanel">
+
+                    <button id="osmMap">
+                        OSM
+                    </button>
+
+                    <button id="satelliteMap">
+                        SATELLITE
+                    </button>
+
+                    <button id="terrainMap">
+                        TERRAIN
+                    </button>
+
+                    <button id="cartoLightMap">
+                        CARTO LIGHT
+                    </button>
+
+                    <button id="cartoDarkMap">
+                        CARTO DARK
+                    </button>
+
+                    <button id="streetMap">
+                        STREET
+                    </button>
+
+                    <button id="natGeoMap">
+                        NAT GEO
+                    </button>
+
+                    <button id="humanitarianMap">
+                        HUMANITARIAN
+                    </button>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- TOOLS PANEL -->
+                <!-- ================================= -->
+
+                <div id="toolsPanel">
+
+                    <!-- ================================= -->
+                    <!-- BUFFER -->
+                    <!-- ================================= -->
+                    <h3>
+                        ANALYSIS Tools
+                    </h3>
+
+                    <button id="bufferTool">
+                        Buffer
+                    </button>
+
+                    <button id="timeSeriesBtn">
+                        Time Series
+                    </button>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- BUFFER POPUP -->
+                <!-- ================================= -->
+
+                <div id="bufferPopup">
+
+                    <h3>
+                        Buffer Distance
+                    </h3>
+
+                    <input
+                        type="number"
+                        id="bufferInput"
+                        value="100">
+
+                    <span> KM </span>
+
+                    <br><br>
+
+                    <button id="createBuffer">
+                        Create
+                    </button>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- TIME SERIES PANEL -->
+                <!-- ================================= -->
+
+                <div id="timeSeriesPanel">
+
+                    <div id="timeSeriesHeader">
+
+                        <h3>
+                            Satellite Time Series
+                        </h3>
+
+                        <button id="closeTimeSeries">
+                            ✖
+                        </button>
+
+                    </div>
+
+                    <div id="timeSeriesGrid">
+
+                        <div class="tsBox">
+
+                            <select id="tsDate1"></select>
+
+                            <div id="tsMap1"></div>
+
+                        </div>
+
+                        <div class="tsBox">
+
+                            <select id="tsDate2"></select>
+
+                            <div id="tsMap2"></div>
+
+                        </div>
+
+                        <div class="tsBox">
+
+                            <select id="tsDate3"></select>
+
+                            <div id="tsMap3"></div>
+
+                        </div>
+
+                        <div class="tsBox">
+
+                            <select id="tsDate4"></select>
+
+                            <div id="tsMap4"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- MEASUREMENT PANEL -->
+                <!-- ================================= -->
+
+                <div id="measurePanel">
+
+                    <h3>
+                        MEASUREMENT TOOLS
+                    </h3>
+
+                    <button id="measureDistance">
+                        📏 Distance
+                    </button>
+
+                    <button id="measureArea">
+                        📐 Area
+                    </button>
+
+                    <button id="measureRadius">
+                        ⭕ Radius
+                    </button>
+
+                    <button id="measurePerimeter">
+                        🔲 Perimeter
+                    </button>
+
+                    <button id="measureBearing">
+                        🧭 Bearing
+                    </button>
+
+                    <button id="measureCoordinate">
+                        📍 Coordinate
+                    </button>
+
+                    <button id="clearMeasure">
+                        ❌ Clear
+                    </button>
+
+                </div> 
+
+                <!-- ================================= -->
+                <!-- SETTINGS PANEL -->
+                <!-- ================================= -->
+
+                <div id="settingsPanel">
+
+                    <h3>
+                        SETTINGS
+                    </h3>
+
+                    <label>
+                        Projection
+                    </label>
+
+                    <select id="projectionSelect">
+
+                        <option value="EPSG:3857">
+                            Web Mercator (EPSG:3857)
+                        </option>
+
+                        <option value="EPSG:4326">
+                            WGS84 Geographic (EPSG:4326)
+                        </option>
+
+                    </select>
+
+                    <button id="applyProjection">
+                        APPLY
+                    </button>
+
+                </div>
+                
+            <!-- ================================= -->
+            <!-- FOOTER -->
+            <!-- ================================= -->
+
+            <footer id="footer">
+
+                <div class="footer-item">
+                    SCALE :
+                    <span id="scaleText">
+                        1:50000
+                    </span>
+
+                </div>
+
+                <div class="footer-item">
+                    ZOOM :
+                    <span id="zoomText">
+                        5
+                    </span>
+
+                </div>
+
+                <div class="footer-item">
+                    LAT :
+                    <span id="latText">
+                        --
+                    </span>
+
+                    &nbsp;&nbsp;
+
+                    LON :
+                    <span id="lonText">
+                        --
+                    </span>
+
+                </div>
+
+                <div class="footer-item">  
+                    ELEVATION :
+                    <span id="elevationInfo">
+                        --
+                    </span>
+
+                </div>
+
+                <div class="footer-item">
+                    PROJECTION :
+                    <span id="projectionText">
+                        EPSG:3857
+                    </span>
+
+                </div>
+
+            </footer>
+
+            <!-- ================================= -->
+            <!-- OPEN LAYERS -->
+            <!-- ================================= -->
+
+            <script src="https://cdn.jsdelivr.net/npm/ol@10.6.1/dist/ol.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+            <!-- ================================= -->
+            <!-- JAVA SCRIPT -->
+            <!-- ================================= -->
+
+            <script src="js/map.js"></script>
+            <script src="js/search.js"></script>
+            <script src="js/downloads.js"></script>
+            <script src="js/feedback.js"></script>
+            <script src="js/about.js"></script>
+            <script src="js/login.js"></script>
+            <script src="js/basemap.js"></script>
+            <script src="js/draw.js"></script>
+            <script src="js/measure.js"></script>
+            <script src="js/layer.js"></script>
+            <script src="js/add.js"></script>
+            <script src="js/popup.js"></script>
+            <script src="js/footer.js"></script>
+            <script src="js/export.js"></script>
+            <script src="js/tools.js"></script>
+            <script src="js/timeseries.js"></script>
+            <script src="js/settings.js"></script>
+            <script src="js/overview.js"></script>
+            <script src="js/style.js"></script>
+            <script src="js/panelManager.js"></script>
+            <script src="js/main.js"></script>
+
+        </body>
+
+    </html>

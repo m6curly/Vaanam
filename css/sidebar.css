@@ -1,0 +1,168 @@
+/* =====================================
+   SIDEBARS
+===================================== */
+
+#leftSidebar,
+#rightSidebar{
+
+    width:90px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #07111d,
+        #0a1726,
+        #081321
+    );
+
+    border-right:
+    1px solid
+    #0f5ea8;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding-top:15px;
+
+    box-shadow:
+    0 0 20px
+    rgba(0,191,255,.15);
+
+    z-index:1000;
+}
+
+#rightSidebar{
+
+    border-right:none;
+
+    border-left:
+    1px solid
+    #0f5ea8;
+}
+
+
+/* =====================================
+   SIDEBAR BUTTONS
+===================================== */
+
+#leftSidebar button,
+#rightSidebar button{
+
+    width:70px;
+
+    height:70px;
+
+    margin-bottom:12px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #0b1a2b,
+        #12243b
+    );
+
+    border:
+    1px solid
+    #0f5ea8;
+
+    border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:all .25s;
+
+    box-shadow:
+    inset 0 0 10px
+    rgba(0,191,255,.08),
+    0 0 8px
+    rgba(0,191,255,.10);
+}
+
+
+/* =====================================
+   BUTTON HOVER
+===================================== */
+
+#leftSidebar button:hover,
+#rightSidebar button:hover{
+
+    border-color:
+    #00bfff;
+
+    transform:
+    translateY(-2px);
+
+    box-shadow:
+    0 0 18px
+    rgba(0,191,255,.45),
+    inset 0 0 15px
+    rgba(0,191,255,.15);
+
+    background:
+    linear-gradient(
+        180deg,
+        #10253d,
+        #17304d
+    );
+}
+
+
+/* =====================================
+   BUTTON ACTIVE
+===================================== */
+
+#leftSidebar button:active,
+#rightSidebar button:active{
+
+    transform:
+    scale(.96);
+
+    box-shadow:
+    0 0 25px
+    rgba(0,191,255,.7);
+}
+
+
+/* =====================================
+   SIDEBAR LABELS
+===================================== */
+
+#leftSidebar span,
+#rightSidebar span{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    color:#9bc4ea;
+}
+
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+
+#leftSidebar::-webkit-scrollbar,
+#rightSidebar::-webkit-scrollbar{
+
+    width:5px;
+}
+
+#leftSidebar::-webkit-scrollbar-thumb,
+#rightSidebar::-webkit-scrollbar-thumb{
+
+    background:#0f5ea8;
+}

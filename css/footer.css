@@ -1,0 +1,90 @@
+/* =====================================
+   FOOTER
+===================================== */
+
+#footer{
+
+    height:40px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #07111d,
+        #09192b
+    );
+
+    border-top:
+    1px solid
+    #0f5ea8;
+
+    color:
+    #cfe6ff;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    font-size:13px;
+
+    box-shadow:
+    0 -2px 15px
+    rgba(0,191,255,.15);
+
+    z-index:9999;
+}
+
+
+/* =====================================
+   FOOTER ITEMS
+===================================== */
+
+.footer-item{
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    padding:0 15px;
+
+    color:
+    #9bc4ea;
+
+    transition:.3s;
+}
+
+
+.footer-item:hover{
+
+    color:
+    #00bfff;
+
+    text-shadow:
+    0 0 10px
+    rgba(0,191,255,.8);
+}
+
+
+/* =====================================
+   FOOTER VALUES
+===================================== */
+
+#scaleText,
+#zoomText,
+#latText,
+#lonText,
+#elevationInfo,
+#projectionText{
+
+    color:
+    white;
+
+    font-weight:700;
+
+    margin-left:5px;
+
+    text-shadow:
+    0 0 8px
+    rgba(0,191,255,.5);
+}

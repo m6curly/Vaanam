@@ -1,0 +1,512 @@
+/* =================================
+   DOWNLOAD PANEL
+================================= */
+
+#downloadsPanel{
+
+    position:fixed;
+
+    top:75px;
+
+    right:95px;
+
+    width:260px;
+
+    background:#edf5ff;
+
+    color:#16375c;
+
+    border:1px solid #8fb4dc;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    display:none;
+
+    z-index:99999;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.20);
+}
+
+
+/* =================================
+   DOWNLOAD PANEL HEADER
+================================= */
+
+.downloadHeader{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#1d4f91;
+
+    padding-bottom:10px;
+
+    margin-bottom:15px;
+
+    border-bottom:
+        1px solid #b7d0ea;
+}
+
+
+/* =================================
+   DOWNLOAD PANEL CONTAINER ITEMS
+================================= */
+
+#downloadsPanel div{
+
+    padding:8px;
+}
+
+
+/* =================================
+   DOWNLOAD ITEM
+================================= */
+
+.downloadItem{
+
+    background:#dbeafe;
+
+    color:#16375c;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    border:1px solid #a9c8ea;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    font-weight:500;
+
+    transition:
+        all 0.2s ease;
+}
+
+
+/* =================================
+   DOWNLOAD ITEM HOVER
+================================= */
+
+.downloadItem:hover{
+
+    background:#c6ddf7;
+
+    color:#0b3d91;
+
+    border-color:#5b95d6;
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =================================
+   DOWNLOAD ITEM ACTIVE
+================================= */
+
+.downloadItem:active{
+
+    transform:
+        scale(0.98);
+}
+
+/* =================================
+   FEEDBACK PANEL
+================================= */
+
+#feedbackPanel{
+
+    position:fixed;
+
+    top:75px;
+
+    right:95px;
+
+    width:320px;
+
+    background:#edf5ff;
+
+    color:#16375c;
+
+    border:1px solid #8fb4dc;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    display:none;
+
+    z-index:99999;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.20);
+}
+
+
+/* =================================
+   FEEDBACK PANEL HEADING
+================================= */
+
+#feedbackPanel h3{
+
+    text-align:center;
+
+    color:#1d4f91;
+
+    margin-top:0;
+
+    margin-bottom:15px;
+
+    padding-bottom:10px;
+
+    border-bottom:
+        1px solid #b7d0ea;
+}
+
+
+/* =================================
+   FEEDBACK INPUTS
+================================= */
+
+#feedbackPanel input,
+#feedbackPanel textarea{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:10px;
+
+    box-sizing:border-box;
+
+    background:white;
+
+    color:#16375c;
+
+    border:1px solid #a9c8ea;
+
+    border-radius:6px;
+
+    outline:none;
+}
+
+#feedbackPanel input:focus,
+#feedbackPanel textarea:focus{
+
+    border-color:#5b95d6;
+}
+
+
+#feedbackPanel textarea{
+
+    height:100px;
+
+    resize:vertical;
+}
+
+
+/* =================================
+   FEEDBACK BUTTONS
+================================= */
+
+#feedbackPanel button,
+#closeFeedback{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:10px;
+
+    background:#2f6fb2;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:
+        all 0.2s ease;
+}
+
+
+/* =================================
+   FEEDBACK BUTTON HOVER
+================================= */
+
+#feedbackPanel button:hover,
+#closeFeedback:hover{
+
+    background:#4a88c8;
+}
+
+/* =================================
+   ABOUT PANEL
+================================= */
+
+#aboutPanel{
+
+    position:fixed;
+
+    top:75px;
+
+    right:95px;
+
+    width:350px;
+
+    background:#edf5ff;
+
+    color:#16375c;
+
+    border:1px solid #8fb4dc;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    display:none;
+
+    z-index:99999;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.20);
+}
+
+
+/* =================================
+   ABOUT PANEL HEADING
+================================= */
+
+#aboutPanel h2{
+
+    margin-top:0;
+
+    margin-bottom:15px;
+
+    text-align:center;
+
+    color:#1d4f91;
+
+    padding-bottom:10px;
+
+    border-bottom:
+        1px solid #b7d0ea;
+}
+
+
+/* =================================
+   ABOUT PANEL PARAGRAPH
+================================= */
+
+#aboutPanel p{
+
+    margin-top:12px;
+
+    line-height:1.6;
+
+    color:#16375c;
+}
+
+
+/* =================================
+   ABOUT PANEL LIST
+================================= */
+
+#aboutPanel ul{
+
+    margin-top:10px;
+
+    margin-left:20px;
+}
+
+#aboutPanel li{
+
+    margin-bottom:8px;
+
+    color:#16375c;
+}
+
+
+/* =================================
+   DEVELOPER NAME
+================================= */
+
+#developerName{
+
+    display:block;
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#2f6fb2;
+
+    font-size:16px;
+}
+
+/* =================================
+   LOGIN PANEL
+================================= */
+
+#loginPanel{
+
+    position:fixed;
+
+    top:75px;
+
+    right:95px;
+
+    width:320px;
+
+    background:#182638;
+
+    color:#dbe9ff;
+
+    padding:20px;
+
+    border:1px solid #314763;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.45);
+
+    display:none;
+
+    z-index:99999;
+}
+
+
+/* =================================
+   LOGIN PANEL HEADER
+================================= */
+
+#loginPanel h3{
+
+    text-align:center;
+
+    color:#58b7ff;
+
+    margin-bottom:20px;
+
+    font-size:20px;
+
+    border-bottom:
+        1px solid #314763;
+
+    padding-bottom:10px;
+}
+
+
+/* =================================
+   LOGIN INPUTS
+================================= */
+
+#loginPanel input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:12px;
+
+    background:#24364d;
+
+    color:#dbe9ff;
+
+    border:1px solid #314763;
+
+    border-radius:6px;
+
+    box-sizing:border-box;
+
+    outline:none;
+}
+
+#loginPanel input:focus{
+
+    border-color:#58b7ff;
+
+    box-shadow:
+        0 0 8px
+        rgba(88,183,255,.4);
+}
+
+
+/* =================================
+   LOGIN BUTTONS
+================================= */
+
+#loginPanel button{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    background:#24364d;
+
+    color:#dbe9ff;
+
+    border:1px solid #314763;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:
+        all 0.2s ease;
+}
+
+#loginPanel button:hover{
+
+    background:#2f4d73;
+
+    color:#58b7ff;
+
+    border-color:#58b7ff;
+}
+
+#loginPanel button:active{
+
+    transform:
+        scale(0.98);
+}
+
+
+/* =================================
+   LOGIN MESSAGE
+================================= */
+
+#loginMessage{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:#58b7ff;
+
+    font-weight:bold;
+}
