@@ -1,4 +1,14 @@
 // =====================================
+// LST EXPORT VARIABLES
+// =====================================
+
+window.lstData = null;
+window.lstWidth = 0;
+window.lstHeight = 0;
+window.lstExtent = null;
+window.lstProjection = null;
+
+// =====================================
 // REGISTER UTM PROJECTION
 // =====================================
 
@@ -8,10 +18,6 @@ proj4.defs(
 );
 
 ol.proj.proj4.register(proj4);
-
-console.log(
-    ol.proj.get("EPSG:32643")
-);
 
 // =====================================
 // OPEN LST PANEL
@@ -560,7 +566,6 @@ console.log(
 
         }
 
-
         // =====================
         // MIN MAX
         // =====================
@@ -649,6 +654,21 @@ console.log(
         const height =
         thermalImage.getHeight();
 
+        // =====================================
+// SAVE LST DATA FOR EXPORT
+// =====================================
+
+window.lstData = LST;
+
+window.lstWidth = width;
+
+window.lstHeight = height;
+
+window.lstBBox = thermalImage.getBoundingBox();
+
+window.lstProjection = "EPSG:32643";
+
+
         const canvas =
         document.createElement(
             "canvas"
@@ -673,6 +693,7 @@ console.log(
 
         const pixels =
         img.data;
+        
 
         // =====================================
         // COLOR RAMP
@@ -749,11 +770,7 @@ console.log(
             "Canvas Created"
         );
 
-        
 
-
-
-        
 // =====================================
 // CANVAS TO IMAGE URL
 // =====================================
@@ -774,6 +791,16 @@ const extent = ol.proj.transformExtent(
     "EPSG:32643",
     "EPSG:3857"
 );
+
+window.lstData = LST;
+
+window.lstWidth = width;
+
+window.lstHeight = height;
+
+window.lstExtent = extent;
+
+window.lstProjection = "EPSG:3857";
 
 console.log(extent);
 
@@ -829,6 +856,11 @@ new ol.layer.Image({
 
 });
 
+window.lstLayer.set(
+    "type",
+    "LST"
+);
+
 map.addLayer(
 
     window.lstLayer
@@ -864,6 +896,8 @@ window.lstRaster = {
     projection: "EPSG:3857"
 
 };
+
+console.log(window.lstRaster);
 
 console.log("Extent:", extent);
 

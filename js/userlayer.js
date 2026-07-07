@@ -86,6 +86,38 @@ function(
     };
 
 
+// EXPORT BUTTON
+
+const exportBtn =
+document.createElement(
+    "button"
+);
+
+exportBtn.innerHTML =
+"💾";
+
+exportBtn.title =
+"Export Layer";
+
+exportBtn.onclick =
+function(){
+
+    if(layer.get("type")==="LST"){
+
+        exportLST();
+
+    }
+
+    else{
+
+        alert(
+            "Export not available for this layer"
+        );
+
+    }
+
+};
+
     // remove
 
     const removeBtn =
@@ -119,6 +151,10 @@ function(
     item.appendChild(
         styleBtn
     );
+
+item.appendChild(
+    exportBtn
+);
 
     item.appendChild(
         removeBtn

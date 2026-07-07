@@ -63,3 +63,42 @@ document
     });
 
 };
+
+
+// =====================================
+// EXPORT LST AS FLOAT BINARY
+// =====================================
+
+window.exportLST = function () {
+
+    if (!window.lstRaster) {
+
+        alert("No LST available");
+
+        return;
+
+    }
+
+    const raster = window.lstRaster;
+
+    const blob = new Blob(
+
+        [raster.data.buffer],
+
+        {
+            type: "application/octet-stream"
+        }
+
+    );
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+
+    link.download = "LST.float32";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+};
