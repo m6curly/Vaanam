@@ -400,7 +400,7 @@
                                 <input
                                     type="checkbox"
                                     id="boundaryCheck"
-                                    unchecked>
+                                    checked>
                                 <label>
                                     Boundary
                                 </label>
@@ -588,9 +588,6 @@
 
                 <div id="toolsPanel">
 
-                    <!-- ================================= -->
-                    <!-- BUFFER -->
-                    <!-- ================================= -->
                     <h3>
                         ANALYSIS Tools
                     </h3>
@@ -603,10 +600,14 @@
                         Time Series
                     </button>
 
+                    <button id="lstTool">
+                        LST
+                    </button>
+
                 </div>
 
                 <!-- ================================= -->
-                <!-- BUFFER POPUP -->
+                <!-- BUFFER PANEL -->
                 <!-- ================================= -->
 
                 <div id="bufferPopup">
@@ -683,6 +684,68 @@
                         </div>
 
                     </div>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- LST PANEL -->
+                <!-- ================================= -->
+
+                <div id="lstPanel">
+
+                    <h3>
+                        Land Surface Temperature
+                    </h3>
+
+                    <label>
+                        Thermal Band (Band10)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="lstBand10"
+                        accept=".tif,.tiff">
+
+                    <br><br>
+
+                    <label>
+                        NIR Band (Band5)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="lstBand5"
+                        accept=".tif,.tiff">
+
+                    <br><br>
+
+                    <label>
+                        Red Band (Band4)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="lstBand4"
+                        accept=".tif,.tiff">
+
+                    <br><br>
+
+                    <label>
+                        Metadata (MTL.txt)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="lstMTL"
+                        accept=".txt">
+
+                    <br><br>
+
+                    <button id="calculateLST">
+
+                        Calculate LST
+
+                    </button>
 
                 </div>
 
@@ -819,9 +882,14 @@
 
             <script src="https://cdn.jsdelivr.net/npm/ol@10.6.1/dist/ol.js"></script>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
+
             <script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.min.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+            <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 
             <!-- ================================= -->
             <!-- JAVA SCRIPT -->
@@ -844,6 +912,7 @@
             <script src="js/export.js"></script>
             <script src="js/tools.js"></script>
             <script src="js/timeseries.js"></script>
+            <script src="js/lst.js"></script>
             <script src="js/wayback.js"></script>
             <script src="js/settings.js"></script>
             <script src="js/overview.js"></script>

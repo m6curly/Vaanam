@@ -1,5 +1,5 @@
 // =====================================
-// EXPORT CURRENT MAP AS IMAGE
+// EXPORT CURRENT VIEW
 // =====================================
 
 document
@@ -8,80 +8,58 @@ document
 )
 .onclick = function(){
 
-    map.once(
-
-        "rendercomplete",
-
-        function(){
-
-            const exportCanvas =
-            document.createElement(
-                "canvas"
-            );
-
-            const size =
-            map.getSize();
-
-            exportCanvas.width =
-            size[0];
-
-            exportCanvas.height =
-            size[1];
-
-            const context =
-            exportCanvas.getContext(
-                "2d"
-            );
-
-            document
-            .querySelectorAll(
-                ".ol-layer canvas"
-            )
-            .forEach(function(canvas){
-
-                if(canvas.width>0){
-
-                    const opacity =
-                    canvas.parentNode
-                    .style.opacity;
-
-                    context.globalAlpha =
-
-                    opacity === ""
-                    ?
-                    1
-                    :
-                    Number(opacity);
-
-                    context.drawImage(
-                        canvas,
-                        0,
-                        0
-                    );
-
-                }
-
-            });
-
-            const link =
-            document.createElement(
-                "a"
-            );
-
-            link.download =
-            "VAANAM_Map.png";
-
-            link.href =
-            exportCanvas.toDataURL(
-                "image/png"
-            );
-
-            link.click();
-
-        }
-
+    const panels = document.querySelectorAll(
+        "#sidebar,#toolbar,#popup"
     );
 
-    map.renderSync();
+    panels.forEach(function(p){
+
+        p.dataset.old =
+        p.style.display;
+
+        p.style.display =
+        "none";
+
+    });
+
+    html2canvas(
+
+        document.getElementById(
+            "map"
+        ),
+
+        {
+            useCORS:true,
+            allowTaint:true,
+            scale:2
+        }
+
+    )
+
+    .then(function(canvas){
+
+        const link =
+        document.createElement(
+            "a"
+        );
+
+        link.download =
+        "VAANAM_Map.png";
+
+        link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+        link.click();
+
+        panels.forEach(function(p){
+
+            p.style.display =
+            p.dataset.old;
+
+        });
+
+    });
 
 };
