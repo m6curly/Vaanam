@@ -37,27 +37,13 @@ new ol.View({
 // =====================================
 
 // =====================================
-// OSM
-// =====================================
-
-const osmLayer =
-new ol.layer.Tile({
-
-    visible:true,
-
-    source:
-    new ol.source.OSM()
-
-});
-
-// =====================================
 // SATELLITE
 // =====================================
 
 const satelliteLayer =
 new ol.layer.Tile({
 
-    visible:false,
+    visible:true,
 
     source:
     new ol.source.XYZ({
@@ -68,6 +54,22 @@ new ol.layer.Tile({
     })
 
 });
+
+// =====================================
+// OSM
+// =====================================
+
+const osmLayer =
+new ol.layer.Tile({
+
+    visible:false,
+
+    source:
+    new ol.source.OSM()
+
+});
+
+
 
 // =====================================
 // TERRAIN
@@ -263,16 +265,17 @@ new ol.Map({
 
     layers:[
 
-        osmLayer,
-        satelliteLayer,
-        terrainLayer,
-        cartoLight,
-        cartoDark,
-        streetLayer,
-        natGeoLayer,
-        humanitarianLayer,
-        drawLayer
-    ],
+    osmLayer,
+    satelliteLayer,
+    terrainLayer,
+    cartoLight,
+    cartoDark,
+    streetLayer,
+    natGeoLayer,
+    humanitarianLayer,
+    drawLayer,
+
+],
 
     view:view
 
@@ -387,13 +390,13 @@ function loadBaseLayer(
 
         const layer =
 
-        new ol.layer.Vector({
+new ol.layer.Vector({
 
-            source:source,
+    source:source,
 
-            visible:false
+    visible: FASLE
 
-        });
+});
 
 // =====================================
 // PLACES STYLE
@@ -697,21 +700,43 @@ if(name==="Boundary"){
 
     layer.setStyle(
 
-        new ol.style.Style({
+        function(feature){
 
-            stroke:
+            return new ol.style.Style({
 
-            new ol.style.Stroke({
+                fill:new ol.style.Fill({
 
-                color:"#FFFFFF",
+                    color:"#d9d9d9"
 
-                width:2,
+                }),
 
-                lineDash:[8,4]
+                stroke:new ol.style.Stroke({
 
-            })
+                    color:"#000000",
 
-        })
+                    width:1.5
+
+                }),
+
+                text:new ol.style.Text({
+
+                    text:feature.get("name") || "",
+
+                    font:"12px Arial",
+
+                    fill:new ol.style.Fill({
+
+                        color:"#000000"
+
+                    }),
+
+                    overflow:true
+
+                })
+
+            });
+
+        }
 
     );
 
@@ -775,9 +800,4 @@ loadBaseLayer(
 loadBaseLayer(
     "Airport",
     "data/Airport.geojson"
-);
-
-loadBaseLayer(
-    "Places",
-    "data/Places.geojson"
 );

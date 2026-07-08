@@ -1,421 +1,168 @@
 /* =================================
-   TOOLS PANEL
+   COMMON PANEL STYLE
 ================================= */
 
-#toolsPanel{
+#toolsPanel,
+#bufferPopup,
+#measurePanel,
+#settingsPanel,
+#lstPanel{
 
     position:fixed;
 
     top:75px;
-
     right:95px;
 
-    width:250px;
+    width:280px;
 
-    background:#d9eaf7;
+    background:#102236;
 
-    color:#17324d;
+    color:#dceeff;
 
-    border:1px solid #8fb5d9;
+    border:1px solid #1d6fb8;
 
     border-radius:10px;
 
-    padding:15px;
+    padding:16px;
 
     display:none;
 
     z-index:99999;
 
     box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
+    0 0 18px rgba(0,191,255,.18);
+
 }
 
 
 /* =================================
-   TOOLS PANEL HEADER
+   PANEL HEADER
 ================================= */
 
-#toolsPanel h3{
+#toolsPanel h3,
+#bufferPopup h3,
+#measurePanel h3,
+#settingsPanel h3,
+#lstPanel h3{
 
     text-align:center;
 
-    color:#1d4f82;
+    color:#6fd7ff;
 
     margin-bottom:15px;
 
     padding-bottom:10px;
 
-    border-bottom:
-        1px solid #8fb5d9;
+    border-bottom:1px solid #1d6fb8;
 
-    font-size:16px;
-
-    font-weight:bold;
 }
 
 
 /* =================================
-   TOOLS PANEL BUTTONS
+   LABELS
 ================================= */
 
-#toolsPanel button{
+#settingsPanel label,
+#lstPanel label{
+
+    color:#c7e8ff;
+
+    font-weight:600;
+
+}
+
+
+/* =================================
+   INPUTS
+================================= */
+
+#bufferInput,
+#settingsPanel select,
+#lstPanel input{
 
     width:100%;
 
-    padding:12px;
+    padding:9px;
 
-    margin-top:10px;
+    margin-top:6px;
 
-    border:1px solid #8fb5d9;
+    margin-bottom:12px;
+
+    background:#162c44;
+
+    color:white;
+
+    border:1px solid #2d6aa2;
 
     border-radius:6px;
 
-    background:#edf5fc;
+    outline:none;
 
-    color:#17324d;
+}
 
-    font-size:14px;
+#bufferInput:focus,
+#settingsPanel select:focus,
+#lstPanel input:focus{
 
-    font-weight:bold;
+    border-color:#00bfff;
 
-    cursor:pointer;
+    box-shadow:0 0 8px rgba(0,191,255,.35);
 
-    transition:
-        all .2s ease;
 }
 
 
 /* =================================
-   TOOLS BUTTON HOVER
+   BUTTONS
 ================================= */
 
-#toolsPanel button:hover{
-
-    background:#b7d8f3;
-
-    border-color:#3f7db7;
-
-    color:#0f2d4a;
-
-    transform:
-        translateX(4px);
-
-    box-shadow:
-        0 2px 8px
-        rgba(63,125,183,.25);
-}
-
-
-/* =================================
-   TOOLS BUTTON ACTIVE
-================================= */
-
-#toolsPanel button:active{
-
-    transform:
-        scale(0.98);
-}
-
-
-/* =================================
-   BUFFER POPUP
-================================= */
-
-#bufferPopup{
-
-    position:absolute;
-
-    background:#d9eaf7;
-
-    color:#17324d;
-
-    border:1px solid #8fb5d9;
-
-    border-radius:10px;
-
-    padding:18px;
-
-    display:none;
-
-    z-index:99999;
-
-    box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
-}
-
-
-/* =================================
-   BUFFER POPUP HEADER
-================================= */
-
-#bufferPopup h3{
-
-    text-align:center;
-
-    color:#1d4f82;
-
-    margin-bottom:15px;
-
-    padding-bottom:10px;
-
-    border-bottom:
-        1px solid #8fb5d9;
-}
-
-
-/* =================================
-   BUFFER INPUT
-================================= */
-
-#bufferInput{
+#toolsPanel button,
+#createBuffer,
+#measurePanel button,
+#settingsPanel button,
+#lstPanel button{
 
     width:100%;
 
-    padding:10px;
+    padding:11px;
 
-    margin-top:10px;
+    margin-top:8px;
 
-    margin-bottom:15px;
+    background:#16395a;
 
-    border:1px solid #8fb5d9;
+    color:white;
 
-    border-radius:6px;
-
-    background:#edf5fc;
-
-    color:#17324d;
-
-    font-size:14px;
-
-    box-sizing:border-box;
-}
-
-
-/* =================================
-   BUFFER CREATE BUTTON
-================================= */
-
-#createBuffer{
-
-    width:100%;
-
-    padding:12px;
-
-    border:1px solid #8fb5d9;
+    border:1px solid #2d6aa2;
 
     border-radius:6px;
-
-    background:#edf5fc;
-
-    color:#17324d;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:
-        all .2s ease;
-}
-
-
-/* =================================
-   BUFFER BUTTON HOVER
-================================= */
-
-#createBuffer:hover{
-
-    background:#b7d8f3;
-
-    border-color:#3f7db7;
-
-    color:#0f2d4a;
-
-    transform:
-        translateX(4px);
-}
-
-
-/* =================================
-   MEASURE PANEL
-================================= */
-
-#measurePanel{
-
-    position:fixed;
-
-    top:75px;
-
-    right:95px;
-
-    width:240px;
-
-    background:#d9eaf7;
-
-    color:#17324d;
-
-    border:1px solid #8fb5d9;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    display:none;
-
-    z-index:99999;
-
-    box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
-}
-
-
-/* =================================
-   MEASURE PANEL HEADER
-================================= */
-
-#measurePanel h3{
-
-    text-align:center;
-
-    color:#1d4f82;
-
-    margin-bottom:15px;
-
-    padding-bottom:10px;
-
-    border-bottom:
-        1px solid #8fb5d9;
-}
-
-
-/* =================================
-   MEASURE BUTTONS
-================================= */
-
-#measurePanel button{
-
-    width:100%;
-
-    padding:12px;
-
-    margin-bottom:8px;
-
-    border:1px solid #8fb5d9;
-
-    border-radius:6px;
-
-    background:#edf5fc;
-
-    color:#17324d;
-
-    font-weight:bold;
 
     cursor:pointer;
 
     transition:.2s;
+
+    font-weight:600;
+
 }
 
 
-/* =================================
-   BUTTON HOVER
-================================= */
+#toolsPanel button:hover,
+#createBuffer:hover,
+#measurePanel button:hover,
+#settingsPanel button:hover,
+#lstPanel button:hover{
 
-#measurePanel button:hover{
+    background:#1f4d75;
 
-    background:#b7d8f3;
-
-    border-color:#3f7db7;
-
-    transform:
-        translateX(4px);
-}
-
-
-/* =================================
-   BUTTON ACTIVE
-================================= */
-
-#measurePanel button:active{
-
-    transform:
-        scale(.98);
-}
-
-
-/* =================================
-   SETTINGS PANEL
-================================= */
-
-#settingsPanel{
-
-    position:fixed;
-
-    top:75px;
-
-    right:95px;
-
-    width:250px;
-
-    background:#d9eaf7;
-
-    border:1px solid #8fb5d9;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    display:none;
-
-    z-index:99999;
+    border-color:#00bfff;
 
     box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
+    0 0 10px rgba(0,191,255,.35);
+
 }
 
-#settingsPanel h3{
 
-    text-align:center;
-
-    color:#1d4f82;
-
-    margin-bottom:15px;
-}
-
-#settingsPanel label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    font-weight:bold;
-}
-
-#settingsPanel select{
-
-    width:100%;
-
-    padding:10px;
-
-    margin-bottom:15px;
-}
-
-#settingsPanel button{
-
-    width:100%;
-
-    padding:10px;
-
-    cursor:pointer;
-}
-
-/* ===================================== */
-/* TIME SERIES PANEL */
-/* ===================================== */
+/* =================================
+   TIME SERIES PANEL
+================================= */
 
 #timeSeriesPanel{
 
@@ -429,35 +176,31 @@
 
     bottom:70px;
 
-    background:#2b3139;
+    background:#0f1d2d;
 
-    border:2px solid #4a5562;
+    border:1px solid #1d6fb8;
 
     border-radius:10px;
-
-    box-shadow:
-        0 0 25px rgba(0,0,0,0.6);
-
-    z-index:999999;
 
     display:none;
 
     overflow:hidden;
 
+    z-index:999999;
+
+    box-shadow:
+    0 0 20px rgba(0,191,255,.25);
+
 }
 
-
-/* ===================================== */
-/* HEADER */
-/* ===================================== */
 
 #timeSeriesHeader{
 
     height:50px;
 
-    background:#39424d;
+    background:#16304a;
 
-    color:#dce4ec;
+    color:white;
 
     display:flex;
 
@@ -467,26 +210,22 @@
 
     padding:0 15px;
 
-    font-weight:bold;
-
-    letter-spacing:1px;
-
-    border-bottom:
-        1px solid #4f5b68;
+    border-bottom:1px solid #1d6fb8;
 
 }
 
+
 #closeTimeSeries{
 
-    background:#b33a3a;
+    width:34px;
+
+    height:34px;
+
+    background:#b02626;
 
     color:white;
 
     border:none;
-
-    width:35px;
-
-    height:35px;
 
     border-radius:5px;
 
@@ -494,16 +233,13 @@
 
 }
 
+
 #closeTimeSeries:hover{
 
-    background:#d14848;
+    background:#d23d3d;
 
 }
 
-
-/* ===================================== */
-/* GRID */
-/* ===================================== */
 
 #timeSeriesGrid{
 
@@ -519,31 +255,31 @@
 
     gap:2px;
 
-    background:#4a5562;
+    background:#1d3145;
 
 }
 
-
-/* ===================================== */
-/* MAP BOX */
-/* ===================================== */
 
 .tsBox{
 
     position:relative;
 
-    background:#20262d;
+    background:#122436;
 
-    border:1px solid #556270;
-
-    overflow:hidden;
+    border:1px solid #254b70;
 
 }
 
 
-/* ===================================== */
-/* DATE SELECT */
-/* ===================================== */
+.tsBox:hover{
+
+    border-color:#00bfff;
+
+    box-shadow:
+    inset 0 0 10px rgba(0,191,255,.25);
+
+}
+
 
 .tsBox select{
 
@@ -555,167 +291,14 @@
 
     z-index:9999;
 
-    background:#39424d;
+    background:#16304a;
 
     color:white;
 
-    border:1px solid #667382;
+    border:1px solid #2d6aa2;
 
     padding:6px 10px;
 
-    border-radius:4px;
-
-    font-size:12px;
-
-}
-
-
-/* ===================================== */
-/* MAP WINDOW */
-/* ===================================== */
-
-#tsMap1,
-#tsMap2,
-#tsMap3,
-#tsMap4{
-
-    width:100%;
-
-    height:100%;
-
-}
-
-
-/* ===================================== */
-/* HOVER EFFECT */
-/* ===================================== */
-
-.tsBox:hover{
-
-    border:
-
-    1px solid #00b7ff;
-
-    box-shadow:
-
-    inset 0 0 10px
-    rgba(0,183,255,0.3);
-
-}
-
-
-/* ===================================== */
-/* LST PANEL */
-/* ===================================== */
-
-#lstPanel{
-
-    display:none;
-
-    position:fixed;
-
-    top:110px;
-
-    right:80px;
-
-    width:340px;
-
-    background:#1b1f24;
-
-    border:1px solid #3a4655;
-
-    border-radius:8px;
-
-    padding:15px;
-
-    color:#ffffff;
-
-    box-shadow:
-    0px 4px 20px
-    rgba(0,0,0,0.6);
-
-    z-index:99999;
-
-    font-family:Arial;
-
-}
-
-
-#lstPanel h3{
-
-    margin-top:0;
-
-    margin-bottom:15px;
-
-    text-align:center;
-
-    color:#4fc3f7;
-
-    border-bottom:
-    1px solid #3a4655;
-
-    padding-bottom:10px;
-
-}
-
-
-#lstPanel label{
-
-    display:block;
-
-    margin-top:10px;
-
-    margin-bottom:5px;
-
-    color:#d0d7de;
-
-}
-
-
-#lstPanel input{
-
-    width:100%;
-
-    padding:6px;
-
-    background:#2b3139;
-
-    border:1px solid #4a5568;
-
-    color:#ffffff;
-
-    border-radius:4px;
-
-    box-sizing:border-box;
-
-}
-
-
-#lstPanel button{
-
-    width:100%;
-
-    margin-top:15px;
-
-    padding:10px;
-
-    background:#0d6efd;
-
-    border:none;
-
-    color:#ffffff;
-
     border-radius:5px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-}
-
-
-#lstPanel button:hover{
-
-    background:#0b5ed7;
 
 }

@@ -110,21 +110,3 @@ function(){
     }
 
 };
-
-
-document
-.getElementById(
-    "boundaryCheck"
-)
-.onchange =
-function(){
-
-    if(window.boundaryLayer){
-
-        boundaryLayer.setVisible(
-            this.checked
-        );
-
-    }
-
-};

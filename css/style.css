@@ -10,14 +10,36 @@
 
 :root{
 
-    --bg:#040d18;
-    --panel:#081423;
-    --panel2:#0c1d32;
-    --border:#0f5ea8;
-    --glow:#00bfff;
-    --text:#d7e9ff;
-    --text2:#8fb5d9;
+    /* Main Theme */
+
+    --bg:#06111d;
+
+    --panel:#0d1a29;
+
+    --panel2:#15273d;
+
+    --border:#2f4f73;
+
+    --border-light:#5d7fa3;
+
+    --accent:#4db8ff;
+
+    --accent-hover:#74cbff;
+
+    --text:#f2f7fc;
+
+    --text2:#b4c7dc;
+
+    --shadow:
+    0 8px 24px
+    rgba(0,0,0,.45);
+
 }
+
+
+/* =====================================
+   BODY
+===================================== */
 
 body{
 
@@ -33,6 +55,7 @@ body{
 
     color:
     var(--text);
+
 }
 
 
@@ -48,7 +71,8 @@ body{
     calc(100vh - 110px);
 
     background:
-    #030b15;
+    var(--bg);
+
 }
 
 
@@ -62,16 +86,20 @@ body{
 
     position:relative;
 
-    border:
+    background:#182431;
+
+    border-left:
     1px solid
-    #0f5ea8;
+    var(--border);
+
+    border-right:
+    1px solid
+    var(--border);
 
     box-shadow:
-    inset 0 0 30px
-    rgba(0,191,255,.15);
+    inset 0 0 25px
+    rgba(0,0,0,.30);
 
-    background:
-    #050d16;
 }
 
 
@@ -84,13 +112,12 @@ body{
     position:fixed;
 
     top:0;
+
     left:0;
 
     width:100%;
-    height:100%;
 
-    background:
-    #020812;
+    height:100%;
 
     display:flex;
 
@@ -98,14 +125,22 @@ body{
 
     align-items:center;
 
-    font-size:30px;
+    background:
+    rgba(6,17,29,.95);
 
     color:
-    #00bfff;
+    var(--accent);
+
+    font-size:30px;
+
+    font-weight:600;
 
     z-index:999999;
 
+    letter-spacing:1px;
+
     text-shadow:
-    0 0 20px
-    #00bfff;
+    0 0 15px
+    rgba(77,184,255,.5);
+
 }

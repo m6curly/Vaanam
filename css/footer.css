@@ -9,16 +9,13 @@
     background:
     linear-gradient(
         180deg,
-        #07111d,
-        #09192b
+        #081522,
+        #0d2238
     );
 
     border-top:
     1px solid
-    #0f5ea8;
-
-    color:
-    #cfe6ff;
+    #1d6fb8;
 
     display:flex;
 
@@ -26,13 +23,16 @@
 
     align-items:center;
 
+    color:#cfe8ff;
+
     font-size:13px;
 
     box-shadow:
-    0 -2px 15px
+    0 -4px 15px
     rgba(0,191,255,.15);
 
     z-index:9999;
+
 }
 
 
@@ -42,27 +42,34 @@
 
 .footer-item{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
     font-weight:600;
 
-    letter-spacing:1px;
+    letter-spacing:.6px;
 
-    padding:0 15px;
+    color:#9fcdf3;
 
-    color:
-    #9bc4ea;
+    transition:.25s;
 
-    transition:.3s;
+    padding:0 12px;
+
+    user-select:none;
+
 }
-
 
 .footer-item:hover{
 
-    color:
-    #00bfff;
+    color:#ffffff;
 
     text-shadow:
-    0 0 10px
-    rgba(0,191,255,.8);
+    0 0 8px
+    rgba(0,191,255,.6);
+
 }
 
 
@@ -77,14 +84,14 @@
 #elevationInfo,
 #projectionText{
 
-    color:
-    white;
+    color:#ffffff;
 
     font-weight:700;
 
-    margin-left:5px;
+    letter-spacing:.5px;
 
     text-shadow:
-    0 0 8px
-    rgba(0,191,255,.5);
+    0 0 6px
+    rgba(0,191,255,.35);
+
 }

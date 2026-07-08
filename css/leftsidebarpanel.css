@@ -1,5 +1,5 @@
 /* =================================
-   COMMON LEFT SIDEBAR PANELS
+   COMMON LEFT PANELS
 ================================= */
 
 #drawPanel,
@@ -13,21 +13,21 @@
 
     left:95px;
 
-    background:#d9eaf7;
+    background:#102236;
 
-    color:#17324d;
+    color:#dceeff;
 
-    border:1px solid #8fb5d9;
+    border:1px solid #1d6fb8;
 
     border-radius:10px;
 
     box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
+    0 0 18px rgba(0,191,255,.18);
 
     display:none;
 
     overflow:auto;
+
 }
 
 
@@ -37,15 +37,13 @@
 
 #drawPanel{
 
-    width:220px;
+    width:240px;
 
-    padding:12px;
+    padding:15px;
 
     z-index:99999;
+
 }
-
-
-/* DRAW HEADER */
 
 #drawPanel::before{
 
@@ -59,58 +57,46 @@
 
     font-weight:bold;
 
-    color:#1d4f82;
+    color:#6fd7ff;
 
-    margin-bottom:12px;
+    margin-bottom:15px;
 
-    padding-bottom:8px;
+    padding-bottom:10px;
 
-    border-bottom:
-        1px solid #8fb5d9;
+    border-bottom:1px solid #1d6fb8;
 
-    letter-spacing:1px;
 }
-
-
-/* DRAW BUTTONS */
 
 #drawPanel button{
 
     width:100%;
 
-    padding:12px;
+    padding:11px;
 
     margin-bottom:10px;
 
-    border:1px solid #8fb5d9;
+    background:#16395a;
+
+    color:white;
+
+    border:1px solid #2d6aa2;
 
     border-radius:6px;
-
-    background:#edf5fc;
-
-    color:#17324d;
-
-    font-size:14px;
-
-    font-weight:bold;
 
     cursor:pointer;
 
     transition:.2s;
+
 }
 
 #drawPanel button:hover{
 
-    background:#b7d8f3;
+    background:#1f4d75;
 
-    border-color:#3f7db7;
+    border-color:#00bfff;
 
-    transform:translateX(4px);
-}
+    box-shadow:0 0 8px rgba(0,191,255,.3);
 
-#drawPanel button:last-child{
-
-    margin-bottom:0;
 }
 
 
@@ -120,15 +106,13 @@
 
 #layerPanel{
 
-    width:320px;
+    width:330px;
 
     bottom:45px;
 
     z-index:99998;
+
 }
-
-
-/* LAYER HEADER */
 
 #layerPanel::before{
 
@@ -142,20 +126,43 @@
 
     font-weight:bold;
 
-    color:#1d4f82;
+    color:#6fd7ff;
 
     padding:12px;
 
-    border-bottom:
-        1px solid #8fb5d9;
+    border-bottom:1px solid #1d6fb8;
+
 }
 
+.layerGroup{
 
-/* LAYER LIST */
+    margin:15px;
 
-#layerList{
+}
 
-    padding:10px;
+.layerGroupTitle{
+
+    background:#16395a;
+
+    color:#6fd7ff;
+
+    padding:8px;
+
+    border:1px solid #2d6aa2;
+
+    border-radius:6px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+#baseLayerList,
+#userLayerList{
+
+    padding:5px;
+
 }
 
 .layerItem{
@@ -170,74 +177,34 @@
 
     margin-bottom:8px;
 
-    background:#edf5fc;
+    background:#162c44;
 
-    border:1px solid #bfd7ec;
+    border:1px solid #2d6aa2;
 
     border-radius:6px;
 
     transition:.2s;
+
 }
 
 .layerItem:hover{
 
-    background:#cfe4f6;
+    border-color:#00bfff;
 
-    border-color:#3f7db7;
+    box-shadow:0 0 8px rgba(0,191,255,.25);
+
 }
 
 .layerItem label{
 
     flex:1;
 
+    color:#dceeff;
+
     font-weight:600;
 
-    color:#17324d;
-
-    cursor:pointer;
 }
 
-/* =================================
-   LAYER GROUP
-================================= */
-
-.layerGroup{
-
-    margin-bottom:20px;
-
-}
-
-.layerGroupTitle{
-
-    padding:8px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    color:#1d4f82;
-
-    background:#dbeaf7;
-
-    border:1px solid #bfd7ec;
-
-    border-radius:5px;
-
-    margin-bottom:10px;
-
-}
-
-
-/* =================================
-   BASE + USER LIST
-================================= */
-
-#baseLayerList,
-#userLayerList{
-
-    padding:5px;
-
-}
 
 /* =================================
    STYLE PANEL
@@ -245,47 +212,46 @@
 
 #stylePanel{
 
-    left:425px;
+    left:435px;
 
-    width:270px;
+    width:290px;
 
     padding:15px;
 
     z-index:99997;
+
 }
-
-
-/* STYLE HEADER */
 
 #stylePanel h3{
 
     text-align:center;
 
-    color:#1d4f82;
+    color:#6fd7ff;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 
     padding-bottom:10px;
 
-    border-bottom:
-        1px solid #8fb5d9;
+    border-bottom:1px solid #1d6fb8;
+
 }
-
-
-/* STYLE ROWS */
 
 .styleRow{
 
-    margin-bottom:18px;
+    margin-bottom:15px;
+
 }
 
 .styleRow label{
 
     display:block;
 
+    color:#dceeff;
+
     margin-bottom:6px;
 
-    font-weight:bold;
+    font-weight:600;
+
 }
 
 .styleRow input[type=color]{
@@ -295,6 +261,9 @@
     height:40px;
 
     border:none;
+
+    background:none;
+
 }
 
 .styleRow input[type=number]{
@@ -303,34 +272,14 @@
 
     padding:8px;
 
-    border:1px solid #8fb5d9;
+    background:#162c44;
 
-    border-radius:5px;
+    color:white;
 
-    background:#edf5fc;
-}
+    border:1px solid #2d6aa2;
 
+    border-radius:6px;
 
-/* STYLE BUTTONS */
-
-.styleButton{
-
-    width:32px;
-
-    height:32px;
-
-    border:1px solid #8fb5d9;
-
-    border-radius:5px;
-
-    background:#edf5fc;
-
-    cursor:pointer;
-}
-
-.styleButton:hover{
-
-    background:#b7d8f3;
 }
 
 #applyStyle,
@@ -341,24 +290,28 @@
 
     padding:10px;
 
-    margin-top:10px;
+    margin-top:8px;
 
-    border:1px solid #8fb5d9;
+    background:#16395a;
 
-    border-radius:5px;
+    color:white;
 
-    background:#edf5fc;
+    border:1px solid #2d6aa2;
 
-    font-weight:bold;
+    border-radius:6px;
 
     cursor:pointer;
+
 }
 
 #applyStyle:hover,
 #okStyle:hover,
 #cancelStyle:hover{
 
-    background:#b7d8f3;
+    background:#1f4d75;
+
+    border-color:#00bfff;
+
 }
 
 
@@ -376,11 +329,13 @@
 
     transform:translateX(-50%);
 
-    width:260px;
+    width:280px;
 
-    background:#d9eaf7;
+    background:#102236;
 
-    border:1px solid #8fb5d9;
+    color:white;
+
+    border:1px solid #1d6fb8;
 
     border-radius:10px;
 
@@ -390,9 +345,8 @@
 
     z-index:999999;
 
-    box-shadow:
-        0 6px 18px
-        rgba(0,25,55,.25);
+    box-shadow:0 0 18px rgba(0,191,255,.25);
+
 }
 
 #featureForm input{
@@ -401,13 +355,16 @@
 
     padding:10px;
 
-    border:1px solid #8fb5d9;
-
-    border-radius:5px;
-
-    background:#edf5fc;
-
     margin-top:10px;
+
+    background:#162c44;
+
+    color:white;
+
+    border:1px solid #2d6aa2;
+
+    border-radius:6px;
+
 }
 
 
@@ -417,15 +374,13 @@
 
 #basemapPanel{
 
-    width:220px;
+    width:240px;
 
-    padding:12px;
+    padding:15px;
 
     z-index:99999;
+
 }
-
-
-/* BASEMAP HEADER */
 
 #basemapPanel::before{
 
@@ -439,49 +394,44 @@
 
     font-weight:bold;
 
-    color:#1d4f82;
+    color:#6fd7ff;
 
-    margin-bottom:12px;
+    margin-bottom:15px;
 
-    padding-bottom:8px;
+    padding-bottom:10px;
 
-    border-bottom:
-        1px solid #8fb5d9;
+    border-bottom:1px solid #1d6fb8;
+
 }
-
-
-/* BASEMAP BUTTONS */
 
 #basemapPanel button{
 
     width:100%;
 
-    padding:12px;
+    padding:11px;
 
     margin-bottom:8px;
 
-    border:1px solid #8fb5d9;
+    background:#16395a;
+
+    color:white;
+
+    border:1px solid #2d6aa2;
 
     border-radius:6px;
-
-    background:#edf5fc;
-
-    color:#17324d;
-
-    font-weight:bold;
 
     cursor:pointer;
 
     transition:.2s;
+
 }
 
 #basemapPanel button:hover{
 
-    background:#b7d8f3;
+    background:#1f4d75;
 
-    border-color:#3f7db7;
+    border-color:#00bfff;
 
-    transform:translateX(4px);
 }
 
 
@@ -492,16 +442,17 @@
 .dragItem{
 
     opacity:1 !important;
+
 }
 
 .dragChosen{
 
-    background:#b7d8f3;
+    background:#1f4d75;
+
 }
 
 .dragGhost{
 
-    opacity:.3;
+    opacity:.4;
 
-    background:#7eb1dd;
 }
