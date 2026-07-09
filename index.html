@@ -19,6 +19,7 @@
             <link rel="stylesheet" href="css/animations.css">
             <link rel="stylesheet" href="css/sidebar.css">
             <link rel="stylesheet" href="css/footer.css">
+            <link rel="stylesheet" href="css/progress.css">
 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.6.1/ol.css">
 
@@ -599,7 +600,7 @@
                 <div id="lstPanel" class="panel">
 
                     <h3>
-                        Land Surface Temperature
+                        Land Surface Temperature (Lansat 8/9)
                     </h3>
 
                     <label>
@@ -643,7 +644,7 @@
                         type="file"
                         id="lstMTL"
                         accept=".txt">
-
+                    
                     <br><br>
 
                     <button id="calculateLST">
@@ -653,6 +654,48 @@
                     </button>
 
                 </div>
+
+                    <!-- ===================================== -->
+                    <!-- LST PROGRESS WINDOW -->
+                    <!-- ===================================== -->
+
+                    <div id="progressWindow" class="panel hide">
+
+                        <div id="progressHeader">
+
+                            <span>LAND SURFACE TEMPERATURE</span>
+
+                        </div>
+
+                        <div id="progressBody">
+
+                            <div id="progressText">
+
+                                Preparing...
+
+                            </div>
+
+                            <progress
+                                id="lstProgress"
+                                value="0"
+                                max="100">
+                            </progress>
+
+                            <div id="progressPercent">
+
+                                0%
+
+                            </div>
+
+                            <button id="cancelProgress">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 <!-- ================================= -->
                 <!-- MEASUREMENT PANEL -->
@@ -811,6 +854,7 @@
             <script src="js/footer.js"></script>
             <script src="js/export.js"></script>
             <script src="js/tools.js"></script>
+            <script src="js/progress.js"></script>
             <script src="js/lst.js"></script>
             <script src="js/settings.js"></script>
             <script src="js/style.js"></script>
