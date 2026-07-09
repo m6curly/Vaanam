@@ -1,6 +1,6 @@
-/* =================================
-   COMMON PANEL STYLE
-================================= */
+/* =====================================
+   COMMON RIGHT PANELS
+===================================== */
 
 #toolsPanel,
 #bufferPopup,
@@ -15,6 +15,8 @@
 
     width:280px;
 
+    padding:16px;
+
     background:#102236;
 
     color:#dceeff;
@@ -23,21 +25,18 @@
 
     border-radius:10px;
 
-    padding:16px;
-
-    display:none;
+    box-shadow:
+        0 0 18px
+        rgba(0,191,255,.18);
 
     z-index:99999;
-
-    box-shadow:
-    0 0 18px rgba(0,191,255,.18);
 
 }
 
 
-/* =================================
-   PANEL HEADER
-================================= */
+/* =====================================
+   PANEL HEADERS
+===================================== */
 
 #toolsPanel h3,
 #bufferPopup h3,
@@ -58,12 +57,16 @@
 }
 
 
-/* =================================
+/* =====================================
    LABELS
-================================= */
+===================================== */
 
 #settingsPanel label,
 #lstPanel label{
+
+    display:block;
+
+    margin-bottom:6px;
 
     color:#c7e8ff;
 
@@ -72,9 +75,9 @@
 }
 
 
-/* =================================
+/* =====================================
    INPUTS
-================================= */
+===================================== */
 
 #bufferInput,
 #settingsPanel select,
@@ -84,19 +87,19 @@
 
     padding:9px;
 
-    margin-top:6px;
-
     margin-bottom:12px;
 
     background:#162c44;
 
-    color:white;
+    color:#ffffff;
 
     border:1px solid #2d6aa2;
 
     border-radius:6px;
 
     outline:none;
+
+    box-sizing:border-box;
 
 }
 
@@ -106,14 +109,16 @@
 
     border-color:#00bfff;
 
-    box-shadow:0 0 8px rgba(0,191,255,.35);
+    box-shadow:
+        0 0 8px
+        rgba(0,191,255,.35);
 
 }
 
 
-/* =================================
+/* =====================================
    BUTTONS
-================================= */
+===================================== */
 
 #toolsPanel button,
 #createBuffer,
@@ -129,7 +134,7 @@
 
     background:#16395a;
 
-    color:white;
+    color:#ffffff;
 
     border:1px solid #2d6aa2;
 
@@ -137,12 +142,9 @@
 
     cursor:pointer;
 
-    transition:.2s;
-
     font-weight:600;
 
 }
-
 
 #toolsPanel button:hover,
 #createBuffer:hover,
@@ -155,25 +157,23 @@
     border-color:#00bfff;
 
     box-shadow:
-    0 0 10px rgba(0,191,255,.35);
+        0 0 10px
+        rgba(0,191,255,.35);
 
 }
 
 
-/* =================================
+/* =====================================
    TIME SERIES PANEL
-================================= */
+===================================== */
 
 #timeSeriesPanel{
 
     position:fixed;
 
     top:70px;
-
     left:90px;
-
     right:90px;
-
     bottom:70px;
 
     background:#0f1d2d;
@@ -182,38 +182,45 @@
 
     border-radius:10px;
 
-    display:none;
-
     overflow:hidden;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,191,255,.25);
 
     z-index:999999;
 
-    box-shadow:
-    0 0 20px rgba(0,191,255,.25);
-
 }
 
+
+/* =====================================
+   TIME SERIES HEADER
+===================================== */
 
 #timeSeriesHeader{
 
     height:50px;
 
-    background:#16304a;
-
-    color:white;
+    padding:0 15px;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:space-between;
 
-    padding:0 15px;
+    align-items:center;
+
+    background:#16304a;
+
+    color:#ffffff;
 
     border-bottom:1px solid #1d6fb8;
 
 }
 
+
+/* =====================================
+   CLOSE BUTTON
+===================================== */
 
 #closeTimeSeries{
 
@@ -221,18 +228,17 @@
 
     height:34px;
 
-    background:#b02626;
-
-    color:white;
-
     border:none;
 
     border-radius:5px;
 
+    background:#b02626;
+
+    color:#ffffff;
+
     cursor:pointer;
 
 }
-
 
 #closeTimeSeries:hover{
 
@@ -240,6 +246,10 @@
 
 }
 
+
+/* =====================================
+   TIME SERIES GRID
+===================================== */
 
 #timeSeriesGrid{
 
@@ -260,6 +270,10 @@
 }
 
 
+/* =====================================
+   GRID BOX
+===================================== */
+
 .tsBox{
 
     position:relative;
@@ -270,35 +284,38 @@
 
 }
 
-
 .tsBox:hover{
 
     border-color:#00bfff;
 
     box-shadow:
-    inset 0 0 10px rgba(0,191,255,.25);
+        inset 0 0 10px
+        rgba(0,191,255,.25);
 
 }
 
+
+/* =====================================
+   GRID SELECT
+===================================== */
 
 .tsBox select{
 
     position:absolute;
 
     top:10px;
-
     left:10px;
-
-    z-index:9999;
-
-    background:#16304a;
-
-    color:white;
-
-    border:1px solid #2d6aa2;
 
     padding:6px 10px;
 
+    background:#16304a;
+
+    color:#ffffff;
+
+    border:1px solid #2d6aa2;
+
     border-radius:5px;
+
+    z-index:9999;
 
 }

@@ -1,0 +1,208 @@
+/* =================================
+   VAANAM UI ANIMATIONS
+   Version : 1.0
+================================= */
+
+
+/* =================================
+   TIMING VARIABLES
+================================= */
+
+:root{
+
+    --fast:.18s;
+
+    --normal:.28s;
+
+    --slow:.40s;
+
+    --ease:
+    cubic-bezier(.22,1,.36,1);
+
+}
+
+
+/* =================================
+   PANEL TRANSITIONS
+================================= */
+
+.panel{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+        translateY(-12px)
+        scale(.96);
+
+    transform-origin:top center;
+
+    transition:
+
+        opacity var(--normal) var(--ease),
+
+        transform var(--normal) var(--ease),
+
+        visibility var(--normal);
+
+    will-change:
+        transform,
+        opacity;
+
+}
+
+
+/* =================================
+   PANEL OPEN
+================================= */
+
+.panel.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+
+        translateY(0)
+
+        scale(1);
+
+}
+
+
+/* =================================
+   PANEL CLOSE
+================================= */
+
+.panel.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+
+        translateY(-10px)
+
+        scale(.96);
+
+}
+
+
+/* =================================
+   BUTTON ANIMATION
+================================= */
+
+button{
+
+    transition:
+
+        transform .18s var(--ease),
+
+        box-shadow .20s ease,
+
+        background .20s ease,
+
+        border-color .20s ease;
+
+}
+
+
+/* =================================
+   BUTTON HOVER
+================================= */
+
+button:hover{
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =================================
+   BUTTON PRESS
+================================= */
+
+button:active{
+
+    transform:
+        scale(.96);
+
+}
+
+
+/* =================================
+   LINK ANIMATION
+================================= */
+
+a{
+
+    transition:
+
+        color .20s ease,
+
+        opacity .20s ease;
+
+}
+
+
+/* =================================
+   INPUT ANIMATION
+================================= */
+
+input,
+textarea,
+select{
+
+    transition:
+
+        border-color .20s ease,
+
+        box-shadow .20s ease;
+
+}
+
+
+/* =================================
+   FADE IN
+================================= */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* =================================
+   FADE OUT
+================================= */
+
+@keyframes fadeOut{
+
+    from{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+    }
+
+}

@@ -4,59 +4,31 @@
 
 function loadLabelFields(layer){
 
-    const select =
-
-    document
-    .getElementById(
-        "labelField"
-    );
+    const select=document.getElementById("labelField");
 
     select.innerHTML="";
 
-    const source =
+    const source=layer.getSource();
 
-    layer.getSource();
+    if(!source) return;
 
-    if(!source)return;
+    const features=source.getFeatures();
 
-    const features =
+    if(features.length===0) return;
 
-    source.getFeatures();
+    const props=features[0].getProperties();
 
-    if(features.length===0)
-    return;
+    for(let key in props){
 
-    const props =
+        if(key!=="geometry"){
 
-    features[0]
-    .getProperties();
-
-    for(
-
-        let key in props
-
-    ){
-
-        if(
-
-            key!=="geometry"
-
-        ){
-
-            const option =
-
-            document
-            .createElement(
-                "option"
-            );
+            const option=document.createElement("option");
 
             option.value=key;
 
-            option.innerText=key;
+            option.textContent=key;
 
-            select.appendChild(
-                option
-            );
+            select.appendChild(option);
 
         }
 
@@ -69,7 +41,7 @@ function loadLabelFields(layer){
 // CURRENT LAYER
 // =====================================
 
-let selectedLayer = null;
+let selectedLayer=null;
 
 
 // =====================================
@@ -82,11 +54,7 @@ function openStylePanel(layer){
 
     loadLabelFields(layer);
 
-    document
-    .getElementById(
-        "stylePanel"
-    )
-    .style.display="block";
+    togglePanel("stylePanel");
 
 }
 
@@ -95,120 +63,68 @@ function openStylePanel(layer){
 // CLOSE STYLE PANEL
 // =====================================
 
-function closeStylePanel(){
+document
+.getElementById("cancelStyle")
+.onclick = function(){
 
-    document
-    .getElementById(
-        "stylePanel"
-    )
-    .style.display="none";
+    closePanel("stylePanel");
 
-}
+};
 
 
 // =====================================
 // APPLY STYLE
 // =====================================
 
-document
-.getElementById("applyStyle")
-.onclick=function(){
+document.getElementById("applyStyle").onclick=function(){
 
     if(!selectedLayer){
 
         alert("No layer selected");
+
         return;
 
     }
 
-    const fillColor =
-    document.getElementById(
-        "fillColor"
-    ).value;
+    const fillColor=document.getElementById("fillColor").value;
 
-    const strokeColor =
-    document.getElementById(
-        "strokeColor"
-    ).value;
+    const strokeColor=document.getElementById("strokeColor").value;
 
-    const strokeWidth =
-    Number(
-        document.getElementById(
-            "strokeWidth"
-        ).value
-    );
+    const strokeWidth=Number(document.getElementById("strokeWidth").value);
 
-    const symbolSize =
-    Number(
-        document.getElementById(
-            "symbolSize"
-        ).value
-    );
+    const symbolSize=Number(document.getElementById("symbolSize").value);
 
-    const labelEnable =
-    document.getElementById(
-        "labelEnable"
-    ).checked;
+    const labelEnable=document.getElementById("labelEnable").checked;
 
-    const labelField =
-    document.getElementById(
-        "labelField"
-    ).value;
+    const labelField=document.getElementById("labelField").value;
 
-    const labelSize =
-    Number(
-        document.getElementById(
-            "labelSize"
-        ).value
-    );
+    const labelSize=Number(document.getElementById("labelSize").value);
 
-    const labelColor =
-    document.getElementById(
-        "labelColor"
-    ).value;
+    const labelColor=document.getElementById("labelColor").value;
 
 
-    selectedLayer.setStyle(
+    selectedLayer.setStyle(function(feature){
 
-        function(feature){
+        const geometry=feature.getGeometry().getType();
 
-            const geometry =
 
-            feature
-            .getGeometry()
-            .getType();
+        let textStyle;
 
-            // =====================
-            // LABEL
-            // =====================
+        if(labelEnable){
 
-            const labelStyle =
+            textStyle=new ol.style.Text({
 
-            labelEnable ?
+                text:String(feature.get(labelField)||""),
 
-            new ol.style.Text({
+                font:labelSize+"px Arial",
 
-                text:
-                String(
-                    feature.get(
-                        labelField
-                    ) || ""
-                ),
+                fill:new ol.style.Fill({
 
-                font:
-                labelSize +
-                "px Arial",
-
-                fill:
-                new ol.style.Fill({
-
-                    color:
-                    labelColor
+                    color:labelColor
 
                 }),
 
-                stroke:
-                new ol.style.Stroke({
+                stroke:new ol.style.Stroke({
 
                     color:"#ffffff",
 
@@ -218,138 +134,100 @@ document
 
                 offsetY:-15
 
-            })
+            });
 
-            :
-
-            undefined;
+        }
 
 
-            // =====================
-            // POINT
-            // =====================
+        // POINT
 
-            if(
+        if(
 
-                geometry==="Point"
+            geometry==="Point" ||
 
-                ||
+            geometry==="MultiPoint"
 
-                geometry==="MultiPoint"
-
-            ){
-
-                return new ol.style.Style({
-
-                    image:
-
-                    new ol.style.Circle({
-
-                        radius:
-                        symbolSize,
-
-                        fill:
-
-                        new ol.style.Fill({
-
-                            color:
-                            fillColor
-
-                        }),
-
-                        stroke:
-
-                        new ol.style.Stroke({
-
-                            color:
-                            strokeColor,
-
-                            width:
-                            strokeWidth
-
-                        })
-
-                    }),
-
-                    text:
-                    labelStyle
-
-                });
-
-            }
-
-
-            // =====================
-            // LINE
-            // =====================
-
-            if(
-
-                geometry==="LineString"
-
-                ||
-
-                geometry==="MultiLineString"
-
-            ){
-
-                return new ol.style.Style({
-
-                    stroke:
-
-                    new ol.style.Stroke({
-
-                        color:
-                        strokeColor,
-
-                        width:
-                        strokeWidth
-
-                    }),
-
-                    text:
-                    labelStyle
-
-                });
-
-            }
-
-
-            // =====================
-            // POLYGON
-            // =====================
+        ){
 
             return new ol.style.Style({
 
-                fill:
+                image:new ol.style.Circle({
 
-                new ol.style.Fill({
+                    radius:symbolSize,
 
-                    color:
-                    fillColor
+                    fill:new ol.style.Fill({
+
+                        color:fillColor
+
+                    }),
+
+                    stroke:new ol.style.Stroke({
+
+                        color:strokeColor,
+
+                        width:strokeWidth
+
+                    })
 
                 }),
 
-                stroke:
-
-                new ol.style.Stroke({
-
-                    color:
-                    strokeColor,
-
-                    width:
-                    strokeWidth
-
-                }),
-
-                text:
-                labelStyle
+                text:textStyle
 
             });
 
         }
 
-    );
+
+        // LINE
+
+        if(
+
+            geometry==="LineString" ||
+
+            geometry==="MultiLineString"
+
+        ){
+
+            return new ol.style.Style({
+
+                stroke:new ol.style.Stroke({
+
+                    color:strokeColor,
+
+                    width:strokeWidth
+
+                }),
+
+                text:textStyle
+
+            });
+
+        }
+
+
+        // POLYGON
+
+        return new ol.style.Style({
+
+            fill:new ol.style.Fill({
+
+                color:fillColor
+
+            }),
+
+            stroke:new ol.style.Stroke({
+
+                color:strokeColor,
+
+                width:strokeWidth
+
+            }),
+
+            text:textStyle
+
+        });
+
+    });
 
     selectedLayer.changed();
 
@@ -361,18 +239,12 @@ document
 // =====================================
 
 document
-.getElementById(
-    "okStyle"
-)
-.onclick=function(){
+.getElementById("okStyle")
+.onclick = function(){
 
-    document
-    .getElementById(
-        "applyStyle"
-    )
-    .click();
+    document.getElementById("applyStyle").click();
 
-    closeStylePanel();
+    closePanel("stylePanel");
 
 };
 
@@ -381,11 +253,7 @@ document
 // CANCEL
 // =====================================
 
-document
-.getElementById(
-    "cancelStyle"
-)
-.onclick=function(){
+document.getElementById("cancelStyle").onclick=function(){
 
     closeStylePanel();
 

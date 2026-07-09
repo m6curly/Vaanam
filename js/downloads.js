@@ -2,47 +2,26 @@
 // DOWNLOAD PANEL
 // =====================================
 
-const downloadsPanel =
+const downloadsBtn =
 document.getElementById(
-    "downloadsPanel"
+    "downloadsBtn"
 );
 
-let downloadTimer;
-
 
 // =====================================
-// OPEN/CLOSE PANEL
+// TOGGLE DOWNLOAD PANEL
 // =====================================
 
-document
-.getElementById(
-    "downloadsBtn"
-)
-.onclick = function(e){
+downloadsBtn.onclick = function(e){
 
     e.preventDefault();
 
-    if(
-        downloadsPanel
-        .style.display
-        ===
-        "block"
-    ){
+    e.stopPropagation();
 
-        downloadsPanel
-        .style.display =
-        "none";
-
-    }
-    else{
-
-        downloadsPanel
-        .style.display =
-        "block";
-
-        startDownloadTimer();
-
-    }
+    togglePanel(
+        "downloadsPanel",
+        this
+    );
 
 };
 
@@ -58,11 +37,8 @@ document
 .onclick = function(){
 
     window.open(
-
         "https://download.geofabrik.de",
-
         "_blank"
-
     );
 
 };
@@ -79,11 +55,8 @@ document
 .onclick = function(){
 
     window.open(
-
         "https://www.naturalearthdata.com/downloads/",
-
         "_blank"
-
     );
 
 };
@@ -100,11 +73,8 @@ document
 .onclick = function(){
 
     window.open(
-
         "https://diva-gis.org/data.html",
-
         "_blank"
-
     );
 
 };

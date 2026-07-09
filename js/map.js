@@ -281,7 +281,6 @@ new ol.Map({
 
 });
 
-
 // =====================================
 // VARIABLES
 // =====================================
@@ -394,7 +393,7 @@ new ol.layer.Vector({
 
     source:source,
 
-    visible: FASLE
+    visible: false
 
 });
 

@@ -16,6 +16,7 @@
             <link rel="stylesheet" href="css/headerpanel.css">
             <link rel="stylesheet" href="css/leftsidebarpanel.css">
             <link rel="stylesheet" href="css/rightsidebarpanel.css">
+            <link rel="stylesheet" href="css/animations.css">
             <link rel="stylesheet" href="css/sidebar.css">
             <link rel="stylesheet" href="css/footer.css">
 
@@ -146,7 +147,7 @@
                 <!-- DOWNLOAD PANEL -->
                 <!-- ================================= -->
 
-                <div id="downloadsPanel">
+                <div id="downloadsPanel" class="panel">
 
                     <div class="downloadHeader">
                         GIS Data Sources
@@ -155,19 +156,19 @@
                     <div
                         class="downloadItem"
                         id="osmLink">
-                        🌍 OSM Data
+                        OSM Data
                     </div>
 
                     <div
                         class="downloadItem"
                         id="naturalEarthLink">
-                        🗺 Natural Earth
+                        Natural Earth
                     </div>
 
                     <div
                         class="downloadItem"
                         id="divaLink">
-                        📁 Diva Shapefiles
+                        Diva Shapefiles
                     </div>
 
                 </div>
@@ -176,7 +177,7 @@
                 <!-- FEEDBACK PANEL -->
                 <!-- ================================= -->
 
-                <div id="feedbackPanel">
+                <div id="feedbackPanel" class="panel">
 
                     <h3>
                         Feedback
@@ -221,7 +222,7 @@
                 <!-- ABOUT PANEL -->
                 <!-- ================================= -->
 
-                <div id="aboutPanel">
+                <div id="aboutPanel" class="panel">
 
                     <h2>
                         VAANAM
@@ -272,7 +273,7 @@
                 <!-- LOGIN PANEL -->
                 <!-- ================================= -->
 
-                <div id="loginPanel">
+                <div id="loginPanel" class="panel">
 
                     <h3>
                         VAANAM Login
@@ -304,7 +305,7 @@
                 <!-- DRAW PANEL -->
                 <!-- ================================= -->
 
-                <div id="drawPanel">
+                <div id="drawPanel" class="panel">
 
                     <button id="drawPoint">
                         Point
@@ -326,7 +327,7 @@
                         Circle
                     </button>
 
-                    <button id="drawCircle">
+                    <button id="clearDraw">
                         Clear
                     </button>
 
@@ -336,7 +337,7 @@
                 <!-- LAYER PANEL -->
                 <!-- ================================= -->
 
-                <div id="layerPanel">
+                <div id="layerPanel" class="panel">
                     <!-- ================================= -->
                     <!-- BASE LAYERS -->
                     <!-- ================================= -->
@@ -427,7 +428,7 @@
                 <!-- LAYER STYLE PANEL -->
                 <!-- ================================= -->
 
-                <div id="stylePanel">
+                <div id="stylePanel" class="panel">
 
                     <h3>
                         Layer Style
@@ -539,7 +540,7 @@
                 <!-- BASEMAP PANEL -->
                 <!-- ================================= -->
 
-                <div id="basemapPanel">
+                <div id="basemapPanel" class="panel">
 
                     <button id="osmMap">
                         OSM
@@ -579,7 +580,7 @@
                 <!-- TOOLS PANEL -->
                 <!-- ================================= -->
 
-                <div id="toolsPanel">
+                <div id="toolsPanel" class="panel">
 
                     <h3>
                         ANALYSIS Tools
@@ -595,7 +596,7 @@
                 <!-- LST PANEL -->
                 <!-- ================================= -->
 
-                <div id="lstPanel">
+                <div id="lstPanel" class="panel">
 
                     <h3>
                         Land Surface Temperature
@@ -657,30 +658,30 @@
                 <!-- MEASUREMENT PANEL -->
                 <!-- ================================= -->
 
-                <div id="measurePanel">
+                <div id="measurePanel" class="panel">
 
                     <h3>
                         MEASUREMENT TOOLS
                     </h3>
 
                     <button id="measureDistance">
-                        📏 Distance
+                        Distance
                     </button>
 
                     <button id="measureArea">
-                        📐 Area
+                        Area
                     </button>
 
                     <button id="measureRadius">
-                        ⭕ Radius
+                        Radius
                     </button>
             
                     <button id="measureBearing">
-                        🧭 Bearing
+                        Bearing
                     </button>
             
                     <button id="clearMeasure">
-                        ❌ Clear
+                        Clear
                     </button>
 
                 </div> 
@@ -689,7 +690,7 @@
                 <!-- SETTINGS PANEL -->
                 <!-- ================================= -->
 
-                <div id="settingsPanel">
+                <div id="settingsPanel" class="panel">
 
                     <h3>
                         SETTINGS
@@ -812,7 +813,6 @@
             <script src="js/tools.js"></script>
             <script src="js/lst.js"></script>
             <script src="js/settings.js"></script>
-            <script src="js/overview.js"></script>
             <script src="js/style.js"></script>
             <script src="js/panelManager.js"></script>
             <script src="js/main.js"></script>

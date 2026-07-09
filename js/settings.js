@@ -1,91 +1,56 @@
-document
-.getElementById(
-    "settingsBtn"
-)
-.onclick=function(){
+// =====================================
+// SETTINGS PANEL
+// =====================================
 
-    const panel =
+document.addEventListener("DOMContentLoaded",function(){
+
+    document.getElementById("settingsBtn").onclick=function(e){
+
+        e.preventDefault();
+
+        togglePanel("settingsPanel",this);
+
+    };
+
+});
+
+
+// =====================================
+// APPLY PROJECTION
+// =====================================
+
+document.getElementById("applyProjection").onclick=function(){
+
+    const epsg=document.getElementById(
+        "projectionSelect"
+    ).value;
+
+    const oldView=map.getView();
+
+    const center=ol.proj.transform(
+
+        oldView.getCenter(),
+
+        oldView.getProjection(),
+
+        epsg
+
+    );
+
+    const newView=new ol.View({
+
+        projection:epsg,
+
+        center:center,
+
+        zoom:oldView.getZoom()
+
+    });
+
+    map.setView(newView);
+
     document.getElementById(
-        "settingsPanel"
-    );
-
-    if(
-        panel.style.display
-        === "block"
-    ){
-
-        panel.style.display =
-        "none";
-    }
-    else{
-
-        panel.style.display =
-        "block";
-    }
-};
-
-document
-.getElementById(
-    "applyProjection"
-)
-.onclick=function(){
-
-    const epsg =
-
-        document
-        .getElementById(
-            "projectionSelect"
-        )
-        .value;
-
-    const center =
-
-        ol.proj.transform(
-
-            view.getCenter(),
-
-            view
-            .getProjection(),
-
-            epsg
-
-        );
-
-    const newView =
-
-        new ol.View({
-
-            projection:
-                epsg,
-
-            center:
-                center,
-
-            zoom:
-                view.getZoom()
-
-        });
-
-    map.setView(
-        newView
-    );
-
-    document
-    .getElementById(
         "projectionText"
-    )
-    .innerHTML =
-        epsg;
-};
-
-// =====================================
-// CLOSE PANEL
-// =====================================
-settingsBtn.onclick=function(){
-
-    closeAllPanels();
-
-    settingsPanel.style.display=
-    "block";
+    ).textContent=epsg;
 
 };

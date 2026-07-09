@@ -23,23 +23,15 @@ ol.proj.proj4.register(proj4);
 // OPEN LST PANEL
 // =====================================
 
-document
-.getElementById(
-    "lstTool"
-)
-.onclick = function(){
+document.addEventListener("DOMContentLoaded", () => {
 
-    closeAllPanels();
+    document.getElementById("lstTool").onclick = function () {
 
-    document
-    .getElementById(
-        "lstPanel"
-    )
-    .style.display =
-    "block";
+        togglePanel("lstPanel", this);
 
-};
+    };
 
+});
 
 // =====================================
 // FILE VARIABLES
@@ -907,6 +899,8 @@ map.getView().fit(
         duration:1000
     }
 );
+
+closePanel("lstPanel");
 
 alert(
 

@@ -1,28 +1,24 @@
 // =====================================
-// BASEMAP PANEL SHOW/HIDE
+// BASEMAP PANEL
 // =====================================
 
 document
-.getElementById("basemapBtn")
-.onclick=function(){
-closeLayerPanel();
-    const panel=
-    document.getElementById(
-        "basemapPanel"
+.getElementById(
+    "basemapBtn"
+)
+.onclick = function(e){
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    togglePanel(
+        "basemapPanel",
+        this
     );
 
-    if(panel.style.display==="block"){
-
-        panel.style.display="none";
-
-    }
-    else{
-
-        panel.style.display="block";
-
-    }
-
 };
+
 
 // =====================================
 // HIDE ALL BASEMAPS
@@ -57,7 +53,7 @@ document
 .getElementById(
     "osmMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -74,7 +70,7 @@ document
 .getElementById(
     "satelliteMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -91,13 +87,14 @@ document
 .getElementById(
     "terrainMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
     terrainLayer.setVisible(true);
 
 };
+
 
 // =====================================
 // CARTO LIGHT
@@ -107,7 +104,7 @@ document
 .getElementById(
     "cartoLightMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -124,7 +121,7 @@ document
 .getElementById(
     "cartoDarkMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -141,7 +138,7 @@ document
 .getElementById(
     "streetMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -158,7 +155,7 @@ document
 .getElementById(
     "natGeoMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
@@ -175,22 +172,10 @@ document
 .getElementById(
     "humanitarianMap"
 )
-.onclick=function(){
+.onclick = function(){
 
     hideBasemaps();
 
     humanitarianLayer.setVisible(true);
-
-};
-
-// =====================================
-// CLOSE PANEL
-// =====================================
-basemapBtn.onclick=function(){
-
-    closeAllPanels();
-
-    basemapPanel.style.display=
-    "block";
 
 };

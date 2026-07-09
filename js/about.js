@@ -2,44 +2,40 @@
 // ABOUT PANEL
 // =====================================
 
-const aboutPanel =
+const aboutBtn =
 document.getElementById(
-    "aboutPanel"
+    "aboutBtn"
 );
-
-let aboutTimer;
 
 
 // =====================================
-// OPEN/CLOSE
+// TOGGLE ABOUT PANEL
+// =====================================
+
+aboutBtn.onclick = function(e){
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    togglePanel(
+        "aboutPanel",
+        this
+    );
+
+};
+
+
+// =====================================
+// PREVENT PANEL CLICK
 // =====================================
 
 document
 .getElementById(
-    "aboutBtn"
+    "aboutPanel"
 )
-.onclick=function(e){
+.onclick = function(e){
 
-    e.preventDefault();
-
-    if(
-        aboutPanel
-        .style.display
-        ===
-        "block"
-    ){
-
-        aboutPanel
-        .style.display =
-        "none";
-
-    }
-    else{
-
-        aboutPanel
-        .style.display =
-        "block";
-
-    }
+    e.stopPropagation();
 
 };

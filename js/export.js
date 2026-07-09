@@ -1,104 +1,149 @@
 // =====================================
-// EXPORT CURRENT VIEW
+// SEARCH LOCATION
 // =====================================
 
-document
-.getElementById(
-    "exportBtn"
-)
-.onclick = function(){
+async function searchLocation() {
 
-    const panels = document.querySelectorAll(
-        "#sidebar,#toolbar,#popup"
-    );
+    const input =
 
-    panels.forEach(function(p){
+        document
+        .getElementById("searchBox")
+        .value
+        .trim();
 
-        p.dataset.old =
-        p.style.display;
+    if (!input) return;
 
-        p.style.display =
-        "none";
+    searchSource.clear();
 
-    });
+    // =====================================
+    // LAT,LON SEARCH
+    // =====================================
 
-    html2canvas(
+    if (input.includes(",")) {
 
-        document.getElementById(
-            "map"
-        ),
+        const parts = input.split(",");
 
-        {
-            useCORS:true,
-            allowTaint:true,
-            scale:2
+        if (parts.length === 2) {
+
+            const lat = parseFloat(parts[0]);
+
+            const lon = parseFloat(parts[1]);
+
+            if (
+
+                !isNaN(lat) &&
+                !isNaN(lon) &&
+                lat >= -90 &&
+                lat <= 90 &&
+                lon >= -180 &&
+                lon <= 180
+
+            ) {
+
+                zoomToLocation(lon, lat, 15);
+
+                return;
+
+            }
+
         }
-
-    )
-
-    .then(function(canvas){
-
-        const link =
-        document.createElement(
-            "a"
-        );
-
-        link.download =
-        "VAANAM_Map.png";
-
-        link.href =
-        canvas.toDataURL(
-            "image/png"
-        );
-
-        link.click();
-
-        panels.forEach(function(p){
-
-            p.style.display =
-            p.dataset.old;
-
-        });
-
-    });
-
-};
-
-
-// =====================================
-// EXPORT LST AS FLOAT BINARY
-// =====================================
-
-window.exportLST = function () {
-
-    if (!window.lstRaster) {
-
-        alert("No LST available");
-
-        return;
 
     }
 
-    const raster = window.lstRaster;
+    // =====================================
+    // PLACE SEARCH
+    // =====================================
 
-    const blob = new Blob(
+    try {
 
-        [raster.data.buffer],
+        const response = await fetch(
 
-        {
-            type: "application/octet-stream"
+            "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" +
+
+            encodeURIComponent(input)
+
+        );
+
+        const data = await response.json();
+
+        if (!data.length) {
+
+            alert("Location not found");
+
+            return;
+
         }
+
+        zoomToLocation(
+
+            parseFloat(data[0].lon),
+
+            parseFloat(data[0].lat),
+
+            12
+
+        );
+
+    }
+
+    catch (e) {
+
+        alert("Location not found");
+
+    }
+
+}
+
+
+// =====================================
+// ZOOM TO LOCATION
+// =====================================
+
+function zoomToLocation(lon, lat, zoom) {
+
+    const coord =
+
+        ol.proj.fromLonLat([lon, lat]);
+
+    searchSource.addFeature(
+
+        new ol.Feature({
+
+            geometry:
+
+                new ol.geom.Point(coord)
+
+        })
 
     );
 
-    const link = document.createElement("a");
+    view.setCenter(coord);
 
-    link.href = URL.createObjectURL(blob);
+    view.setZoom(zoom);
 
-    link.download = "LST.float32";
+}
 
-    link.click();
 
-    URL.revokeObjectURL(link.href);
+// =====================================
+// ENTER KEY
+// =====================================
 
-};
+document
+
+.getElementById("searchBox")
+
+.addEventListener(
+
+    "keydown",
+
+    function (e) {
+
+        if (e.key === "Enter") {
+
+            searchLocation();
+
+        }
+
+    }
+
+);

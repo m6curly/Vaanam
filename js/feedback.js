@@ -2,55 +2,57 @@
 // FEEDBACK PANEL
 // =====================================
 
-const feedbackPanel =
+const feedbackBtn =
 document.getElementById(
-    "feedbackPanel"
+    "feedbackBtn"
 );
 
 
-// OPEN/CLOSE
+// =====================================
+// TOGGLE FEEDBACK PANEL
+// =====================================
 
-document
-.getElementById(
-    "feedbackBtn"
-)
-.onclick=function(e){
+feedbackBtn.onclick = function(e){
 
     e.preventDefault();
 
-    if(
-        feedbackPanel
-        .style.display
-        ===
-        "block"
-    ){
+    e.stopPropagation();
 
-        feedbackPanel
-        .style.display =
-        "none";
-
-    }
-    else{
-
-        feedbackPanel
-        .style.display =
-        "block";
-
-    }
+    togglePanel(
+        "feedbackPanel",
+        this
+    );
 
 };
 
 
+// =====================================
 // CLOSE BUTTON
+// =====================================
 
 document
 .getElementById(
     "closeFeedback"
 )
-.onclick=function(){
+.onclick = function(){
 
-    feedbackPanel
-    .style.display =
-    "none";
+    closePanel(
+        "feedbackPanel"
+    );
+
+};
+
+
+// =====================================
+// PREVENT PANEL CLICK
+// =====================================
+
+document
+.getElementById(
+    "feedbackPanel"
+)
+.onclick = function(e){
+
+    e.stopPropagation();
 
 };

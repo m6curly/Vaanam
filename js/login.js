@@ -2,111 +2,107 @@
 // LOGIN PANEL
 // =====================================
 
-const loginPanel =
+const loginBtn =
 document.getElementById(
-    "loginPanel"
+    "loginBtn"
 );
 
 
-// OPEN/CLOSE
+// =====================================
+// TOGGLE LOGIN PANEL
+// =====================================
 
-document
-.getElementById(
-    "loginBtn"
-)
-.onclick=function(e){
+loginBtn.onclick = function(e){
 
     e.preventDefault();
 
-    if(
-        loginPanel
-        .style.display
-        ===
-        "block"
-    ){
+    e.stopPropagation();
 
-        loginPanel
-        .style.display =
-        "none";
-
-    }
-    else{
-
-        loginPanel
-        .style.display =
-        "block";
-
-    }
+    togglePanel(
+        "loginPanel",
+        this
+    );
 
 };
 
 
+// =====================================
 // CLOSE BUTTON
+// =====================================
 
 document
 .getElementById(
     "loginClose"
 )
-.onclick=function(){
+.onclick = function(){
 
-    loginPanel
-    .style.display =
-    "none";
+    closePanel(
+        "loginPanel"
+    );
 
 };
 
 
+// =====================================
 // LOGIN
+// =====================================
 
 document
 .getElementById(
     "loginSubmit"
 )
-.onclick=function(){
+.onclick = function(){
 
     const user =
     document
     .getElementById(
         "username"
     )
-    .value;
+    .value
+    .trim();
 
     const pass =
     document
     .getElementById(
         "password"
     )
-    .value;
+    .value
+    .trim();
+
+    const message =
+    document.getElementById(
+        "loginMessage"
+    );
 
     if(
-
-        user==="admin"
-
-        &&
-
-        pass==="vannam123"
-
+        user === "admin" &&
+        pass === "vannam123"
     ){
 
-        document
-        .getElementById(
-            "loginMessage"
-        )
-        .innerHTML=
-
+        message.innerHTML =
         "✅ Login Successful";
 
     }
     else{
 
-        document
-        .getElementById(
-            "loginMessage"
-        )
-        .innerHTML=
-
+        message.innerHTML =
         "❌ Invalid Login";
 
     }
+
+};
+
+
+// =====================================
+// PREVENT PANEL CLICK
+// =====================================
+
+document
+.getElementById(
+    "loginPanel"
+)
+.onclick = function(e){
+
+    e.stopPropagation();
 
 };

@@ -1,82 +1,111 @@
 // =====================================
-// ALL PANELS
+// VAANAM PANEL MANAGER
 // =====================================
 
-const PANELS = [
-
-    "downloadsPanel",
-    "feedbackPanel",
-    "aboutPanel",
-    "loginPanel",
-
-    "drawPanel",
-    "stylePanel",
-    "basemapPanel",
-
-    "toolsPanel",
-    "measurePanel",
-    "settingsPanel",
-
-    "bufferPopup"
-
-];
+let activePanel = null;
 
 
 // =====================================
-// CLOSE ALL PANELS
+// INITIALIZE
 // =====================================
 
-function closeAllPanels(){
+document.addEventListener("DOMContentLoaded", () => {
 
-    PANELS.forEach(
+    document.querySelectorAll(".panel").forEach(panel => {
 
-        function(id){
+        panel.style.display = "none";
+        panel.classList.remove("show", "hide");
 
-            const panel =
+        panel.addEventListener("click", e => {
+            e.stopPropagation();
+        });
 
-                document
-                .getElementById(id);
+    });
 
-            if(panel){
+});
 
-                panel.style.display =
-                    "none";
 
-            }
+// =====================================
+// OPEN PANEL
+// =====================================
 
-        }
+function openPanel(id){
 
-    );
+    const panel = document.getElementById(id);
+
+    if(!panel) return;
+
+    if(activePanel && activePanel !== panel){
+
+        closePanel(activePanel.id);
+
+    }
+
+    panel.style.display = "block";
+
+    panel.classList.remove("hide");
+
+    requestAnimationFrame(() => {
+
+        panel.classList.add("show");
+
+    });
+
+    activePanel = panel;
 
 }
 
 
 // =====================================
-// TOGGLE PANEL
+// CLOSE PANEL
+// =====================================
+
+function closePanel(id){
+
+    const panel = document.getElementById(id);
+
+    if(!panel) return;
+
+    panel.classList.remove("show");
+
+    panel.classList.add("hide");
+
+    setTimeout(() => {
+
+        panel.style.display = "none";
+
+        panel.classList.remove("hide");
+
+    },280);
+
+    if(activePanel === panel){
+
+        activePanel = null;
+
+    }
+
+}
+
+
+// =====================================
+// TOGGLE
 // =====================================
 
 function togglePanel(id){
 
-    const panel =
+    const panel = document.getElementById(id);
 
-        document
-        .getElementById(id);
+    if(!panel) return;
 
-    if(!panel)
-        return;
+    if(panel.style.display === "block"){
 
-    const isOpen =
+        closePanel(id);
 
-        panel.style.display
-        ===
-        "block";
+    }
 
-    closeAllPanels();
+    else{
 
-    if(!isOpen){
-
-        panel.style.display =
-            "block";
+        openPanel(id);
 
     }
 
@@ -84,49 +113,49 @@ function togglePanel(id){
 
 
 // =====================================
-// CLICK OUTSIDE CLOSE
+// CLOSE ALL
 // =====================================
 
-document.addEventListener(
+function closeAllPanels(){
 
-    "click",
+    document.querySelectorAll(".panel").forEach(panel => {
 
-    function(e){
+        if(panel.style.display === "block"){
 
-        const inside =
-
-            e.target.closest(
-
-                "#downloadsPanel,\
-                #feedbackPanel,\
-                #aboutPanel,\
-                #loginPanel,\
-                #drawPanel,\
-                #layerPanel,\
-                #stylePanel,\
-                #basemapPanel,\
-                #toolsPanel,\
-                #measurePanel,\
-                #settingsPanel,\
-                #bufferPopup"
-
-            );
-
-        const button =
-
-            e.target.closest(
-                "button,a"
-            );
-
-        if(
-            !inside &&
-            !button
-        ){
-
-            closeAllPanels();
+            closePanel(panel.id);
 
         }
 
+    });
+
+}
+
+
+// =====================================
+// ESC
+// =====================================
+
+document.addEventListener("keydown", e => {
+
+    if(e.key === "Escape"){
+
+        closeAllPanels();
+
     }
 
-);
+});
+
+
+// =====================================
+// CLICK OUTSIDE
+// =====================================
+
+document.addEventListener("click", e => {
+
+    if(e.target.closest(".panel")) return;
+
+    if(e.target.closest("button,a")) return;
+
+    closeAllPanels();
+
+});

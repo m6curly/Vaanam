@@ -1,21 +1,21 @@
 // =====================================
-// USER LAYER
+// ADD USER LAYER
 // =====================================
 
-window.addUserLayer =
-function(
+window.addUserLayer = function (
 
     layerName,
     layer
 
-){
+) {
 
     const list =
-
-    document
-    .getElementById(
+    document.getElementById(
         "userLayerList"
     );
+
+    if (!list)
+        return;
 
     const item =
     document.createElement(
@@ -29,7 +29,9 @@ function(
     layer;
 
 
-    // checkbox
+    // =====================================
+    // VISIBILITY
+    // =====================================
 
     const checkbox =
     document.createElement(
@@ -42,8 +44,7 @@ function(
     checkbox.checked =
     true;
 
-    checkbox.onchange =
-    function(){
+    checkbox.onchange = function () {
 
         layer.setVisible(
             this.checked
@@ -52,18 +53,22 @@ function(
     };
 
 
-    // label
+    // =====================================
+    // LABEL
+    // =====================================
 
     const label =
     document.createElement(
         "label"
     );
 
-    label.innerText =
+    label.textContent =
     layerName;
 
 
-    // style
+    // =====================================
+    // STYLE BUTTON
+    // =====================================
 
     const styleBtn =
     document.createElement(
@@ -77,48 +82,72 @@ function(
     "🎨";
 
     styleBtn.onclick =
-    function(){
+    function () {
 
-        openStylePanel(
-            layer
-        );
+        if (
+            typeof openStylePanel ===
+            "function"
+        ) {
+
+            openStylePanel(
+                layer
+            );
+
+        }
 
     };
 
 
-// EXPORT BUTTON
+    // =====================================
+    // EXPORT BUTTON
+    // =====================================
 
-const exportBtn =
-document.createElement(
-    "button"
-);
+    const exportBtn =
+    document.createElement(
+        "button"
+    );
 
-exportBtn.innerHTML =
-"💾";
+    exportBtn.innerHTML =
+    "💾";
 
-exportBtn.title =
-"Export Layer";
+    exportBtn.title =
+    "Export Layer";
 
-exportBtn.onclick =
-function(){
+    exportBtn.onclick =
+    function () {
 
-    if(layer.get("type")==="LST"){
+        if (
 
-        exportLST();
+            layer.get("type") ===
+            "LST"
 
-    }
+        ) {
 
-    else{
+            if (
+                typeof exportLST ===
+                "function"
+            ) {
 
-        alert(
-            "Export not available for this layer"
-        );
+                exportLST();
 
-    }
+            }
 
-};
+        }
 
-    // remove
+        else {
+
+            alert(
+                "Export not available for this layer."
+            );
+
+        }
+
+    };
+
+
+    // =====================================
+    // REMOVE BUTTON
+    // =====================================
 
     const removeBtn =
     document.createElement(
@@ -128,8 +157,11 @@ function(){
     removeBtn.innerHTML =
     "🗑";
 
+    removeBtn.title =
+    "Remove Layer";
+
     removeBtn.onclick =
-    function(){
+    function () {
 
         map.removeLayer(
             layer
@@ -139,6 +171,10 @@ function(){
 
     };
 
+
+    // =====================================
+    // ADD CONTROLS
+    // =====================================
 
     item.appendChild(
         checkbox
@@ -152,62 +188,64 @@ function(){
         styleBtn
     );
 
-item.appendChild(
-    exportBtn
-);
+    item.appendChild(
+        exportBtn
+    );
 
     item.appendChild(
         removeBtn
     );
 
-
     list.appendChild(
         item
     );
 
-}
+};
 
 
 // =====================================
 // SORTABLE
 // =====================================
 
-new Sortable(
+const userLayerList =
+document.getElementById(
+    "userLayerList"
+);
 
-    document.getElementById(
-        "userLayerList"
-    ),
+if (userLayerList) {
 
-    {
+    new Sortable(
 
-        animation:150,
+        userLayerList,
 
-        ghostClass:
-        "dragGhost",
+        {
 
-        chosenClass:
-        "dragChosen",
+            animation: 150,
 
-        dragClass:
-        "dragItem",
+            ghostClass:
+            "dragGhost",
 
-        onEnd:
-        function(){
+            chosenClass:
+            "dragChosen",
 
-            updateLayerOrder();
+            dragClass:
+            "dragItem",
+
+            onEnd:
+            updateLayerOrder
 
         }
 
-    }
+    );
 
-);
+}
 
 
 // =====================================
-// UPDATE ORDER
+// UPDATE Z ORDER
 // =====================================
 
-function updateLayerOrder(){
+function updateLayerOrder() {
 
     const items =
 
@@ -223,20 +261,26 @@ function updateLayerOrder(){
 
     items.forEach(
 
-        function(
+        function (
+
             item,
             index
-        ){
 
-            item
-            .layerObject
-            .setZIndex(
+        ) {
 
-                items.length
-                -
-                index
+            if (
 
-            );
+                item.layerObject
+
+            ) {
+
+                item.layerObject.setZIndex(
+
+                    items.length - index
+
+                );
+
+            }
 
         }
 

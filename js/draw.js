@@ -2,65 +2,7 @@
 // DRAW SOURCE
 // =====================================
 
-const drawSource =
-    drawLayer.getSource();
-
-
-// =====================================
-// DRAW PANEL OPEN/CLOSE
-// =====================================
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    function(){
-
-        const drawBtn =
-            document.getElementById(
-                "drawBtn"
-            );
-
-        const drawPanel =
-            document.getElementById(
-                "drawPanel"
-            );
-
-        if(
-            drawBtn &&
-            drawPanel
-        ){
-
-            drawBtn.onclick =
-            function(){
-
-                if(
-                    drawPanel
-                    .style.display
-                    === "block"
-                ){
-
-                    drawPanel
-                    .style.display =
-                    "none";
-
-                }
-
-                else{
-
-                    drawPanel
-                    .style.display =
-                    "block";
-
-                }
-
-            };
-
-        }
-
-    }
-
-);
+const drawSource = drawLayer.getSource();
 
 
 // =====================================
@@ -71,31 +13,27 @@ let drawInteraction = null;
 
 
 // =====================================
-// REMOVE OLD DRAW
+// REMOVE DRAW INTERACTION
 // =====================================
 
-function removeDraw(){
+function removeDraw() {
 
-    if(drawInteraction){
+    if (drawInteraction) {
 
-        map.removeInteraction(
-            drawInteraction
-        );
+        map.removeInteraction(drawInteraction);
 
-        drawInteraction =
-            null;
+        drawInteraction = null;
+
     }
 
 }
 
 
 // =====================================
-// DRAW POINT
+// START DRAW
 // =====================================
 
-document
-.getElementById("drawPoint")
-.onclick = function () {
+function startDraw(type, geometryFunction = null) {
 
     removeDraw();
 
@@ -103,13 +41,70 @@ document
 
         source: drawSource,
 
-        type: "Point",
+        type: type,
+
+        geometryFunction: geometryFunction,
 
         stopClick: true
 
     });
 
     map.addInteraction(drawInteraction);
+
+    drawInteraction.once("drawend", function () {
+
+        removeDraw();
+
+    });
+
+}
+
+
+// =====================================
+// DRAW PANEL
+// =====================================
+
+const drawBtn =
+document.getElementById(
+    "drawBtn"
+);
+
+drawBtn.onclick = function(e){
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    togglePanel(
+        "drawPanel",
+        this
+    );
+
+};
+
+
+// =====================================
+// PREVENT PANEL CLICK
+// =====================================
+
+document
+.getElementById(
+    "drawPanel"
+)
+.onclick = function(e){
+
+    e.stopPropagation();
+
+};
+
+
+// =====================================
+// DRAW POINT
+// =====================================
+
+document.getElementById("drawPoint").onclick = function () {
+
+    startDraw("Point");
 
 };
 
@@ -118,46 +113,9 @@ document
 // DRAW LINE
 // =====================================
 
-document
-.getElementById(
-    "drawLine"
-)
-.onclick=function(){
+document.getElementById("drawLine").onclick = function () {
 
-    removeDraw();
-
-    drawInteraction=
-
-        new ol.interaction.Draw({
-
-            source:
-                drawSource,
-
-            type:
-                "LineString"
-
-        });
-
-    map.addInteraction(
-        drawInteraction
-    );
-
-    drawInteraction.on(
-
-        "drawend",
-
-        function(){
-
-            map.removeInteraction(
-                drawInteraction
-            );
-
-            drawInteraction =
-                null;
-
-        }
-
-    );
+    startDraw("LineString");
 
 };
 
@@ -166,46 +124,9 @@ document
 // DRAW POLYGON
 // =====================================
 
-document
-.getElementById(
-    "drawPolygon"
-)
-.onclick=function(){
+document.getElementById("drawPolygon").onclick = function () {
 
-    removeDraw();
-
-    drawInteraction=
-
-        new ol.interaction.Draw({
-
-            source:
-                drawSource,
-
-            type:
-                "Polygon"
-
-        });
-
-    map.addInteraction(
-        drawInteraction
-    );
-
-    drawInteraction.on(
-
-        "drawend",
-
-        function(){
-
-            map.removeInteraction(
-                drawInteraction
-            );
-
-            drawInteraction =
-                null;
-
-        }
-
-    );
+    startDraw("Polygon");
 
 };
 
@@ -214,46 +135,9 @@ document
 // DRAW CIRCLE
 // =====================================
 
-document
-.getElementById(
-    "drawCircle"
-)
-.onclick=function(){
+document.getElementById("drawCircle").onclick = function () {
 
-    removeDraw();
-
-    drawInteraction=
-
-        new ol.interaction.Draw({
-
-            source:
-                drawSource,
-
-            type:
-                "Circle"
-
-        });
-
-    map.addInteraction(
-        drawInteraction
-    );
-
-    drawInteraction.on(
-
-        "drawend",
-
-        function(){
-
-            map.removeInteraction(
-                drawInteraction
-            );
-
-            drawInteraction =
-                null;
-
-        }
-
-    );
+    startDraw("Circle");
 
 };
 
@@ -262,62 +146,27 @@ document
 // DRAW RECTANGLE
 // =====================================
 
-document
-.getElementById(
-    "drawRectangle"
-)
-.onclick=function(){
+document.getElementById("drawRectangle").onclick = function () {
 
-    removeDraw();
+    startDraw(
 
-    drawInteraction=
+        "Circle",
 
-        new ol.interaction.Draw({
-
-            source:
-                drawSource,
-
-            type:
-                "Circle",
-
-            geometryFunction:
-                ol.interaction.Draw
-                .createBox()
-
-        });
-
-    map.addInteraction(
-        drawInteraction
-    );
-
-    drawInteraction.on(
-
-        "drawend",
-
-        function(){
-
-            map.removeInteraction(
-                drawInteraction
-            );
-
-            drawInteraction =
-                null;
-
-        }
+        ol.interaction.Draw.createBox()
 
     );
 
 };
 
+
 // =====================================
-// CLOSE PANEL
+// CLEAR DRAWINGS
 // =====================================
 
-drawBtn.onclick=function(){
+document.getElementById("clearDraw").onclick = function () {
 
-    closeAllPanels();
+    removeDraw();
 
-    drawPanel.style.display=
-    "block";
+    drawSource.clear();
 
 };

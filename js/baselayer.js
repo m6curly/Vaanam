@@ -4,34 +4,31 @@
 
 document
 .getElementById("layerBtn")
-.onclick = function(){
+.onclick = function(e){
 
-    closeAllPanels();
+    e.preventDefault();
 
-    document
-    .getElementById(
-        "layerPanel"
-    )
-    .style.display =
-    "block";
+    e.stopPropagation();
+
+    togglePanel(
+        "layerPanel",
+        this
+    );
 
 };
 
 
 // =====================================
-// BASE LAYER CHECKBOX EVENTS
+// PLACE LAYER
 // =====================================
 
 document
-.getElementById(
-    "placeCheck"
-)
-.onchange =
-function(){
+.getElementById("placeCheck")
+.onchange = function(){
 
     if(window.placeLayer){
 
-        placeLayer.setVisible(
+        window.placeLayer.setVisible(
             this.checked
         );
 
@@ -40,16 +37,17 @@ function(){
 };
 
 
+// =====================================
+// AIRPORT LAYER
+// =====================================
+
 document
-.getElementById(
-    "airportCheck"
-)
-.onchange =
-function(){
+.getElementById("airportCheck")
+.onchange = function(){
 
     if(window.airportLayer){
 
-        airportLayer.setVisible(
+        window.airportLayer.setVisible(
             this.checked
         );
 
@@ -58,16 +56,17 @@ function(){
 };
 
 
+// =====================================
+// PORT LAYER
+// =====================================
+
 document
-.getElementById(
-    "portCheck"
-)
-.onchange =
-function(){
+.getElementById("portCheck")
+.onchange = function(){
 
     if(window.portLayer){
 
-        portLayer.setVisible(
+        window.portLayer.setVisible(
             this.checked
         );
 
@@ -76,16 +75,17 @@ function(){
 };
 
 
+// =====================================
+// ROAD LAYER
+// =====================================
+
 document
-.getElementById(
-    "roadCheck"
-)
-.onchange =
-function(){
+.getElementById("roadCheck")
+.onchange = function(){
 
     if(window.roadLayer){
 
-        roadLayer.setVisible(
+        window.roadLayer.setVisible(
             this.checked
         );
 
@@ -94,16 +94,17 @@ function(){
 };
 
 
+// =====================================
+// RIVER LAYER
+// =====================================
+
 document
-.getElementById(
-    "riverCheck"
-)
-.onchange =
-function(){
+.getElementById("riverCheck")
+.onchange = function(){
 
     if(window.riverLayer){
 
-        riverLayer.setVisible(
+        window.riverLayer.setVisible(
             this.checked
         );
 

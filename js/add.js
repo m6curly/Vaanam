@@ -2,96 +2,66 @@
 // ADD BUTTON
 // =====================================
 
-document
-.getElementById("addBtn")
-.onclick = function () {
+document.addEventListener("DOMContentLoaded",function(){
 
-    document
-    .getElementById("fileInput")
-    .click();
+    document.getElementById("addBtn").onclick=function(){
 
-};
+        document.getElementById("fileInput").click();
+
+    };
+
+});
 
 
 // =====================================
 // FILE INPUT
 // =====================================
 
-document
-.getElementById("fileInput")
-.onchange = function (e) {
+document.getElementById("fileInput").onchange=function(e){
 
-    const files = e.target.files;
+    const files=e.target.files;
 
-    if (files.length === 0) return;
+    if(!files.length) return;
 
-    for (
+    for(let i=0;i<files.length;i++){
 
-        let i = 0;
+        const file=files[i];
 
-        i < files.length;
+        const name=file.name.toLowerCase();
 
-        i++
-
-    ) {
-
-        const file = files[i];
-
-        const name = file.name.toLowerCase();
-
-        // =====================
-        // GEOJSON
-        // =====================
-
-        if (
+        if(
 
             name.endsWith(".geojson") ||
 
             name.endsWith(".json")
 
-        ) {
+        ){
 
             loadGeoJSON(file);
 
         }
 
-        // =====================
-        // GEOTIFF
-        // =====================
-
-        else if (
+        else if(
 
             name.endsWith(".tif") ||
 
             name.endsWith(".tiff")
 
-        ) {
+        ){
 
             loadGeoTIFF(file);
 
         }
 
-        // =====================
-        // OTHER
-        // =====================
+        else{
 
-        else {
-
-            alert(
-
-                file.name +
-
-                " : Format not supported"
-
-            );
+            alert(file.name+" : Unsupported format");
 
         }
 
     }
 
-    // Allow selecting same file again
-
-    e.target.value = "";
+    this.value="";
 
 };
 
@@ -100,76 +70,59 @@ document
 // LOAD GEOJSON
 // =====================================
 
-function loadGeoJSON(file) {
+function loadGeoJSON(file){
 
-    const reader =
+    const reader=new FileReader();
 
-    new FileReader();
+    reader.onload=function(e){
 
-    reader.onload = function (evt) {
+        const features=new ol.format.GeoJSON().readFeatures(
 
-        const features =
-
-        new ol.format.GeoJSON()
-
-        .readFeatures(
-
-            evt.target.result,
+            e.target.result,
 
             {
 
-                featureProjection: "EPSG:3857"
+                featureProjection:"EPSG:3857"
 
             }
 
         );
 
-        const source =
+        const source=new ol.source.Vector({
 
-        new ol.source.Vector({
-
-            features: features
+            features:features
 
         });
 
-        const layer =
+        const layer=new ol.layer.Vector({
 
-        new ol.layer.Vector({
-
-            source: source
+            source:source
 
         });
-
-        // Add map
 
         map.addLayer(layer);
 
-        // Store
+        if(window.userLayers){
 
-        userLayers.push({
+            userLayers.push({
 
-            name: file.name,
+                name:file.name,
 
-            layer: layer,
+                layer:layer,
 
-            source: source
+                source:source
 
-        });
+            });
 
-        // Layer name
-
-        const layerName =
-
-        file.name.split(".")[0];
-
-        // Layer Manager
+        }
 
         addUserLayer(
-    layerName,
-    layer
-);
 
-        // Zoom
+            file.name.replace(/\.[^/.]+$/,""),
+
+            layer
+
+        );
 
         map.getView().fit(
 
@@ -177,7 +130,9 @@ function loadGeoJSON(file) {
 
             {
 
-                duration: 500
+                duration:500,
+
+                padding:[40,40,40,40]
 
             }
 
@@ -194,31 +149,25 @@ function loadGeoJSON(file) {
 // LOAD GEOTIFF
 // =====================================
 
-function loadGeoTIFF(file) {
+function loadGeoTIFF(file){
 
-    const url =
+    const url=URL.createObjectURL(file);
 
-    URL.createObjectURL(file);
+    const layer=new ol.layer.WebGLTile({
 
-    const layer =
+        preload:1,
 
-    new ol.layer.WebGLTile({
+        source:new ol.source.GeoTIFF({
 
-        preload: 1,
+            normalize:false,
 
-        source:
+            interpolate:false,
 
-        new ol.source.GeoTIFF({
-
-            normalize: false,
-
-            interpolate: false,
-
-            sources: [
+            sources:[
 
                 {
 
-                    url: url
+                    url:url
 
                 }
 
@@ -230,21 +179,24 @@ function loadGeoTIFF(file) {
 
     map.addLayer(layer);
 
-    userLayers.push({
+    if(window.userLayers){
 
-        name: file.name,
+        userLayers.push({
 
-        layer: layer
+            name:file.name,
 
-    });
+            layer:layer
 
-    const layerName =
+        });
 
-    file.name.split(".")[0];
+    }
 
     addUserLayer(
-    layerName,
-    layer
-);
+
+        file.name.replace(/\.[^/.]+$/,""),
+
+        layer
+
+    );
 
 }

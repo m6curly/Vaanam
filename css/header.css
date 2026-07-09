@@ -13,14 +13,6 @@
         #0d2238
     );
 
-    border-bottom:
-    1px solid
-    #1d6fb8;
-
-    box-shadow:
-    0 0 18px
-    rgba(0,191,255,.18);
-
     display:flex;
 
     justify-content:space-between;
@@ -32,6 +24,12 @@
     position:relative;
 
     z-index:99999;
+
+    border-bottom:1px solid #1d6fb8;
+
+    box-shadow:
+        0 0 18px
+        rgba(0,191,255,.18);
 
 }
 
@@ -63,7 +61,22 @@
 
 }
 
+
+/* =====================================
+   HEADER LINKS
+===================================== */
+
 .header-right a{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 12px;
+
+    border-radius:6px;
 
     color:#cfe8ff;
 
@@ -75,28 +88,28 @@
 
     letter-spacing:.8px;
 
-    transition:.25s;
-
-    padding:8px 12px;
-
-    border-radius:6px;
+    transition:
+        background .25s,
+        color .25s,
+        box-shadow .25s;
 
 }
 
 .header-right a:hover{
 
-    color:white;
+    color:#ffffff;
 
     background:#16395a;
 
     box-shadow:
-    0 0 10px rgba(0,191,255,.25);
+        0 0 10px
+        rgba(0,191,255,.25);
 
 }
 
 
 /* =====================================
-   LOGO
+   WEBSITE LOGO
 ===================================== */
 
 #websiteLogo{
@@ -112,16 +125,21 @@
     border:2px solid #00bfff;
 
     box-shadow:
-    0 0 15px rgba(0,191,255,.45);
+        0 0 15px
+        rgba(0,191,255,.45);
 
 }
 
 
 /* =====================================
-   TITLE
+   WEBSITE TITLE
 ===================================== */
 
 #logoHome{
+
+    margin-right:35px;
+
+    color:#ffffff;
 
     font-size:32px;
 
@@ -129,16 +147,13 @@
 
     letter-spacing:4px;
 
-    color:white;
-
-    margin-right:35px;
-
-    text-shadow:
-    0 0 12px rgba(0,191,255,.45);
-
     cursor:pointer;
 
     user-select:none;
+
+    text-shadow:
+        0 0 12px
+        rgba(0,191,255,.45);
 
 }
 
@@ -153,19 +168,22 @@
 
     height:42px;
 
+    padding:0 18px;
+
     background:#142a41;
 
-    color:white;
+    color:#ffffff;
 
     border:1px solid #2d6aa2;
 
     border-radius:8px;
 
-    padding:0 18px;
-
     outline:none;
 
-    transition:.25s;
+    transition:
+        border-color .25s,
+        background .25s,
+        box-shadow .25s;
 
 }
 
@@ -177,11 +195,12 @@
 
 #searchBox:focus{
 
+    background:#19344f;
+
     border-color:#00bfff;
 
     box-shadow:
-    0 0 12px rgba(0,191,255,.35);
-
-    background:#19344f;
+        0 0 12px
+        rgba(0,191,255,.35);
 
 }
