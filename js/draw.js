@@ -1,30 +1,78 @@
 // =====================================
+// VAANAM DRAW ENGINE
+// PART-1 : CORE
+// =====================================
+
+
+// =====================================
 // DRAW SOURCE
 // =====================================
 
-const drawSource = drawLayer.getSource();
+const drawSource =
+drawLayer.getSource();
 
 
 // =====================================
-// DRAW VARIABLES
+// DRAW STATE
 // =====================================
 
-let drawInteraction = null;
+const DrawState={
+
+    interaction:null,
+
+    mode:null,
+
+    geometryFunction:null,
+
+    feature:null,
+
+    active:false,
+
+    editing:false,
+
+    snapping:false,
+
+    modifying:false
+
+};
 
 
 // =====================================
-// REMOVE DRAW INTERACTION
+// REMOVE INTERACTION
 // =====================================
 
-function removeDraw() {
+function removeDrawInteraction(){
 
-    if (drawInteraction) {
+    if(DrawState.interaction){
 
-        map.removeInteraction(drawInteraction);
+        map.removeInteraction(
 
-        drawInteraction = null;
+            DrawState.interaction
+
+        );
+
+        DrawState.interaction=null;
 
     }
+
+}
+
+
+// =====================================
+// RESET STATE
+// =====================================
+
+function resetDrawState(){
+
+    removeDrawInteraction();
+
+    DrawState.mode=null;
+
+    DrawState.geometryFunction=null;
+
+    DrawState.feature=null;
+
+    DrawState.active=false;
 
 }
 
@@ -33,65 +81,211 @@ function removeDraw() {
 // START DRAW
 // =====================================
 
-function startDraw(type, geometryFunction = null) {
+function startDraw(
 
-    removeDraw();
+    type,
 
-    drawInteraction = new ol.interaction.Draw({
+    geometryFunction=null
 
-        source: drawSource,
+){
 
-        type: type,
+    resetDrawState();
 
-        geometryFunction: geometryFunction,
+    DrawState.mode=type;
 
-        stopClick: true
+    DrawState.geometryFunction=
+
+        geometryFunction;
+
+    DrawState.active=true;
+
+    DrawState.interaction=
+
+    new ol.interaction.Draw({
+
+        source:
+
+        drawSource,
+
+        type:
+
+        type,
+
+        geometryFunction:
+
+        geometryFunction,
+
+        stopClick:true
 
     });
 
-    map.addInteraction(drawInteraction);
+    map.addInteraction(
 
-    drawInteraction.once("drawend", function () {
+        DrawState.interaction
 
-        removeDraw();
+    );
 
-    });
+    registerDrawEvents();
 
 }
 
 
 // =====================================
-// DRAW PANEL
+// REGISTER EVENTS
 // =====================================
 
-const drawBtn =
-document.getElementById(
-    "drawBtn"
+function registerDrawEvents(){
+
+    if(!DrawState.interaction)
+
+        return;
+
+    DrawState.interaction.on(
+
+        "drawstart",
+
+        function(e){
+
+            DrawState.feature=
+
+            e.feature;
+
+        }
+
+    );
+
+    DrawState.interaction.on(
+
+        "drawend",
+
+        onDrawComplete
+
+    );
+
+}
+
+
+// =====================================
+// DRAW COMPLETE
+// =====================================
+
+function onDrawComplete(e){
+
+    removeDrawInteraction();
+
+    DrawState.active = false;
+
+    DrawState.feature = e.feature;
+
+    processCompletedFeature(
+
+        e.feature
+
+    );
+
+}
+
+
+// =====================================
+// FEATURE COMPLETE
+// =====================================
+
+function processCompletedFeature(
+
+    feature
+
+){
+
+    if(!feature)
+
+        return;
+
+    openFeaturePopup(
+
+        feature
+
+    );
+
+}
+
+
+// =====================================
+// CANCEL DRAW
+// =====================================
+
+function cancelDraw(){
+
+    resetDrawState();
+
+}
+
+
+// =====================================
+// CLEAR DRAWINGS
+// =====================================
+
+function clearDrawings(){
+
+    cancelDraw();
+
+    drawSource.clear();
+
+}
+
+
+// =====================================
+// ESC
+// =====================================
+
+document.addEventListener(
+
+    "keydown",
+
+    function(e){
+
+        if(e.key==="Escape"){
+
+            cancelDraw();
+
+        }
+
+    }
+
 );
 
-drawBtn.onclick = function(e){
+
+// =====================================
+// DRAW BUTTON
+// =====================================
+
+document
+.getElementById(
+    "drawBtn"
+)
+.onclick=function(e){
 
     e.preventDefault();
 
     e.stopPropagation();
 
     togglePanel(
-        "drawPanel",
-        this
+
+        "drawPanel"
+
     );
 
 };
 
 
 // =====================================
-// PREVENT PANEL CLICK
+// PANEL
 // =====================================
 
 document
 .getElementById(
     "drawPanel"
 )
-.onclick = function(e){
+.onclick=function(e){
 
     e.stopPropagation();
 
@@ -99,54 +293,76 @@ document
 
 
 // =====================================
-// DRAW POINT
+// CLEAR
 // =====================================
 
-document.getElementById("drawPoint").onclick = function () {
+document
+.getElementById(
+    "clearDraw"
+)
+.onclick=function(){
 
-    startDraw("Point");
+    clearDrawings();
 
 };
 
 
 // =====================================
-// DRAW LINE
+// DRAW TOOLS
+// PART-2
 // =====================================
-
-document.getElementById("drawLine").onclick = function () {
-
-    startDraw("LineString");
-
-};
 
 
 // =====================================
-// DRAW POLYGON
+// POINT
 // =====================================
 
-document.getElementById("drawPolygon").onclick = function () {
+function activatePointTool(){
 
-    startDraw("Polygon");
+    startDraw(
 
-};
+        "Point"
 
+    );
 
-// =====================================
-// DRAW CIRCLE
-// =====================================
-
-document.getElementById("drawCircle").onclick = function () {
-
-    startDraw("Circle");
-
-};
+}
 
 
 // =====================================
-// DRAW RECTANGLE
+// LINE
 // =====================================
 
-document.getElementById("drawRectangle").onclick = function () {
+function activateLineTool(){
+
+    startDraw(
+
+        "LineString"
+
+    );
+
+}
+
+
+// =====================================
+// POLYGON
+// =====================================
+
+function activatePolygonTool(){
+
+    startDraw(
+
+        "Polygon"
+
+    );
+
+}
+
+
+// =====================================
+// RECTANGLE
+// =====================================
+
+function activateRectangleTool(){
 
     startDraw(
 
@@ -156,17 +372,380 @@ document.getElementById("drawRectangle").onclick = function () {
 
     );
 
+}
+
+
+// =====================================
+// CIRCLE
+// =====================================
+
+function activateCircleTool(){
+
+    startDraw(
+
+        "Circle"
+
+    );
+
+}
+
+
+// =====================================
+// RIGHT CLICK ENGINE
+// =====================================
+
+map.on(
+
+    "pointerdown",
+
+    function(evt){
+
+        // Right Mouse Button Only
+
+        if(
+
+            evt.originalEvent.button !== 2
+
+        ){
+
+            return;
+
+        }
+
+
+        // Point Tool Only
+
+        if(
+
+            !DrawState.active ||
+
+            DrawState.mode!=="Point"
+
+        ){
+
+            return;
+
+        }
+
+
+        // Disable Browser Menu
+
+        evt.originalEvent.preventDefault();
+
+
+        // Stop OpenLayers Draw
+
+        removeDrawInteraction();
+
+        DrawState.active = false;
+
+
+        // Open Coordinate Popup
+
+        openCoordinatePopup();
+
+    }
+
+);
+
+
+// =====================================
+// DISABLE BROWSER CONTEXT MENU
+// =====================================
+
+map.getViewport().addEventListener(
+
+    "contextmenu",
+
+    function(e){
+
+        // Jab koi bhi Draw Tool active ho
+        if(
+
+            DrawState.active
+
+        ){
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+            return false;
+
+        }
+
+    },
+
+    true
+
+);
+
+
+// =====================================
+// DRAW BUTTONS
+// =====================================
+
+document
+
+.getElementById(
+
+    "drawPoint"
+
+)
+
+.onclick=function(){
+
+    activatePointTool();
+
+};
+
+
+
+document
+
+.getElementById(
+
+    "drawLine"
+
+)
+
+.onclick=function(){
+
+    activateLineTool();
+
+};
+
+
+
+document
+
+.getElementById(
+
+    "drawPolygon"
+
+)
+
+.onclick=function(){
+
+    activatePolygonTool();
+
+};
+
+
+
+document
+
+.getElementById(
+
+    "drawRectangle"
+
+)
+
+.onclick=function(){
+
+    activateRectangleTool();
+
+};
+
+
+
+document
+
+.getElementById(
+
+    "drawCircle"
+
+)
+
+.onclick=function(){
+
+    activateCircleTool();
+
 };
 
 
 // =====================================
-// CLEAR DRAWINGS
+// VAANAM DRAW ENGINE
+// PART-3 : WORKFLOW
 // =====================================
 
-document.getElementById("clearDraw").onclick = function () {
 
-    removeDraw();
+// =====================================
+// FEATURE COMPLETE
+// =====================================
 
-    drawSource.clear();
+function processCompletedFeature(feature){
+
+    if(!feature){
+
+        return;
+
+    }
+
+    DrawState.feature = feature;
+
+    openFeaturePopup(feature);
+
+}
+
+
+// =====================================
+// AFTER FEATURE SAVE
+// featurePopup.js will call this
+// =====================================
+
+window.finishFeatureDrawing = function(feature){
+
+    if(!feature){
+
+        return;
+
+    }
+
+    // Future :
+    // Save to User Layer
+    // Save to GeoJSON
+    // Save to Database
+    // Apply Default Style
+
+    DrawState.feature = null;
+
+    switch(DrawState.mode){
+
+        case "Point":
+
+            activatePointTool();
+
+            break;
+
+        case "LineString":
+
+            activateLineTool();
+
+            break;
+
+        case "Polygon":
+
+            activatePolygonTool();
+
+            break;
+
+        case "Circle":
+
+            activateCircleTool();
+
+            break;
+
+    }
 
 };
+
+
+// =====================================
+// AFTER COORDINATE CREATE
+// coordinatePopup.js will call this
+// =====================================
+
+window.finishCoordinatePoint=function(feature){
+
+    if(!feature){
+
+        return;
+
+    }
+
+    processCompletedFeature(
+
+        feature
+
+    );
+
+};
+
+
+// =====================================
+// CANCEL DRAW
+// =====================================
+
+window.cancelCurrentDraw=function(){
+
+    cancelDraw();
+
+};
+
+
+// =====================================
+// DRAW STATUS
+// =====================================
+
+window.isDrawActive=function(){
+
+    return DrawState.active;
+
+};
+
+
+// =====================================
+// CURRENT MODE
+// =====================================
+
+window.getCurrentDrawMode=function(){
+
+    return DrawState.mode;
+
+};
+
+
+// =====================================
+// FUTURE API
+// =====================================
+
+window.DrawEngine={
+
+    start:startDraw,
+
+    stop:cancelDraw,
+
+    clear:clearDrawings,
+
+    active:isDrawActive,
+
+    mode:getCurrentDrawMode,
+
+    feature:function(){
+
+        return DrawState.feature;
+
+    }
+
+};
+
+// =====================================
+// DISABLE BROWSER RIGHT CLICK
+// =====================================
+
+document.addEventListener(
+
+    "contextmenu",
+
+    function(e){
+
+        if(DrawState.active){
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+            return false;
+
+        }
+
+    },
+
+    true
+
+);
+
+console.log(
+    "VAANAM Draw Engine Loaded"
+);

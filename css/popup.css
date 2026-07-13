@@ -1,0 +1,174 @@
+/* =======================================
+   COMMON POPUP
+======================================= */
+
+#featurePopup,
+#coordinatePopup{
+
+    position:fixed;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:360px;
+
+    background:#102236;
+
+    color:#ffffff;
+
+    border:1px solid #1d6fb8;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    display:none;
+
+    z-index:999999;
+
+    box-shadow:
+    0 0 25px rgba(0,191,255,.25);
+
+}
+
+
+/* =======================================
+   HEADER
+======================================= */
+
+#featurePopup h3,
+#coordinatePopup h3{
+
+    margin:0 0 18px;
+
+    text-align:center;
+
+    color:#6fd7ff;
+
+    font-size:18px;
+
+    border-bottom:1px solid #1d6fb8;
+
+    padding-bottom:10px;
+
+}
+
+
+/* =======================================
+   LABEL
+======================================= */
+
+#featurePopup label,
+#coordinatePopup label{
+
+    display:block;
+
+    margin-top:10px;
+
+    margin-bottom:5px;
+
+    color:#dceeff;
+
+    font-size:14px;
+
+}
+
+
+/* =======================================
+   INPUT
+======================================= */
+
+#featurePopup input,
+#featurePopup textarea,
+#coordinatePopup input{
+
+    width:100%;
+
+    padding:10px;
+
+    background:#162c44;
+
+    color:#ffffff;
+
+    border:1px solid #2d6aa2;
+
+    border-radius:6px;
+
+    box-sizing:border-box;
+
+    outline:none;
+
+    margin-bottom:12px;
+
+}
+
+
+#featurePopup input:focus,
+#featurePopup textarea:focus,
+#coordinatePopup input:focus{
+
+    border-color:#00bfff;
+
+    box-shadow:
+    0 0 8px rgba(0,191,255,.35);
+
+}
+
+
+/* =======================================
+   TEXTAREA
+======================================= */
+
+#featurePopup textarea{
+
+    resize:vertical;
+
+    min-height:90px;
+
+}
+
+
+/* =======================================
+   BUTTON
+======================================= */
+
+#featurePopup button,
+#coordinatePopup button{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:8px;
+
+    background:#16395a;
+
+    color:#ffffff;
+
+    border:1px solid #2d6aa2;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    font-weight:600;
+
+}
+
+
+#featurePopup button:hover,
+#coordinatePopup button:hover{
+
+    background:#1f4d75;
+
+    border-color:#00bfff;
+
+    box-shadow:
+    0 0 8px rgba(0,191,255,.35);
+
+}

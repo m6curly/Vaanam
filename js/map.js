@@ -203,47 +203,88 @@ new ol.layer.Tile({
 const drawLayer =
 new ol.layer.Vector({
 
-    source:
-    new ol.source.Vector(),
+    source:new ol.source.Vector(),
 
-    style:
-    new ol.style.Style({
+    style:function(feature){
 
-        stroke:
-        new ol.style.Stroke({
+        return new ol.style.Style({
 
-            color:"red",
+            image:new ol.style.Circle({
 
-            width:2
+                radius:6,
 
-        }),
+                fill:new ol.style.Fill({
 
-        fill:
-        new ol.style.Fill({
+                    color:"#ff0000"
 
-            color:
-            "rgba(255,0,0,0.2)"
+                }),
 
-        }),
+                stroke:new ol.style.Stroke({
 
-        image:
-        new ol.style.Circle({
+                    color:"#ffffff",
 
-            radius:6,
+                    width:2
 
-            fill:
-            new ol.style.Fill({
+                })
 
-                color:"red"
+            }),
+
+            stroke:new ol.style.Stroke({
+
+                color:"#ff0000",
+
+                width:2
+
+            }),
+
+            fill:new ol.style.Fill({
+
+                color:"rgba(255,0,0,0.20)"
+
+            }),
+
+            text:new ol.style.Text({
+
+                text:feature.get("name") || "",
+
+                font:"bold 12px Arial",
+
+                offsetY:-15,
+
+                fill:new ol.style.Fill({
+
+                    color:"#ffffff"
+
+                }),
+
+                stroke:new ol.style.Stroke({
+
+                    color:"#000000",
+
+                    width:3
+
+                })
 
             })
 
-        })
+        });
 
-    })
+    }
 
 });
+// =====================================
+// USER DRAW LAYERS
+// =====================================
 
+window.userDrawLayers = {
+
+    Point:{},
+
+    Line:{},
+
+    Polygon:{}
+
+};
 
 const uploadLayer =
 new ol.layer.Vector({
@@ -253,6 +294,83 @@ new ol.layer.Vector({
 
 });
 
+// =====================================
+// DEFAULT DRAW STYLE
+// =====================================
+
+window.applyDefaultFeatureStyle=function(feature){
+
+    feature.setStyle(
+
+        function(f){
+
+            return new ol.style.Style({
+
+                image:new ol.style.Circle({
+
+                    radius:6,
+
+                    fill:new ol.style.Fill({
+
+                        color:"#ff0000"
+
+                    }),
+
+                    stroke:new ol.style.Stroke({
+
+                        color:"#ffffff",
+
+                        width:2
+
+                    })
+
+                }),
+
+                stroke:new ol.style.Stroke({
+
+                    color:"#ff0000",
+
+                    width:2
+
+                }),
+
+                fill:new ol.style.Fill({
+
+                    color:"rgba(255,0,0,0.25)"
+
+                }),
+
+                text:new ol.style.Text({
+
+                    text:f.get("name") || "",
+
+                    font:"bold 12px Arial",
+
+                    offsetY:-15,
+
+                    fill:new ol.style.Fill({
+
+                        color:"#ffffff"
+
+                    }),
+
+                    stroke:new ol.style.Stroke({
+
+                        color:"#000000",
+
+                        width:3
+
+                    })
+
+                })
+
+            });
+
+        }
+
+    );
+
+};
 
 // =====================================
 // MAP

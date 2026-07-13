@@ -16,10 +16,10 @@
             <link rel="stylesheet" href="css/headerpanel.css">
             <link rel="stylesheet" href="css/leftsidebarpanel.css">
             <link rel="stylesheet" href="css/rightsidebarpanel.css">
+            <link rel="stylesheet" href="css/popup.css">
             <link rel="stylesheet" href="css/animations.css">
             <link rel="stylesheet" href="css/sidebar.css">
             <link rel="stylesheet" href="css/footer.css">
-            <link rel="stylesheet" href="css/progress.css">
 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.6.1/ol.css">
 
@@ -760,6 +760,96 @@
                     </button>
 
                 </div>
+
+            <!-- ================================= -->
+            <!-- POPUP -->
+            <!-- ================================= -->    
+
+                <!-- ===================================== -->
+                <!-- FEATURE ATTRIBUTE POPUP -->
+                <!-- ===================================== -->
+
+                <div id="featurePopup" class="panel">
+
+                    <h3>Feature Details</h3>
+
+                    <label>Location Name</label>
+
+                    <input
+                        type="text"
+                        id="featureName">
+
+                    <label>Type</label>
+
+                    <input
+                        list="featureTypes"
+                        id="featureType">
+
+                    <datalist id="featureTypes">
+
+                    </datalist>
+
+                    <label>Description</label>
+
+                    <textarea
+                        id="featureDescription">
+                    </textarea>
+
+                    <button id="saveFeature">
+
+                        Save
+
+                    </button>
+
+                    <button id="cancelFeature">
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+                <!-- ================================= -->
+                <!-- COORDINATE POPUP -->
+                <!-- ================================= -->
+
+                <div id="coordinatePopup" class="panel">
+
+                    <h3>
+                        Enter Coordinates
+                    </h3>
+
+                    <label>
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="inputLat"
+                        step="any">
+
+                    <label>
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="inputLon"
+                        step="any">
+
+                    <button id="createPoint">
+
+                        Create Point
+
+                    </button>
+
+                    <button id="cancelCoordinate">
+
+                        Cancel
+
+                    </button>
+
+                </div>
                 
             <!-- ================================= -->
             <!-- FOOTER -->
@@ -841,6 +931,7 @@
 
             <script src="js/baselayer.js"></script>
             <script src="js/userlayer.js"></script>
+            <script src="js/userDrawLayer.js"></script>
             <script src="js/map.js"></script>
             <script src="js/search.js"></script>
             <script src="js/downloads.js"></script>
@@ -848,13 +939,15 @@
             <script src="js/about.js"></script>
             <script src="js/login.js"></script>
             <script src="js/basemap.js"></script>
+            <script src="js/userDrawManager.js"></script>
             <script src="js/draw.js"></script>
+            <script src="js/featurePopup.js"></script>
+            <script src="js/coordinatePopup.js"></script>
             <script src="js/measure.js"></script>
             <script src="js/add.js"></script>
             <script src="js/footer.js"></script>
             <script src="js/export.js"></script>
             <script src="js/tools.js"></script>
-            <script src="js/progress.js"></script>
             <script src="js/lst.js"></script>
             <script src="js/settings.js"></script>
             <script src="js/style.js"></script>

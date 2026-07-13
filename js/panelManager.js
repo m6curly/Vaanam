@@ -9,20 +9,34 @@ let activePanel = null;
 // INITIALIZE
 // =====================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
 
-    document.querySelectorAll(".panel").forEach(panel => {
+    "DOMContentLoaded",
 
-        panel.style.display = "none";
-        panel.classList.remove("show", "hide");
+    function(){
 
-        panel.addEventListener("click", e => {
-            e.stopPropagation();
+        document
+        .querySelectorAll(".panel")
+        .forEach(function(panel){
+
+            panel.style.display = "none";
+
+            panel.classList.remove(
+                "show",
+                "hide"
+            );
+
+            panel.onclick = function(e){
+
+                e.stopPropagation();
+
+            };
+
         });
 
-    });
+    }
 
-});
+);
 
 
 // =====================================
@@ -31,23 +45,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function openPanel(id){
 
-    const panel = document.getElementById(id);
+    const panel =
+    document.getElementById(id);
 
     if(!panel) return;
 
-    if(activePanel && activePanel !== panel){
 
-        closePanel(activePanel.id);
+    if(
+
+        activePanel &&
+
+        activePanel !== panel
+
+    ){
+
+        const allowed =
+
+            (activePanel.id==="layerPanel" && id==="stylePanel")
+
+            ||
+
+            (activePanel.id==="stylePanel" && id==="layerPanel");
+
+        if(!allowed){
+
+            closePanel(
+                activePanel.id
+            );
+
+        }
 
     }
 
     panel.style.display = "block";
 
-    panel.classList.remove("hide");
+    panel.classList.remove(
+        "hide"
+    );
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(function(){
 
-        panel.classList.add("show");
+        panel.classList.add(
+            "show"
+        );
 
     });
 
@@ -62,23 +102,31 @@ function openPanel(id){
 
 function closePanel(id){
 
-    const panel = document.getElementById(id);
+    const panel =
+    document.getElementById(id);
 
     if(!panel) return;
 
-    panel.classList.remove("show");
+    panel.classList.remove(
+        "show"
+    );
 
-    panel.classList.add("hide");
+    panel.classList.add(
+        "hide"
+    );
 
-    setTimeout(() => {
+    setTimeout(function(){
 
-        panel.style.display = "none";
+        panel.style.display =
+        "none";
 
-        panel.classList.remove("hide");
+        panel.classList.remove(
+            "hide"
+        );
 
-    },280);
+    },250);
 
-    if(activePanel === panel){
+    if(activePanel===panel){
 
         activePanel = null;
 
@@ -88,16 +136,17 @@ function closePanel(id){
 
 
 // =====================================
-// TOGGLE
+// TOGGLE PANEL
 // =====================================
 
 function togglePanel(id){
 
-    const panel = document.getElementById(id);
+    const panel =
+    document.getElementById(id);
 
     if(!panel) return;
 
-    if(panel.style.display === "block"){
+    if(panel.style.display==="block"){
 
         closePanel(id);
 
@@ -118,11 +167,27 @@ function togglePanel(id){
 
 function closeAllPanels(){
 
-    document.querySelectorAll(".panel").forEach(panel => {
+    document
+    .querySelectorAll(".panel")
+    .forEach(function(panel){
 
-        if(panel.style.display === "block"){
+        if(
 
-            closePanel(panel.id);
+            panel.id==="drawPanel" ||
+
+            panel.id==="layerPanel"
+
+        ){
+
+            return;
+
+        }
+
+        if(panel.style.display==="block"){
+
+            closePanel(
+                panel.id
+            );
 
         }
 
@@ -132,30 +197,94 @@ function closeAllPanels(){
 
 
 // =====================================
-// ESC
+// ESC KEY
 // =====================================
 
-document.addEventListener("keydown", e => {
+document.addEventListener(
 
-    if(e.key === "Escape"){
+    "keydown",
 
-        closeAllPanels();
+    function(e){
+
+        if(e.key==="Escape"){
+
+            closeAllPanels();
+
+        }
 
     }
 
-});
+);
 
 
 // =====================================
 // CLICK OUTSIDE
 // =====================================
 
-document.addEventListener("click", e => {
+document.addEventListener(
 
-    if(e.target.closest(".panel")) return;
+    "click",
 
-    if(e.target.closest("button,a")) return;
+    function(e){
 
-    closeAllPanels();
+        if(
 
-});
+            e.target.closest(".panel")
+
+        ){
+
+            return;
+
+        }
+
+        if(
+
+            e.target.closest("button") ||
+
+            e.target.closest("a")
+
+        ){
+
+            return;
+
+        }
+
+        document
+        .querySelectorAll(".panel")
+        .forEach(function(panel){
+
+            // Never auto close these panels
+
+            if(
+
+                panel.id==="drawPanel" ||
+
+                panel.id==="layerPanel" ||
+
+                panel.id==="featurePopup"
+
+            ){
+
+                return;
+
+            }
+
+            if(
+
+                panel.style.display==="block"
+
+            ){
+
+                closePanel(
+
+                    panel.id
+
+                );
+
+            }
+
+        });
+
+    }
+
+);
