@@ -1,6 +1,5 @@
 // =====================================
 // VAANAM FEATURE POPUP
-// PART 1
 // =====================================
 
 window.currentFeature = null;
@@ -10,7 +9,7 @@ window.currentFeature = null;
 // OPEN POPUP
 // =====================================
 
-window.openFeaturePopup=function(feature){
+window.openFeaturePopup = function(feature){
 
     if(!feature){
 
@@ -18,34 +17,31 @@ window.openFeaturePopup=function(feature){
 
     }
 
-    currentFeature=feature;
+    currentFeature = feature;
 
     document.getElementById(
 
         "featureName"
 
-    ).value=
+    ).value =
 
     feature.get("name") || "";
-
 
     document.getElementById(
 
         "featureType"
 
-    ).value=
+    ).value =
 
     feature.get("type") || "";
-
 
     document.getElementById(
 
         "featureDescription"
 
-    ).value=
+    ).value =
 
     feature.get("description") || "";
-
 
     openPanel(
 
@@ -83,7 +79,7 @@ document
 
 )
 
-.onclick=function(){
+.onclick = function(){
 
     if(currentFeature){
 
@@ -93,7 +89,7 @@ document
 
         );
 
-        currentFeature=null;
+        currentFeature = null;
 
     }
 
@@ -101,7 +97,7 @@ document
 
     if(
 
-        typeof finishFeatureDrawing===
+        typeof finishFeatureDrawing ===
 
         "function"
 
@@ -117,6 +113,7 @@ document
 
 };
 
+
 // =====================================
 // SAVE
 // =====================================
@@ -129,7 +126,7 @@ document
 
 )
 
-.onclick=function(){
+.onclick = function(){
 
     if(!currentFeature){
 
@@ -137,12 +134,7 @@ document
 
     }
 
-
-    // =====================================
-    // VALUES
-    // =====================================
-
-    const name=
+    const name =
 
     document
 
@@ -156,8 +148,7 @@ document
 
     .trim();
 
-
-    const type=
+    const type =
 
     document
 
@@ -171,8 +162,7 @@ document
 
     .trim();
 
-
-    const description=
+    const description =
 
     document
 
@@ -186,14 +176,33 @@ document
 
     .trim();
 
+    // =====================================
+// VALIDATE TYPE
+// =====================================
+
+if(
+
+    !FEATURE_TYPES.includes(type)
+
+){
+
+    alert(
+
+        "Please select a valid Feature Type."
+
+    );
+
+    return;
+
+}
 
     if(
 
-        name===""
+        name === ""
 
         ||
 
-        type===""
+        type === ""
 
     ){
 
@@ -206,11 +215,6 @@ document
         return;
 
     }
-
-
-    // =====================================
-    // SAVE ATTRIBUTES
-    // =====================================
 
     currentFeature.set(
 
@@ -244,14 +248,9 @@ document
 
     );
 
+    let folder = "Polygon";
 
-    // =====================================
-    // GEOMETRY
-    // =====================================
-
-    let folder="Polygon";
-
-    const geometry=
+    const geometry =
 
     currentFeature
 
@@ -259,99 +258,28 @@ document
 
     .getType();
 
-
     if(
 
-        geometry==="Point"
+        geometry === "Point"
 
     ){
 
-        folder="Point";
+        folder = "Point";
 
     }
 
     else if(
 
-        geometry==="LineString"
+        geometry === "LineString"
 
     ){
 
-        folder="Line";
+        folder = "Line";
 
     }
-
-
-    // =====================================
-    // STORE
-    // =====================================
-
-    if(
-
-        !window.userDrawLayers
-
-    ){
-
-        window.userDrawLayers={
-
-            Point:{},
-
-            Line:{},
-
-            Polygon:{}
-
-        };
-
-    }
-
-
-    if(
-
-        !window.userDrawLayers
-
-        [folder]
-
-    ){
-
-        window.userDrawLayers
-
-        [folder]={};
-
-    }
-
-
-    if(
-
-        !window.userDrawLayers
-
-        [folder]
-
-        [type]
-
-    ){
-
-        window.userDrawLayers
-
-        [folder]
-
-        [type]=[];
-
-    }
-
-
-    window.userDrawLayers
-
-    [folder]
-
-    [type]
-
-    .push(
-
-        currentFeature
-
-    );
 
         // =====================================
-    // ADD TO USER LAYER TREE
+    // USER DRAW TREE
     // =====================================
 
     addDrawFeature(
@@ -365,9 +293,8 @@ document
     );
 
 
-
     // =====================================
-    // DEFAULT LABEL STYLE
+    // DEFAULT STYLE
     // =====================================
 
     currentFeature.setStyle(
@@ -441,18 +368,15 @@ document
     // FINISH
     // =====================================
 
-    const savedFeature=
+    const savedFeature = currentFeature;
 
-        currentFeature;
-
-    currentFeature=null;
+    currentFeature = null;
 
     closeFeaturePopup();
 
-
     if(
 
-        typeof finishFeatureDrawing===
+        typeof finishFeatureDrawing ===
 
         "function"
 
@@ -481,11 +405,11 @@ document.addEventListener(
 
         if(
 
-            e.key==="Escape"
+            e.key === "Escape"
 
         ){
 
-            const popup=
+            const popup =
 
             document.getElementById(
 
@@ -495,7 +419,7 @@ document.addEventListener(
 
             if(
 
-                popup.style.display==="block"
+                popup.style.display === "block"
 
             ){
 

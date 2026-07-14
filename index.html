@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="css/footer.css">
 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.6.1/ol.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
         </head>
 
@@ -781,13 +782,9 @@
 
                     <label>Type</label>
 
-                    <input
-                        list="featureTypes"
-                        id="featureType">
+                   <select id="featureType">
 
-                    <datalist id="featureTypes">
-
-                    </datalist>
+                    </select>
 
                     <label>Description</label>
 
@@ -924,7 +921,9 @@
 
             <script src="https://cdn.jsdelivr.net/npm/geotiff/dist-browser/geotiff.js"></script>
 
+            <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
+        
             <!-- ================================= -->
             <!-- JAVA SCRIPT -->
             <!-- ================================= -->
@@ -941,6 +940,7 @@
             <script src="js/basemap.js"></script>
             <script src="js/userDrawManager.js"></script>
             <script src="js/draw.js"></script>
+            <script src="js/featureTypes.js"></script>
             <script src="js/featurePopup.js"></script>
             <script src="js/coordinatePopup.js"></script>
             <script src="js/measure.js"></script>

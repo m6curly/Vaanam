@@ -505,3 +505,163 @@
     opacity:.40;
 
 }
+
+/* =====================================
+   USER DRAW TREE
+===================================== */
+
+.drawRoot{
+
+    margin-bottom:8px;
+
+}
+
+.drawRootHeader{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 12px;
+
+    background:#16395a;
+
+    border:1px solid #2d6aa2;
+
+    border-radius:6px;
+
+    color:#6fd7ff;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:.25s;
+
+}
+
+.drawRootHeader:hover{
+
+    border-color:#00bfff;
+
+    background:#1b4568;
+
+}
+
+.drawRootBody{
+
+    margin-left:18px;
+
+    margin-top:6px;
+
+    padding-left:12px;
+
+    border-left:1px solid rgba(0,191,255,.25);
+
+}
+
+
+/* =====================================
+   DRAW TYPE
+===================================== */
+
+.drawType{
+
+    margin-bottom:6px;
+
+}
+
+.drawType>.layerItem{
+
+    background:transparent;
+
+    border:none;
+
+    border-radius:0;
+
+    padding:6px 0;
+
+    margin:0;
+
+    box-shadow:none;
+
+}
+
+.drawType>.layerItem:hover{
+
+    background:rgba(0,191,255,.08);
+
+}
+
+
+/* =====================================
+   FEATURE
+===================================== */
+
+.featureItem{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-left:20px;
+
+    padding:6px 0;
+
+    color:#dceeff;
+
+    font-size:13px;
+
+    border-left:1px solid rgba(255,255,255,.15);
+
+    padding-left:12px;
+
+}
+
+.featureItem:hover{
+
+    color:#6fd7ff;
+
+}
+
+
+/* =====================================
+   CHECKBOX
+===================================== */
+
+.drawRoot input[type="checkbox"],
+
+.drawType input[type="checkbox"],
+
+.featureItem input[type="checkbox"]{
+
+    width:15px;
+
+    height:15px;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================
+   ARROW
+===================================== */
+
+.drawRootHeader span:first-child,
+
+.drawType .layerItem span:first-child{
+
+    width:14px;
+
+    display:inline-block;
+
+    text-align:center;
+
+}

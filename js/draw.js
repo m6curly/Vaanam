@@ -26,19 +26,13 @@ const DrawState={
 
     feature:null,
 
-    active:false,
-
-    editing:false,
-
-    snapping:false,
-
-    modifying:false
+    active:false
 
 };
 
 
 // =====================================
-// REMOVE INTERACTION
+// REMOVE DRAW
 // =====================================
 
 function removeDrawInteraction(){
@@ -59,7 +53,7 @@ function removeDrawInteraction(){
 
 
 // =====================================
-// RESET STATE
+// RESET
 // =====================================
 
 function resetDrawState(){
@@ -136,9 +130,11 @@ function startDraw(
 
 function registerDrawEvents(){
 
-    if(!DrawState.interaction)
+    if(!DrawState.interaction){
 
         return;
+
+    }
 
     DrawState.interaction.on(
 
@@ -158,7 +154,21 @@ function registerDrawEvents(){
 
         "drawend",
 
-        onDrawComplete
+        function(e){
+
+            removeDrawInteraction();
+
+            DrawState.active=false;
+
+            DrawState.feature=e.feature;
+
+            openFeaturePopup(
+
+                e.feature
+
+            );
+
+        }
 
     );
 
@@ -166,51 +176,7 @@ function registerDrawEvents(){
 
 
 // =====================================
-// DRAW COMPLETE
-// =====================================
-
-function onDrawComplete(e){
-
-    removeDrawInteraction();
-
-    DrawState.active = false;
-
-    DrawState.feature = e.feature;
-
-    processCompletedFeature(
-
-        e.feature
-
-    );
-
-}
-
-
-// =====================================
-// FEATURE COMPLETE
-// =====================================
-
-function processCompletedFeature(
-
-    feature
-
-){
-
-    if(!feature)
-
-        return;
-
-    openFeaturePopup(
-
-        feature
-
-    );
-
-}
-
-
-// =====================================
-// CANCEL DRAW
+// CANCEL
 // =====================================
 
 function cancelDraw(){
@@ -221,7 +187,7 @@ function cancelDraw(){
 
 
 // =====================================
-// CLEAR DRAWINGS
+// CLEAR ALL
 // =====================================
 
 function clearDrawings(){
@@ -229,6 +195,18 @@ function clearDrawings(){
     cancelDraw();
 
     drawSource.clear();
+
+    if(
+
+        typeof initUserDrawTree===
+
+        "function"
+
+    ){
+
+        initUserDrawTree();
+
+    }
 
 }
 
@@ -243,7 +221,11 @@ document.addEventListener(
 
     function(e){
 
-        if(e.key==="Escape"){
+        if(
+
+            e.key==="Escape"
+
+        ){
 
             cancelDraw();
 
@@ -255,13 +237,17 @@ document.addEventListener(
 
 
 // =====================================
-// DRAW BUTTON
+// DRAW PANEL
 // =====================================
 
 document
+
 .getElementById(
+
     "drawBtn"
+
 )
+
 .onclick=function(e){
 
     e.preventDefault();
@@ -278,13 +264,17 @@ document
 
 
 // =====================================
-// PANEL
+// PANEL CLICK
 // =====================================
 
 document
+
 .getElementById(
+
     "drawPanel"
+
 )
+
 .onclick=function(e){
 
     e.stopPropagation();
@@ -293,19 +283,22 @@ document
 
 
 // =====================================
-// CLEAR
+// CLEAR BUTTON
 // =====================================
 
 document
+
 .getElementById(
+
     "clearDraw"
+
 )
+
 .onclick=function(){
 
     clearDrawings();
 
 };
-
 
 // =====================================
 // DRAW TOOLS
@@ -391,7 +384,7 @@ function activateCircleTool(){
 
 
 // =====================================
-// RIGHT CLICK ENGINE
+// RIGHT CLICK FOR POINT
 // =====================================
 
 map.on(
@@ -400,20 +393,15 @@ map.on(
 
     function(evt){
 
-        // Right Mouse Button Only
-
         if(
 
-            evt.originalEvent.button !== 2
+            evt.originalEvent.button!==2
 
         ){
 
             return;
 
         }
-
-
-        // Point Tool Only
 
         if(
 
@@ -427,20 +415,11 @@ map.on(
 
         }
 
-
-        // Disable Browser Menu
-
         evt.originalEvent.preventDefault();
-
-
-        // Stop OpenLayers Draw
 
         removeDrawInteraction();
 
-        DrawState.active = false;
-
-
-        // Open Coordinate Popup
+        DrawState.active=false;
 
         openCoordinatePopup();
 
@@ -450,16 +429,15 @@ map.on(
 
 
 // =====================================
-// DISABLE BROWSER CONTEXT MENU
+// DISABLE CONTEXT MENU
 // =====================================
 
-map.getViewport().addEventListener(
+document.addEventListener(
 
     "contextmenu",
 
     function(e){
 
-        // Jab koi bhi Draw Tool active ho
         if(
 
             DrawState.active
@@ -482,7 +460,7 @@ map.getViewport().addEventListener(
 
 
 // =====================================
-// DRAW BUTTONS
+// BUTTONS
 // =====================================
 
 document
@@ -563,7 +541,6 @@ document
 
 };
 
-
 // =====================================
 // VAANAM DRAW ENGINE
 // PART-3 : WORKFLOW
@@ -571,45 +548,25 @@ document
 
 
 // =====================================
-// FEATURE COMPLETE
-// =====================================
-
-function processCompletedFeature(feature){
-
-    if(!feature){
-
-        return;
-
-    }
-
-    DrawState.feature = feature;
-
-    openFeaturePopup(feature);
-
-}
-
-
-// =====================================
 // AFTER FEATURE SAVE
-// featurePopup.js will call this
+// featurePopup.js calls this
 // =====================================
 
-window.finishFeatureDrawing = function(feature){
+window.finishFeatureDrawing=function(feature){
 
+    // User pressed Cancel
     if(!feature){
+
+        DrawState.feature=null;
 
         return;
 
     }
 
-    // Future :
-    // Save to User Layer
-    // Save to GeoJSON
-    // Save to Database
-    // Apply Default Style
+    // Clear current feature
+    DrawState.feature=null;
 
-    DrawState.feature = null;
-
+    // Keep same tool active
     switch(DrawState.mode){
 
         case "Point":
@@ -632,7 +589,17 @@ window.finishFeatureDrawing = function(feature){
 
         case "Circle":
 
-            activateCircleTool();
+            if(DrawState.geometryFunction){
+
+                activateRectangleTool();
+
+            }
+
+            else{
+
+                activateCircleTool();
+
+            }
 
             break;
 
@@ -642,8 +609,8 @@ window.finishFeatureDrawing = function(feature){
 
 
 // =====================================
-// AFTER COORDINATE CREATE
-// coordinatePopup.js will call this
+// AFTER COORDINATE POINT
+// coordinatePopup.js calls this
 // =====================================
 
 window.finishCoordinatePoint=function(feature){
@@ -654,7 +621,9 @@ window.finishCoordinatePoint=function(feature){
 
     }
 
-    processCompletedFeature(
+    DrawState.feature=feature;
+
+    openFeaturePopup(
 
         feature
 
@@ -664,7 +633,7 @@ window.finishCoordinatePoint=function(feature){
 
 
 // =====================================
-// CANCEL DRAW
+// CANCEL FROM OTHER FILES
 // =====================================
 
 window.cancelCurrentDraw=function(){
@@ -697,7 +666,7 @@ window.getCurrentDrawMode=function(){
 
 
 // =====================================
-// FUTURE API
+// PUBLIC API
 // =====================================
 
 window.DrawEngine={
@@ -708,9 +677,17 @@ window.DrawEngine={
 
     clear:clearDrawings,
 
-    active:isDrawActive,
+    active:function(){
 
-    mode:getCurrentDrawMode,
+        return DrawState.active;
+
+    },
+
+    mode:function(){
+
+        return DrawState.mode;
+
+    },
 
     feature:function(){
 
@@ -720,32 +697,13 @@ window.DrawEngine={
 
 };
 
+
 // =====================================
-// DISABLE BROWSER RIGHT CLICK
+// READY
 // =====================================
-
-document.addEventListener(
-
-    "contextmenu",
-
-    function(e){
-
-        if(DrawState.active){
-
-            e.preventDefault();
-
-            e.stopPropagation();
-
-            return false;
-
-        }
-
-    },
-
-    true
-
-);
 
 console.log(
+
     "VAANAM Draw Engine Loaded"
+
 );

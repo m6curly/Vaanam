@@ -5,7 +5,7 @@
 
 
 // =====================================
-// TREE STORAGE
+// ROOT STORAGE
 // =====================================
 
 const drawRoots = {};
@@ -21,13 +21,17 @@ document.addEventListener(
 
     "DOMContentLoaded",
 
-    initUserDrawTree
+    function(){
+
+        initUserDrawTree();
+
+    }
 
 );
 
 
 // =====================================
-// INIT
+// INIT TREE
 // =====================================
 
 function initUserDrawTree(){
@@ -46,7 +50,7 @@ function initUserDrawTree(){
 
     }
 
-    list.innerHTML="";
+    list.innerHTML = "";
 
     createRoot("Point");
 
@@ -80,12 +84,14 @@ function createRoot(name){
 
     );
 
-    root.className="drawRoot";
+    root.className =
+
+    "drawRoot";
 
 
-    // =====================================
+    // ==========================
     // HEADER
-    // =====================================
+    // ==========================
 
     const header =
 
@@ -95,16 +101,51 @@ function createRoot(name){
 
     );
 
-    header.className="drawRootHeader";
+    header.className =
 
-    header.innerHTML=
-
-        '<span class="arrow">▶</span> '+name;
+    "drawRootHeader";
 
 
-    // =====================================
+    const arrow =
+
+    document.createElement(
+
+        "span"
+
+    );
+
+    arrow.innerHTML = "▶";
+
+    arrow.style.marginRight = "6px";
+
+
+    const text =
+
+    document.createElement(
+
+        "span"
+
+    );
+
+    text.innerHTML = name;
+
+
+    header.appendChild(
+
+        arrow
+
+    );
+
+    header.appendChild(
+
+        text
+
+    );
+
+
+    // ==========================
     // BODY
-    // =====================================
+    // ==========================
 
     const body =
 
@@ -114,24 +155,20 @@ function createRoot(name){
 
     );
 
-    body.className="drawRootBody";
+    body.className =
 
-    body.style.display="none";
+    "drawRootBody";
+
+    body.style.display =
+
+    "none";
 
 
-    // =====================================
+    // ==========================
     // EXPAND
-    // =====================================
+    // ==========================
 
-    header.onclick=function(){
-
-        const arrow=
-
-        header.querySelector(
-
-            ".arrow"
-
-        );
+    header.onclick = function(){
 
         if(body.style.display==="none"){
 
@@ -171,9 +208,9 @@ function createRoot(name){
     );
 
 
-    drawRoots[name]=body;
+    drawRoots[name] = body;
 
-    drawTypes[name]={};
+    drawTypes[name] = {};
 
 }
 
@@ -181,32 +218,30 @@ function createRoot(name){
 // ADD DRAW TYPE
 // =====================================
 
-window.addDrawType = function(
+window.addDrawType=function(
 
     geometry,
-
     type
 
 ){
 
-    // already exists
+    if(!drawTypes[geometry]){
 
-    if(
+        drawTypes[geometry]={};
 
-        drawTypes[geometry][type]
+    }
 
-    ){
+    if(drawTypes[geometry][type]){
 
         return;
 
     }
 
+    const root=drawRoots[geometry];
 
-    const parent =
+    if(!root){
 
-    drawRoots[geometry];
-
-    if(!parent){
+        console.log("Root Missing :",geometry);
 
         return;
 
@@ -214,48 +249,26 @@ window.addDrawType = function(
 
 
     // =====================================
-    // TYPE CONTAINER
+    // CONTAINER
     // =====================================
 
-    const container =
-
-    document.createElement(
-
-        "div"
-
-    );
-
-    container.className="drawType";
+    const container=document.createElement("div");
 
 
     // =====================================
     // HEADER
     // =====================================
 
-    const header =
-
-    document.createElement(
-
-        "div"
-
-    );
+    const header=document.createElement("div");
 
     header.className="layerItem";
 
     header.style.marginLeft="18px";
 
 
-    // =====================================
-    // EXPAND
-    // =====================================
+    // Arrow
 
-    const arrow =
-
-    document.createElement(
-
-        "span"
-
-    );
+    const arrow=document.createElement("span");
 
     arrow.innerHTML="▶";
 
@@ -264,85 +277,43 @@ window.addDrawType = function(
     arrow.style.marginRight="6px";
 
 
-    // =====================================
-    // CHECKBOX
-    // =====================================
+    // Checkbox
 
-    const check =
-
-    document.createElement(
-
-        "input"
-
-    );
+    const check=document.createElement("input");
 
     check.type="checkbox";
 
     check.checked=true;
 
 
-    // =====================================
-    // LABEL
-    // =====================================
+    // Text
 
-    const text =
+    const text=document.createElement("span");
 
-    document.createElement(
-
-        "span"
-
-    );
-
-    text.innerHTML=type;
+    text.textContent=type;
 
 
-    header.appendChild(
+    header.appendChild(arrow);
 
-        arrow
+    header.appendChild(check);
 
-    );
-
-    header.appendChild(
-
-        check
-
-    );
-
-    header.appendChild(
-
-        text
-
-    );
+    header.appendChild(text);
 
 
     // =====================================
-    // FEATURE BODY
+    // BODY
     // =====================================
 
-    const body =
-
-    document.createElement(
-
-        "div"
-
-    );
+    const body=document.createElement("div");
 
     body.style.display="none";
 
-    body.style.marginLeft="18px";
+    body.style.marginLeft="20px";
 
-
-    // =====================================
-    // EXPAND
-    // =====================================
 
     arrow.onclick=function(){
 
-        if(
-
-            body.style.display==="none"
-
-        ){
+        if(body.style.display==="none"){
 
             body.style.display="block";
 
@@ -361,67 +332,24 @@ window.addDrawType = function(
     };
 
 
+    container.appendChild(header);
+
+    container.appendChild(body);
+
+    root.appendChild(container);
+
+
     // =====================================
-    // TYPE VISIBILITY
+    // SAVE BODY
     // =====================================
 
-    check.onchange=function(){
+    drawTypes[geometry][type]=body;
 
-        body
-
-        .querySelectorAll(
-
-            "input[type='checkbox']"
-
-        )
-
-        .forEach(function(box){
-
-            box.checked=
-
-            check.checked;
-
-            box.dispatchEvent(
-
-                new Event(
-
-                    "change"
-
-                )
-
-            );
-
-        });
-
-    };
-
-
-    container.appendChild(
-
-        header
-
-    );
-
-    container.appendChild(
-
-        body
-
-    );
-
-    parent.appendChild(
-
-        container
-
-    );
-
-
-    drawTypes
-
-    [geometry]
-
-    [type]=body;
+    console.log("TYPE CREATED",geometry,type);
 
 };
+
+
 
 // =====================================
 // ADD DRAW FEATURE
@@ -437,124 +365,11 @@ window.addDrawFeature = function(
 
 ){
 
-    // =====================================
-    // CREATE TYPE IF NOT EXISTS
-    // =====================================
-
     addDrawType(
 
         geometry,
 
         type
-
-    );
-
-    const parent =
-
-    drawTypes
-
-    [geometry]
-
-    [type];
-
-    if(!parent){
-
-        return;
-
-    }
-
-
-    // =====================================
-    // FEATURE ROW
-    // =====================================
-
-    const row =
-
-    document.createElement(
-
-        "div"
-
-    );
-
-    row.className="featureItem";
-
-    row.style.marginLeft="20px";
-
-
-    // =====================================
-    // FEATURE CHECKBOX
-    // =====================================
-
-    const check =
-
-    document.createElement(
-
-        "input"
-
-    );
-
-    check.type="checkbox";
-
-    check.checked=true;
-
-
-    // =====================================
-    // FEATURE LABEL
-    // =====================================
-
-    const label =
-
-    document.createElement(
-
-        "span"
-
-    );
-
-    label.innerHTML=
-
-        feature.get("name") ||
-
-        "Unnamed";
-
-
-    // =====================================
-    // FEATURE VISIBILITY
-    // =====================================
-
-    check.onchange=function(){
-
-        feature.setStyle(
-
-            this.checked
-
-            ?
-
-            undefined
-
-            :
-
-            new ol.style.Style(null)
-
-        );
-
-    };
-
-
-    row.appendChild(
-
-        check
-
-    );
-
-    row.appendChild(
-
-        label
-
-    );
-
-    parent.appendChild(
-
-        row
 
     );
 
