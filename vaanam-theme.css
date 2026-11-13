@@ -1,0 +1,178 @@
+/* VAANAM shared design system. Load this after each workspace stylesheet. */
+:root {
+  --vaanam-bg: #202825;
+  --vaanam-surface: #2c3531;
+  --vaanam-surface-2: #35423d;
+  --vaanam-line: #48564f;
+  --vaanam-text: #f3f5f1;
+  --vaanam-muted: #c0ccc5;
+  --vaanam-accent: #d9b08c;
+  --vaanam-accent-soft: #ffcb9a;
+  --vaanam-teal: #116466;
+  --vaanam-teal-soft: #d1e8e2;
+  --vaanam-danger: #e49b9b;
+  --vaanam-header-h: 66px;
+  color-scheme: dark;
+  font-family: Inter, Arial, sans-serif;
+  --bg: var(--vaanam-bg);
+  --panel: var(--vaanam-surface);
+  --panel2: var(--vaanam-surface-2);
+  --panel-2: var(--vaanam-surface-2);
+  --line: var(--vaanam-line);
+  --text: var(--vaanam-text);
+  --muted: var(--vaanam-muted);
+  --cyan: var(--vaanam-accent);
+  --blue: var(--vaanam-accent-soft);
+  --accent: var(--vaanam-accent);
+  --accent-soft: var(--vaanam-accent-soft);
+  --teal: var(--vaanam-teal);
+  --teal-light: var(--vaanam-teal-soft);
+  --teal-soft: var(--vaanam-teal-soft);
+  --danger: var(--vaanam-danger);
+  --radius: 10px;
+}
+
+html, body { font-family: Inter, Arial, sans-serif; background: var(--vaanam-bg); color: var(--vaanam-text); }
+body { accent-color: var(--vaanam-teal); }
+button, input, select, textarea { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--vaanam-accent);
+  outline-offset: 2px;
+}
+
+.vaanam-globalbar {
+  position: sticky;
+  top: 0;
+  z-index: 1600;
+  width: 100%;
+  min-height: var(--vaanam-header-h);
+  display: grid;
+  grid-template-columns: minmax(195px, auto) minmax(280px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 8px clamp(14px, 2.4vw, 30px);
+  border-bottom: 1px solid var(--vaanam-line);
+  background: rgba(37, 46, 42, .98);
+  box-shadow: 0 4px 16px rgba(0,0,0,.14);
+}
+.vaanam-brand { min-width: 0; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--vaanam-text); }
+.vaanam-brand:hover { text-decoration: none; }
+.vaanam-brand-mark { width: 37px; height: 37px; flex: 0 0 37px; display: grid; place-items: center; border: 1px solid var(--vaanam-accent); border-radius: 9px; background: var(--vaanam-teal); color: var(--vaanam-teal-soft); font-size: 18px; font-weight: 900; }
+.vaanam-brand-copy { min-width: 0; }
+.vaanam-brand-copy strong { display: block; color: var(--vaanam-text); font-size: 14px; line-height: 1.1; letter-spacing: 2px; font-weight: 850; }
+.vaanam-brand-copy small { display: block; margin-top: 4px; color: var(--vaanam-muted); font-size: 8px; line-height: 1.2; letter-spacing: 1.1px; white-space: nowrap; }
+.vaanam-nav { display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 0; }
+.vaanam-nav a { display: inline-flex; min-height: 35px; align-items: center; justify-content: center; padding: 7px 11px; border: 1px solid transparent; border-radius: 7px; color: var(--vaanam-muted); font-size: 10px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background .15s ease, border-color .15s ease, color .15s ease; }
+.vaanam-nav a:hover, .vaanam-nav a[aria-current="page"] { background: var(--vaanam-surface-2); border-color: var(--vaanam-line); color: var(--vaanam-accent-soft); text-decoration: none; }
+.vaanam-account { display: flex; align-items: center; justify-content: flex-end; gap: 8px; min-width: 0; }
+.vaanam-save-status { max-width: 165px; overflow: hidden; color: var(--vaanam-muted); font-size: 9px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+.vaanam-auth-button, .vaanam-signout-button, .vaanam-clear-button { min-height: 34px; border: 1px solid var(--vaanam-line); border-radius: 7px; background: var(--vaanam-surface-2); color: var(--vaanam-text); padding: 7px 10px; font-size: 10px; font-weight: 750; cursor: pointer; white-space: nowrap; }
+.vaanam-auth-button { border-color: var(--vaanam-teal); background: var(--vaanam-teal); color: #fff; }
+.vaanam-auth-button:hover { background: #197778; }
+.vaanam-signout-button:hover, .vaanam-clear-button:hover { border-color: var(--vaanam-accent); }
+.vaanam-clear-button { color: var(--vaanam-accent-soft); }
+.vaanam-user-label { max-width: 150px; overflow: hidden; color: var(--vaanam-text); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+
+/* History toolbar sits below the shared VAANAM navigation. */
+.topbar { min-height: 58px; height: auto; padding: 8px 14px; gap: 12px; z-index: 1000; background: var(--vaanam-surface); border-color: var(--vaanam-line); }
+.workspace-toolbar-label { flex: 0 0 auto; min-width: 112px; color: var(--vaanam-text); font-size: 11px; font-weight: 800; letter-spacing: .4px; }
+.app-shell { height: calc(100dvh - var(--vaanam-header-h) - 58px); }
+
+/* Home and legal pages use the same surfaces, controls, and spacing palette. */
+.site-header { display: none !important; }
+.legal-header { display: none !important; }
+.module-card { border-color: var(--vaanam-line); background: linear-gradient(145deg, rgba(44,53,49,.98), rgba(32,40,37,.98)); }
+.module-card:hover { border-color: var(--vaanam-accent); }
+.section-heading h2, .hero h1, .module-card h3, .legal-intro h1 { font-family: Inter, Arial, sans-serif; }
+.hero-desc, .module-card p, .section-heading p { color: var(--vaanam-muted); }
+.site-footer, .legal-footer { color: var(--vaanam-muted); border-color: var(--vaanam-line); }
+.site-footer nav a, .legal-footer a, .legal-section a { color: var(--vaanam-accent-soft); }
+.legal-page { padding-top: 35px; }
+.legal-section, .legal-intro { border-color: var(--vaanam-line); }
+.legal-important, .legal-toc a { background: var(--vaanam-surface); border-color: var(--vaanam-line); }
+.legal-section h3, .legal-intro h1 em { color: var(--vaanam-accent-soft); }
+.legal-section p, .legal-section li, .legal-intro > p:not(.eyebrow) { color: var(--vaanam-muted); }
+
+/* Shared controls across the map, home and raster workspaces. */
+.button, .raster-button, .login-button, .extract-add-button { border-radius: 7px; font-family: Inter, Arial, sans-serif; font-weight: 750; }
+.button-primary, .raster-button.primary, .download-action { background: var(--vaanam-teal); border-color: var(--vaanam-teal); color: #fff; }
+.button-primary:hover:not(:disabled), .raster-button.primary:hover:not(:disabled), .download-action:hover:not(:disabled) { background: #197778; }
+.button-upload { background: var(--vaanam-surface-2); color: var(--vaanam-accent-soft); border-color: var(--vaanam-line); }
+.button-quiet { background: transparent; color: var(--vaanam-text); border-color: var(--vaanam-line); }
+button:disabled { opacity: .48; cursor: not-allowed; }
+input, select, textarea { border-color: var(--vaanam-line); }
+
+/* Raster workspaces fill the viewport below the common portal header. */
+body.raster-page { height: 100dvh; overflow: hidden; }
+.raster-topbar { display: none !important; }
+.raster-workspace { height: calc(100dvh - var(--vaanam-header-h)); }
+.raster-panel, .raster-legal-footer { background: var(--vaanam-surface); }
+.raster-panel-heading, .raster-section, .raster-result-section, .raster-legal-footer { border-color: var(--vaanam-line); }
+.raster-input, .raster-select, .raster-file, .raster-map-actions select { border-color: var(--vaanam-line); background-color: var(--vaanam-bg); color: var(--vaanam-text); }
+.raster-label, .raster-map-chip strong { color: var(--vaanam-teal-soft); }
+.raster-note, .raster-map-chip, .raster-map-legend, .raster-map-empty > div { border-color: var(--vaanam-line); }
+.raster-legal-footer a { color: var(--vaanam-accent-soft); }
+.raster-run-actions { margin-top: 13px; }
+.raster-legend-items-spread { justify-content: space-between; }
+.raster-temperature-gradient { height: 8px; margin-top: 8px; border-radius: 20px; background: linear-gradient(90deg, #233b8a, #2083b1, #49a585, #ddbe52, #dc7040, #97313a); }
+.change-key-decrease { background: #4387be; }
+.change-key-stable { background: #d3b074; }
+.change-key-increase { background: #dc644a; }
+
+/* Authentication and cloud-save feedback. */
+.vaanam-auth-dialog[hidden] { display: none !important; }
+.vaanam-auth-dialog { position: fixed; inset: 0; z-index: 5000; display: grid; place-items: center; padding: 18px; }
+.vaanam-auth-backdrop { position: absolute; inset: 0; background: rgba(8,13,11,.76); backdrop-filter: blur(5px); }
+.vaanam-auth-card { position: relative; width: min(440px, 100%); padding: 25px; border: 1px solid var(--vaanam-line); border-radius: 12px; background: var(--vaanam-surface); color: var(--vaanam-text); box-shadow: 0 20px 70px rgba(0,0,0,.4); }
+.vaanam-auth-card h2 { margin: 0 0 8px; font-size: 20px; letter-spacing: -.3px; }
+.vaanam-auth-card p { color: var(--vaanam-muted); font-size: 12px; line-height: 1.6; }
+.vaanam-auth-card small { display: block; margin-top: 16px; color: var(--vaanam-muted); font-size: 10px; line-height: 1.6; }
+.vaanam-auth-card a { color: var(--vaanam-accent-soft); }
+.vaanam-auth-close { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: 1px solid var(--vaanam-line); border-radius: 7px; background: var(--vaanam-surface-2); color: var(--vaanam-text); font-size: 18px; }
+.vaanam-auth-start { width: 100%; min-height: 42px; border: 1px solid var(--vaanam-teal); border-radius: 7px; background: var(--vaanam-teal); color: white; font-size: 12px; font-weight: 800; cursor: pointer; }
+.vaanam-auth-message { min-height: 18px; margin: 12px 0 0 !important; font-size: 11px !important; }
+.vaanam-auth-message[data-error="true"] { color: var(--vaanam-danger) !important; }
+body.vaanam-dialog-open { overflow: hidden !important; }
+
+@media (max-width: 1050px) {
+  :root { --vaanam-header-h: 98px; }
+  .vaanam-globalbar { grid-template-columns: auto 1fr; gap: 7px 14px; }
+  .vaanam-nav { justify-content: flex-end; }
+  .vaanam-account { grid-column: 1 / -1; justify-content: flex-end; }
+  .vaanam-save-status { margin-right: auto; }
+}
+@media (max-width: 760px) {
+  :root { --vaanam-header-h: 86px; }
+  .vaanam-globalbar { grid-template-columns: minmax(0,1fr) auto; gap: 6px 8px; padding: 7px 10px; }
+  .vaanam-brand-mark { width: 32px; height: 32px; flex-basis: 32px; }
+  .vaanam-brand-copy strong { font-size: 12px; }
+  .vaanam-brand-copy small { font-size: 7px; letter-spacing: .65px; }
+  .vaanam-nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .vaanam-nav::-webkit-scrollbar { display: none; }
+  .vaanam-nav a { min-height: 30px; padding: 5px 9px; font-size: 9px; }
+  .vaanam-nav { max-width: 100%; }
+  .vaanam-globalbar { position: relative; }
+  .vaanam-account { grid-column: 2; grid-row: 1; gap: 5px; }
+  .vaanam-save-status, .vaanam-user-label { display: none; }
+  .vaanam-auth-button, .vaanam-signout-button, .vaanam-clear-button { min-height: 31px; padding: 6px 8px; font-size: 9px; }
+  .topbar { flex-wrap: wrap; gap: 7px; padding: 8px 10px; }
+  .workspace-toolbar-label { display: none; }
+  .app-shell { height: calc(100dvh - var(--vaanam-header-h) - 92px); }
+  .legal-page { padding: 28px 17px; }
+  .legal-footer { flex-direction: column; }
+}
+@media (max-width: 820px) {
+  body.raster-page { height: auto; min-height: 100%; overflow: auto; }
+  .raster-workspace {
+    height: auto;
+    min-height: calc(100dvh - var(--vaanam-header-h));
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .raster-input-panel, .raster-results-panel { overflow: visible; }
+  .raster-map-panel { height: 58vh; min-height: 340px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

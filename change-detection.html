@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202825">
+  <meta name="description" content="Compare aligned geospatial raster datasets across two dates with pixel-based change statistics and GeoTIFF export.">
+  <title>Change Detection | VAANAM</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="raster-app.css">
+  <link rel="stylesheet" href="vaanam-theme.css">
+</head>
+<body class="raster-page" data-workspace="change-detection">
+
+  <main class="raster-workspace">
+    <aside class="raster-panel raster-input-panel" aria-label="Change detection inputs">
+      <div class="raster-panel-heading">
+        <p class="raster-kicker">ANALYSIS SETUP</p>
+        <h1>Compare two dates</h1>
+        <p>Upload two single-band GeoTIFFs of the same variable. The app checks their grids before calculating pixel-by-pixel change.</p>
+      </div>
+      <div class="raster-panel-content">
+        <section class="raster-section">
+          <h3>01 · Before image</h3>
+          <label class="raster-label" for="beforeFile">Earlier raster (GeoTIFF)</label>
+          <input class="raster-file" id="beforeFile" type="file" accept=".tif,.tiff,image/tiff">
+          <div class="raster-file-meta" id="beforeFileMeta">No file selected</div>
+          <label class="raster-label" for="beforeDate">Earlier observation date <span>(optional)</span></label>
+          <input class="raster-input" id="beforeDate" type="date">
+        </section>
+        <section class="raster-section">
+          <h3>02 · After image</h3>
+          <label class="raster-label" for="afterFile">Later raster (GeoTIFF)</label>
+          <input class="raster-file" id="afterFile" type="file" accept=".tif,.tiff,image/tiff">
+          <div class="raster-file-meta" id="afterFileMeta">No file selected</div>
+          <label class="raster-label" for="afterDate">Later observation date <span>(optional)</span></label>
+          <input class="raster-input" id="afterDate" type="date">
+        </section>
+        <section class="raster-section">
+          <h3>03 · Analysis settings</h3>
+          <div class="raster-grid-2">
+            <div>
+              <label class="raster-label" for="changeThreshold">Change threshold</label>
+              <input class="raster-input" id="changeThreshold" type="number" min="0" step="any" value="0.10">
+            </div>
+            <div>
+              <label class="raster-label" for="changeUnits">Raster units</label>
+              <input class="raster-input" id="changeUnits" type="text" maxlength="18" value="input units" placeholder="e.g. NDVI">
+            </div>
+          </div>
+          <p>Differences within ± threshold are classed as no significant change. Enter the threshold in the same units as the raster values.</p>
+        </section>
+        <div class="raster-note warning">
+          Both rasters must have the same CRS, extent, pixel size, width and height. Align/resample them first in QGIS if they differ. Large GeoTIFFs are read and compared in 128-row tiles; there is no fixed 12-million-pixel or 500 MB upload cap. Cloud and shadow masking must already be applied to both inputs; this tool uses GeoTIFF NoData values only. Browser memory and the classic TIFF 4 GB export format remain practical limits.
+        </div>
+        <div class="raster-run-actions">
+          <button class="raster-button primary" id="runChangeBtn" type="button" disabled>Run change detection</button>
+          <p id="changeRunStatus" aria-live="polite">Select both rasters to begin.</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="raster-map-panel" aria-label="Change detection map">
+      <div id="analysisMap" role="application" aria-label="Map showing pixel change detection results"></div>
+      <div class="raster-map-top">
+        <div class="raster-map-chip"><strong id="mapTitle">Change map preview</strong><small id="mapSubtitle">Your result will appear here after analysis.</small></div>
+        <div class="raster-map-actions">
+          <select id="mapBasemap" aria-label="Map background">
+            <option value="osm">OSM map</option>
+            <option value="satellite">Satellite</option>
+          </select>
+        </div>
+      </div>
+      <div class="raster-map-empty" id="mapEmpty">
+        <div><span class="raster-empty-icon">⇄</span><b>Ready for comparison</b><p>Load a before and after GeoTIFF, then run the analysis to see increased, decreased and stable pixels.</p></div>
+      </div>
+      <div class="raster-map-legend" id="mapLegend" hidden>
+        <strong>Change classes</strong>
+        <div class="raster-legend-items">
+          <span><i class="change-key-decrease"></i> Decrease</span>
+          <span><i class="change-key-stable"></i> Within threshold</span>
+          <span><i class="change-key-increase"></i> Increase</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="raster-panel raster-results-panel" aria-label="Change detection results">
+      <div class="raster-panel-heading">
+        <p class="raster-kicker">RESULTS & EXPORT</p>
+        <h2>Change summary</h2>
+        <p id="resultDateLabel">No analysis has been run yet.</p>
+      </div>
+      <div class="raster-results-content" id="changeResults">
+        <div class="raster-empty-results">
+          <span class="raster-empty-icon">◫</span>
+          <strong>Results will appear here</strong>
+          <p>Upload two matching rasters and run the comparison. Sign in to back up source rasters and restore this analysis on another device.</p>
+        </div>
+      </div>
+      <div class="raster-legal-footer"><span>© 2026 VAANAM. All rights reserved.</span><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#data">Data & attribution</a></div>
+    </aside>
+  </main>
+
+  <div class="raster-toast" id="rasterToast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/proj4@2.11.0/dist/proj4.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.js"></script>
+  <script src="raster-core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="vaanam-cloud.js"></script>
+  <script src="change-detection.js"></script>
+</body>
+</html>

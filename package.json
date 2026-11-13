@@ -1,0 +1,10 @@
+{
+  "name": "vaanam-spatial-intelligence-platform",
+  "version": "3.0.0",
+  "private": true,
+  "description": "VAANAM spatial intelligence platform with Supabase workspace persistence",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js"
+  }
+}

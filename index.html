@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202825">
+  <meta name="description" content="VAANAM is a spatial intelligence platform for exploring, analysing and interpreting geospatial data through an expanding collection of tools.">
+  <title>VAANAM | Spatial Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="stylesheet" href="vaanam-theme.css">
+</head>
+<body data-workspace="home">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> SPATIAL INTELLIGENCE PLATFORM</div>
+        <h1>Understand the world<br><em>through geospatial data.</em></h1>
+        <p class="hero-desc">Explore, analyse, and interpret geospatial data through a growing collection of focused tools — designed to evolve with your work.</p>
+        <div class="hero-meta">
+          <span><i class="mini-check">✓</i> Spatial data exploration</span>
+          <span><i class="mini-check">✓</i> Evidence-led analysis</span>
+          <span><i class="mini-check">✓</i> Flexible workflows</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="globe"><div class="globe-grid"></div><div class="land land-a"></div><div class="land land-b"></div><div class="pin pin-a"></div><div class="pin pin-b"></div><div class="pin pin-c"></div></div>
+        <div class="art-tag tag-top"><span class="tag-pulse"></span> SPATIAL ANALYTICS</div>
+        <div class="art-tag tag-bottom"><b>GIS</b><span>DATA · INSIGHT · IMPACT</span></div>
+      </div>
+    </section>
+
+    <section class="modules-section" aria-labelledby="workspaceHeading">
+      <div class="section-heading">
+        <div><div class="eyebrow">VAANAM WORKSPACES</div><h2 id="workspaceHeading">Explore the platform</h2></div>
+        <p>Choose a workspace to open its tools.<br>The platform will continue to grow.</p>
+      </div>
+      <div class="module-grid">
+        <a class="module-card active-card" href="history.html">
+          <div class="card-top"><span class="module-icon history-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 17a17 17 0 1 1-1 12"/><path d="M8 8v10h10M24 13v12l8 5"/><circle cx="24" cy="25" r="2"/></svg></span></div>
+          <div class="module-number">OPENSTREETMAP · DATA HISTORY</div><h3>OSM History</h3>
+          <p>Explore OpenStreetMap object versions, inspect historical geometry, compare edits and export your findings.</p>
+          <div class="card-bottom"><span>Open history workspace</span><b>↗</b></div>
+        </a>
+        <a class="module-card active-card" href="change-detection.html">
+          <div class="card-top"><span class="module-icon change-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 13h13l5 6h14M8 35h13l5-6h14"/><path d="m33 12 7 7-7 7M33 22l7 7-7 7"/></svg></span></div>
+          <div class="module-number">RASTER ANALYSIS · MULTI-TEMPORAL</div><h3>Change Detection</h3>
+          <p>Compare aligned raster datasets, measure increase and decrease, inspect the map and export a georeferenced difference layer.</p>
+          <div class="card-bottom"><span>Open change detection</span><b>↗</b></div>
+        </a>
+        <a class="module-card active-card" href="lst.html">
+          <div class="card-top"><span class="module-icon lst-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7v5M24 36v5M7 24h5M36 24h5M12 12l4 4M32 32l4 4M36 12l-4 4M16 32l-4 4"/><circle cx="24" cy="24" r="10"/><path d="M24 17v8l5 3"/></svg></span></div>
+          <div class="module-number">THERMAL REMOTE SENSING</div><h3>Land Surface Temperature <small>(LST)</small></h3>
+          <p>Calculate Landsat 8/9 surface temperature in °C with USGS scale factors, quality masking, statistics and GeoTIFF export.</p>
+          <div class="card-bottom"><span>Open thermal analysis</span><b>↗</b></div>
+        </a>
+      </div>
+    </section>
+
+    <section id="extractPanel" class="home-download-section" aria-labelledby="osmDownloadHeading">
+      <div class="section-heading download-heading">
+        <div><div class="eyebrow">OPENSTREETMAP DATA</div><h2 id="osmDownloadHeading">OSM Data Download</h2></div>
+        <p>Build a focused data extract by country or<br>by the area currently visible on the map.</p>
+      </div>
+
+      <div class="download-layout">
+        <div class="download-left-column">
+          <article class="extract-card download-card">
+            <div class="extract-section-title"><span>01</span><div><b>Choose an area</b><small>Select one or more countries, or use the map extent.</small></div></div>
+            <label class="extract-field-label" for="extractScope">Download scope</label>
+            <select id="extractScope" class="extract-select">
+              <option value="area">Current visible map area</option>
+              <option value="country" selected>Country boundary</option>
+            </select>
+            <div id="countryPickerSection" class="extract-country-picker">
+              <label class="extract-field-label" for="countrySelect">Select country</label>
+              <div class="extract-country-control">
+                <select id="countrySelect" class="extract-select" aria-label="Select a country"><option value="IN">India (IN)</option></select>
+                <button id="countryAddBtn" class="extract-add-button" type="button">Add country</button>
+              </div>
+              <div id="selectedCountryList" class="extract-country-list" aria-live="polite"></div>
+              <p class="extract-help">Add multiple countries to create separate downloads for each selected country.</p>
+            </div>
+            <div id="extractAreaSection" hidden>
+              <div class="extract-area-status" id="extractAreaStatus">Pan and zoom the map to define your area.</div>
+            </div>
+          </article>
+
+          <div class="download-map-card">
+            <div class="download-map-heading"><div><b>Map area selector</b><small>Pan and zoom to the region you want to extract.</small></div><span>LIVE MAP</span></div>
+            <div id="downloadMap" role="application" aria-label="Map for selecting the OpenStreetMap data download area"></div>
+            <p class="map-credit-note">Map tiles: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>. Tile use is subject to the <a href="https://operations.osmfoundation.org/policies/tiles/" target="_blank" rel="noopener noreferrer">OSM tile policy</a>.</p>
+          </div>
+        </div>
+
+        <div class="download-right-column">
+          <article class="extract-card download-card feature-download-card">
+            <div class="extract-section-title"><span>02</span><div><b>Select data features</b><small>Choose one or more OSM feature definitions to export.</small></div></div>
+            <label class="extract-field-label" for="featureCategorySelect">Feature category</label>
+            <select id="featureCategorySelect" class="extract-select"><option value="special">Special extracts</option></select>
+            <input id="featureSearch" class="extract-search" type="search" placeholder="Search features or OSM tags…" aria-label="Search OSM features">
+            <div class="extract-selection-toolbar">
+              <button id="selectVisibleFeaturesBtn" class="text-button" type="button">Select visible</button>
+              <button id="clearCategoryFeaturesBtn" class="text-button" type="button">Clear category</button>
+              <span id="selectedFeatureCount">0 features selected</span>
+            </div>
+            <div id="featureSelectionList" class="extract-feature-list" aria-label="Features in selected category"></div>
+            <p class="extract-help" id="featureGroupHint">Each selected feature is exported as a separate file for each chosen area.</p>
+            <div class="extract-separator"></div>
+            <div class="extract-section-title"><span>03</span><div><b>Export settings</b><small>Choose the file format for your data.</small></div></div>
+            <label class="extract-field-label" for="extractFormat">Output format</label>
+            <select id="extractFormat" class="extract-select"><option value="geojson">GeoJSON</option><option value="csv">CSV table</option></select>
+            <button class="button button-primary full download-action" id="downloadExtractBtn" type="button">Download selected data</button>
+            <div id="extractStatus" class="extract-status" role="status" aria-live="polite">Ready. Live OSM data will be requested from a public Overpass API server when you start a download.</div>
+          </article>
+          <div class="extract-note download-legal-note"><b>Data and download notes</b><p>This tool downloads OpenStreetMap feature data, not map tiles or offline basemaps. OSM data is available under the Open Database License (ODbL) 1.0. Keep the attribution and licence metadata included in exported files. Public Overpass servers are community-run, best-effort services and may throttle or time out on large requests. Try a smaller area when necessary.</p><p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM copyright & licence</a> · <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0 legal text</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 VAANAM. All rights reserved.</span>
+      <nav aria-label="Legal information"><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#data">Data & attribution</a></nav>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="vaanam-cloud.js"></script>
+  <script src="home-map.js"></script>
+  <script src="data-extract.js"></script>
+</body>
+</html>

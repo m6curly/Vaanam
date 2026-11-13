@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202825">
+  <meta name="description" content="VAANAM terms of use, privacy notice, third-party data licences, attribution and geospatial analysis limitations.">
+  <title>Legal, Privacy & Data Sources | VAANAM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="vaanam-theme.css">
+</head>
+<body data-workspace="legal">
+
+  <main class="legal-page">
+    <div class="legal-intro">
+      <p class="eyebrow"><span></span> PLATFORM POLICIES</p>
+      <h1>Legal, privacy & <em>data sources.</em></h1>
+      <p>Important information about using VAANAM and the third-party data, maps and services connected to its workspaces.</p>
+      <small>Last updated: 9 November 2026</small>
+    </div>
+
+    <div class="legal-important" role="note">
+      <b>Publication checklist — operator details must be completed.</b>
+      <p>Before publishing this site to the public, replace every bracketed field such as <code>[Platform operator / legal entity]</code>, <code>[contact email]</code> and <code>[postal address]</code> with accurate details. Have the final Terms and Privacy Notice reviewed for the actual hosting, analytics, business model, data retention and applicable law. This page is a practical starting template, not a legal opinion or a certification of compliance.</p>
+    </div>
+
+    <nav class="legal-toc" aria-label="Legal sections">
+      <a href="#terms">Terms of Use</a><a href="#privacy">Privacy Notice</a><a href="#data">Data sources & licences</a><a href="#disclaimer">Analysis disclaimer</a><a href="#contact">Contact & complaints</a>
+    </nav>
+
+    <section id="terms" class="legal-section">
+      <p class="legal-kicker">01 · USE OF THE PLATFORM</p>
+      <h2>Terms of Use</h2>
+      <p>VAANAM (the “Platform”) is operated by <b>[Platform operator / legal entity]</b> (“we”, “us” or “our”), with its principal contact address at <b>[postal address]</b>. These terms apply when you access or use the Platform, its workspaces, downloadable outputs and related services.</p>
+      <h3>Acceptable use</h3>
+      <ul>
+        <li>Use the Platform only for lawful purposes and only with data, imagery and files that you are authorised to access, process and share.</li>
+        <li>Do not attempt to disrupt public APIs, overload external services, bypass rate limits, scrape services contrary to their policies, or interfere with another user's access.</li>
+        <li>Do not use outputs as the sole basis for safety-critical, emergency, legal-boundary, property-title, medical, financial or other high-impact decisions without independent professional verification.</li>
+        <li>Do not remove copyright, source, attribution or licence notices from data or outputs. Respect third-party intellectual-property rights and contractual restrictions.</li>
+        <li>Do not upload personal, confidential, classified or otherwise restricted information to an external service unless you have a lawful basis and the relevant provider's terms permit it.</li>
+      </ul>
+      <h3>Accounts and sign-in</h3>
+      <p>Sign-in is available through Google OAuth handled by Supabase Auth. VAANAM does not ask you to create a separate VAANAM password or restrict accounts to Gmail addresses. Access remains optional: the analysis pages are public, while saved account data is restricted by Supabase Row Level Security and Storage policies. You are responsible for the security of your Google account and devices.</p>
+      <h3>Availability and changes</h3>
+      <p>VAANAM may change, suspend or discontinue a feature to protect the Platform, comply with law, respond to an upstream provider change, or maintain service integrity. Public map, geocoding, OSM API and Overpass services are operated by third parties, have independent limits and may be unavailable without notice. We do not promise uninterrupted availability or a service-level agreement for those providers.</p>
+      <h3>Intellectual property</h3>
+      <p>Original VAANAM interface elements, branding and code are owned by or licensed to <b>[Platform operator / legal entity]</b>, except for separately identified third-party components and datasets. The “VAANAM” name and logo do not transfer ownership of OpenStreetMap, USGS, Esri, NASA or other third-party materials. Your rights to each dataset or map layer are determined by its own licence and provider terms.</p>
+      <h3>Suspension and termination</h3>
+      <p>We may restrict access where we reasonably believe use is unlawful, abusive, unsafe, infringing, or likely to harm the Platform or an upstream data service. You may stop using the Platform at any time. Where sign-in is enabled, use “Sign out” to end the Supabase Auth session on this browser.</p>
+    </section>
+
+    <section id="privacy" class="legal-section">
+      <p class="legal-kicker">02 · PERSONAL DATA</p>
+      <h2>Privacy Notice</h2>
+      <p><b>Data fiduciary / controller:</b> [Platform operator / legal entity]. <b>Privacy contact:</b> [privacy contact email]. <b>Grievance contact:</b> [grievance officer name and email]. Complete these fields before public launch.</p>
+      <h3>Information processed</h3>
+      <ul>
+        <li><b>Google sign-in (when configured and used):</b> Supabase Auth receives the Google OAuth response and maintains the authenticated account session. VAANAM can access the account identifier, email address and available profile metadata. VAANAM does not store a separate password.</li>
+        <li><b>Session information:</b> the Supabase browser client maintains the Auth session and refreshes tokens according to the provider configuration. Signing out clears the active Supabase session on that browser.</li>
+        <li><b>Workspace settings and files:</b> when you sign in, VAANAM saves workspace settings, selections, map views and recent result summaries in a Supabase database. Source files selected in OSM History, Change Detection and LST are uploaded to a private Supabase Storage bucket so they can be restored. The app processes the data in your browser; exported GeoTIFF/CSV files and Home-page OSM download files are not automatically uploaded as project outputs.</li>
+        <li><b>External requests:</b> when you use a map, search or download feature, your browser contacts the relevant tile, geocoding, OpenStreetMap API, Overpass, CDN, font, Google sign-in or imagery provider. Those providers may process request metadata such as IP address, browser/device information, referrer, requested map area or query, under their own notices and terms.</li>
+      </ul>
+      <h3>Purposes and legal basis</h3>
+      <p>Information is processed to provide the requested geospatial features, authenticate a Google sign-in where you choose to use it, maintain security, prevent abuse, troubleshoot failures and respond to support or legal requests. Before launch, the operator must confirm the applicable legal basis, provide any required notice/consent mechanism, and align retention and grievance processes with the laws in force for the actual service.</p>
+      <h3>Sharing and retention</h3>
+      <p>The delivered code contains no explicit VAANAM analytics or advertising integration. Google, Supabase and the relevant map, geocoding, API, tile, CDN and imagery providers may receive account or service requests when you use their features and process information under their own terms and privacy notices. Supabase stores account-linked workspace records and source files in the project region selected by the operator. Hosting and service providers may also create security logs. The operator must confirm retention, backups, subprocessors and applicable disclosure obligations before launch.</p>
+      <h3>Your choices and rights</h3>
+      <p>You can choose not to sign in, avoid external map/search services, sign out, and use “Clear saved work” to delete the saved record and source files for the current workspace from your VAANAM account. This does not delete downloads already saved outside VAANAM or records in other workspaces. Subject to applicable law, you may request access, correction, erasure, grievance handling or other available rights by contacting [privacy contact email]. The operator must establish a workable response process and publish the correct grievance contact before public launch.</p>
+      <h3>Children and sensitive data</h3>
+      <p>The Platform is a general-purpose geospatial tool and is not designed to collect children's personal data. Do not upload sensitive personal, confidential, restricted or classified information. The operator must assess age-related and other obligations that apply to the actual service and its audience.</p>
+      <h3>Security and cross-border processing</h3>
+      <p>Google sign-in is handled by Supabase Auth. When you sign in, VAANAM stores workspace settings, recent result summaries and selected source files in Supabase so the workspace can be restored later. Workspace records are protected by Row Level Security, and source files are stored in a private bucket with per-user policies. Without sign-in, settings are kept in local browser storage and selected source files are not backed up to the cloud. Raster processing is performed in the browser; generated result downloads are not automatically retained in Supabase. Do not upload sensitive, confidential, restricted or classified information. Supabase and Google may process account or stored data in locations outside your state or country; the operator must confirm the project region, subprocessors, retention and incident-response arrangements before launch.</p>
+      <h3>Legal framework</h3>
+      <p>This notice is intended to be updated for applicable Indian data-protection and information-technology requirements, including the Digital Personal Data Protection Act, 2023 and the phased commencement of its provisions and Rules. The operator should obtain advice on the provisions in force at the time of launch and on any obligations arising from the actual processing performed by this Platform. The Act and Rules have phased commencement dates; check the official Gazette notifications rather than assuming every provision applies on the same date. <a href="https://egazette.gov.in/WriteReadData/2025/267647.pdf" target="_blank" rel="noopener noreferrer">DPDP Act commencement notification (G.S.R. 843(E), 13 November 2025)</a> · <a href="https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf" target="_blank" rel="noopener noreferrer">DPDP Rules, 2025 (G.S.R. 846(E))</a>.</p>
+    </section>
+
+    <section id="data" class="legal-section">
+      <p class="legal-kicker">03 · THIRD-PARTY MATERIAL</p>
+      <h2>Data sources, copyright & attribution</h2>
+      <p>VAANAM is a platform interface, not the owner of every dataset or basemap displayed or processed in it. The correct attribution and licence must travel with the relevant map, dataset, report or export. A single “© VAANAM” notice does not replace third-party attribution.</p>
+
+      <h3>OpenStreetMap data</h3>
+      <p>OpenStreetMap data is © OpenStreetMap contributors and is made available under the <b>Open Database License (ODbL) 1.0</b>. The OSM History workspace and Home-page OSM Data Download feature request OSM data from OpenStreetMap API / public Overpass instances. Attribution should be shown as <b>© OpenStreetMap contributors</b>, linked to the OSM copyright page, with the ODbL licence linked where data is distributed.</p>
+      <p>The OSM Data Download exports include source, attribution, licence and data-timestamp metadata. Keep those fields when you use or redistribute the export. ODbL share-alike duties may apply to a publicly used derivative database or substantial extraction/re-utilisation; whether a particular dataset or Produced Work qualifies depends on the nature of the use. Review the ODbL legal text rather than assuming every map image and every dataset has identical obligations.</p>
+      <p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap copyright & licence</a> · <a href="https://osmfoundation.org/wiki/Attribution_Guidelines" target="_blank" rel="noopener noreferrer">OSMF attribution guidelines</a> · <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0 legal text</a></p>
+
+      <h3>OpenStreetMap standard map tiles</h3>
+      <p>Interactive map tiles from <code>tile.openstreetmap.org</code> are a separate service from the underlying OSM open data. Visible map attribution is required. The public tile service is best-effort and does not permit bulk tile scraping, prefetching or offline tile packages. VAANAM's OSM Data Download downloads feature data through Overpass; it does not download standard OSM map tiles or create offline tile bundles.</p>
+      <p><a href="https://operations.osmfoundation.org/policies/tiles/" target="_blank" rel="noopener noreferrer">OSM Standard tile usage policy</a> · <a href="https://operations.osmfoundation.org/policies/api/" target="_blank" rel="noopener noreferrer">OSM API usage policy</a></p>
+
+      <h3>Other basemap and imagery providers</h3>
+      <p>The OSM History workspace can display style layers from HOT, OSM France, OpenStreetMap.de, Lima Labs, CyclOSM, OpenTopoMap-R, OpenHikingMap, Esri and NASA GIBS. The raster workspaces may use OpenStreetMap tiles or Esri World Imagery. The map's own attribution control is the primary source credit for the selected layer. Each provider has its own licence, attribution wording, fair-use rules, geographic coverage and commercial-use restrictions; these can change independently of VAANAM.</p>
+      <p>Esri services and data are not automatically public domain. Esri's web-site/service terms distinguish non-commercial and commercial use, and Esri India has additional local terms for certain datasets/services. Obtain the appropriate licence before embedding Esri content in a revenue-generating service or redistributing it. Do not remove the provider's attribution.</p>
+      <p><a href="https://www.esri.com/en-us/legal/terms/web-site-service" target="_blank" rel="noopener noreferrer">Esri web site and service terms</a> · <a href="https://www.esri.in/en-in/legal/overview" target="_blank" rel="noopener noreferrer">Esri India legal information</a> · <a href="https://www.earthdata.nasa.gov/data/instruments/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS</a></p>
+
+      <h3>Landsat / USGS data</h3>
+      <p>The LST workspace is designed for Landsat 8/9 Collection 2 Level-2 ST_B10 data and associated QA bands. USGS states that Landsat data are in the public domain and requests acknowledgement of USGS as the source. A recommended dataset citation is: <i>Earth Resources Observation and Science (EROS) Center. (2020). Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2 [dataset]. U.S. Geological Survey.</i> Use the product-specific citation supplied by USGS for the actual scene and version. A collection-level citation is available at DOI: <a href="https://doi.org/10.5066/P9OGBGM6" target="_blank" rel="noopener noreferrer">10.5066/P9OGBGM6</a>.</p>
+      <p><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products" target="_blank" rel="noopener noreferrer">USGS Landsat Collection 2 Level-2 products</a> · <a href="https://www.usgs.gov/faqs/are-landsat-data-cloud-still-considered-be-within-public-domain" target="_blank" rel="noopener noreferrer">USGS public-domain statement</a></p>
+
+      <h3>User-provided raster data</h3>
+      <p>Change Detection accepts user-supplied, comparable GeoTIFF rasters. VAANAM does not automatically know their origin, licence, sensor, units, processing history or publication restrictions. You are responsible for checking those rights and including the source citation, licence and acknowledgements required by the data provider in any report or map you publish.</p>
+
+      <h3>External software and libraries</h3>
+      <p>The Platform loads third-party browser libraries and fonts, including Leaflet, proj4, geotiff.js, Supabase JS and Google Fonts. Their respective authors, maintainers and providers retain their rights and licence terms. These libraries are used as dependencies and are not owned by VAANAM.</p>
+    </section>
+
+    <section id="disclaimer" class="legal-section">
+      <p class="legal-kicker">04 · ACCURACY & RELIANCE</p>
+      <h2>Geospatial analysis disclaimer</h2>
+      <p>Maps, geocoding results, OSM history, raster comparisons and land-surface-temperature calculations are provided for exploration and analytical assistance. They may be incomplete, delayed, misclassified, spatially inaccurate or affected by upstream outages, sensor limitations, raster alignment, NoData handling, cloud contamination, projection, resolution and browser/device constraints.</p>
+      <ul>
+        <li>OSM data is community-contributed and may not represent current ground conditions or official boundaries.</li>
+        <li>Change Detection compares pixel values in two rasters after grid checks. It does not perform image registration, atmospheric correction, radiometric normalisation, cross-sensor harmonisation or automatic cloud masking.</li>
+        <li>LST results represent satellite-derived land surface temperature, not near-surface air temperature. Product quality limits and missing retrievals can affect results.</li>
+        <li>Area measurements, geometry reconstructions and visual overlays are estimates based on available source data and implemented assumptions. They are not surveys, title records or legal boundary determinations.</li>
+        <li>Always validate consequential findings using authoritative datasets, field verification and qualified professional review.</li>
+      </ul>
+      <p>To the extent permitted by applicable law, the Platform is provided “as is” and “as available”, without a promise that outputs are fit for a particular purpose. Nothing in these terms excludes liability that cannot lawfully be excluded.</p>
+    </section>
+
+    <section id="contact" class="legal-section">
+      <p class="legal-kicker">05 · SUPPORT & REDRESSAL</p>
+      <h2>Contact, grievances & copyright concerns</h2>
+      <p><b>Platform operator:</b> [Platform operator / legal entity]</p>
+      <p><b>Postal address:</b> [Full postal address]</p>
+      <p><b>General support:</b> [contact email]</p>
+      <p><b>Privacy / grievance officer:</b> [name, designation and email]</p>
+      <p><b>Copyright and licence notices:</b> [copyright contact email]</p>
+      <p>When reporting an issue, include the relevant page or URL, the affected dataset or map provider, a description of the concern, and enough information for the operator to investigate. Do not email passwords, access tokens, confidential data or sensitive personal information.</p>
+    </section>
+
+    <footer class="legal-footer"><span>© 2026 VAANAM. All rights reserved.</span><a href="index.html">Return to VAANAM Home ↗</a></footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="vaanam-cloud.js"></script>
+</body>
+</html>
